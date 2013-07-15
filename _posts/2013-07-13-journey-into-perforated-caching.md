@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 ---
 
 About a year ago it became clear that nearly all of the content Rails was
