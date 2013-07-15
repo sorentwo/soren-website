@@ -18,9 +18,14 @@
         <p class="view"><a href="https://github.com/sorentwo">View My GitHub Profile</a></p>
       </header>
       <section>
+        <ul>
+          {% for post in site.posts %}
+            <li>
+              <a href="{{ post.url }}">{{ post.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
       </section>
-      <footer>
-      </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
   </body>
