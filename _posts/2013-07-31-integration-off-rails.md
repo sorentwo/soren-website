@@ -2,8 +2,6 @@
 layout: default
 ---
 
-## Integration Confidence
-
 Without full stack integration tests I never have complete confidence that a
 system will function properly. As well tested and designed as the individual
 components may be there is no way to truly know how they will interact without
