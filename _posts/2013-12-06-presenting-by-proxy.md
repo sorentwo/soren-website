@@ -5,11 +5,11 @@ layout: default
 The [mediator pattern][1] is an essential technique for cleanly stratifying any
 data-driven system into layers with distinct responsibilities. The concept is
 simple, take an object and wrap it in another object. When methods are called on
-the wrapping object it selectively overrides the method to process the original
-objects data, or it just passes the method call through to the original object.
+the wrapping object it, selectively overrides the method to process the original
+object's data, or it just passes the method call through to the original object.
 That description doesn't do the pattern justice, and probably confused you if
-you already implement mediator pattern style presenters. Let's illustrate
-the concept with some Ruby code:
+you already implement mediator pattern style presenters. Let's illustrate the
+concept with some Ruby code:
 
 ```ruby
 require 'delegate'
@@ -39,7 +39,7 @@ slightly.
 
 What about languages that don't have `method_missing`? One such language is
 JavaScript. There isn't any [standard tracked method](3) for [handling method
-calls](4) dynamically. Fortunately JavaScript is highly malleable, allowing for
+calls](4) dynamically. Fortunately, JavaScript is highly malleable, allowing for
 dynamic assignment instead. Let's take a shot at a JavaScript presenter:
 
 ```javascript
@@ -148,7 +148,7 @@ enumerated before.
    from the presenter.
 2. There is no data duplication.
 3. The data will always be in sync, as it is dynamically retrieved during
-   runtime. There is no need to observe the original object or keep thing
+   runtime. There is no need to observe the original object or keep properties
    synchronized with events.
 
 Unfortunately, as with any new web technology, there is the adoption hurdle.
