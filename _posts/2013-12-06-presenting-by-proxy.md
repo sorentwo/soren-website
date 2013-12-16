@@ -83,9 +83,9 @@ In addition, as soon as the model's data changes the presenter will be out of
 sync. Referencing the example above:
 
 ```javascript
-console.log(model.id, presenter.id); # 100, 100
+console.log(model.id, presenter.id); // 100, 100
 model.id = 101;
-console.log(model.id, presenter.id); # 101, 100
+console.log(model.id, presenter.id); // 101, 100
 ```
 
 It turns out that [ES6 Harmony](6) proposes a clean solution to our presenter
