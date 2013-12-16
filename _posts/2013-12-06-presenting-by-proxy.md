@@ -1,5 +1,6 @@
 ---
 layout: default
+summary: Leveraging proxies for model presentation
 ---
 
 The [mediator pattern][1] is an essential technique for cleanly stratifying any

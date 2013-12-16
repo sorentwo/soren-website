@@ -1,5 +1,6 @@
 ---
 layout: default
+summary: Lightweight testing for libraries that integrate with Rails
 ---
 
 Without full stack integration tests I never have complete confidence that a
@@ -47,8 +48,6 @@ class Resource < ActiveRecord::Model
   include Fragmenter::Rails::Model
 end
 ```
-
-
 
 ## Testing Requests
 

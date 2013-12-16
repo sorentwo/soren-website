@@ -7,40 +7,52 @@
     <meta name="keywords"    content="soren, sorentwo, chicago, ruby, rails, ruby on rails, coffeescript, elixir, tdd, test driven development, bdd, behavior driven development, shannon peterson, parker selbert">
     <meta name="author"      content="Parker Selbert">
 
-    <title>{{ page.title }}</title>
+    <title>{{page.title}}</title>
 
     <link rel="alternate" type="application/rss+xml" title="Parker Selbert" href="http://blog.sorentwo.com/feed.atom">
 
+    <script type="text/javascript" src="//use.typekit.net/hhg1uru.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <link rel="stylesheet" href="http://i.icomoon.io/public/temp/c8151b7a98/Soren/style.css">
     <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/pygments.css">
   </head>
 
   <body>
-    <div class="wrapper">
-      <header><h1>{{ page.title }}</h1></header>
-      <section>{{ content }}</section>
-      <footer>
-        &copy; 2013 &mdash; Parker Selbert
-        <nav>
-          <a class="github" href="https://github.com/sorentwo">Github</a>
-          <a class="twitter" href="https://twitter.com/soren_two">Twitter</a>
-          <a class="email" href="mailto:soren@sorentwo.com">Email</a>
+    <header>
+      <div class="wrapper">
+        <a class="logotype" href="/"><em>ø</em>soren</a>
+        <a class="icon-menu menu-link js-menu" href="#"></a>
+      </div>
+    </header>
+
+    {% if page.summary %}
+      <article class="wrapper">
+        <section>{{content}}</section>
+      </article>
+    {% else %}
+      {{content}}
+    {% endif %}
+
+    <footer>
+      <div class="wrapper">
+        <p>
+          We're located just outside Chicago and enjoy meeting new people.
+          We've been known to buy lunch.
+        </p>
+
+        <div class="footer-contact contact-here">
+          <a class="email" href="mailto:soren@sorentwo.com">soren@sorentwo.com</a>
+          <a href="tel:+13128029888">+1 312 802 9888</a>
+        </div>
+
+        <nav class="footer-contact contact-there">
+          <a class="icon-github github" href="https://github.com/sorentwo"><span>Github</span></a>
+          <a class="icon-twitter twitter" href="https://twitter.com/sorentwo"><span>Twitter</span></a>
+          <a class="icon-feed rss" href="http://blog.sorentwo.com/feed.atom"><span>Feed</span></a>
         </nav>
-      </footer>
-    </div>
-    <script src="/javascripts/scale.fix.js"></script>
-    <script type="text/javascript">
-      var _gauges = _gauges || [];
-      (function() {
-        var t   = document.createElement('script');
-        t.type  = 'text/javascript';
-        t.async = true;
-        t.id    = 'gauges-tracker';
-        t.setAttribute('data-site-id', '51e44499613f5d2b3b00009e');
-        t.src = '//secure.gaug.es/track.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(t, s);
-      })();
-    </script>
+      </div>
+    </footer>
   </body>
 </html>

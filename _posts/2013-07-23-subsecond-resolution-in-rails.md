@@ -1,5 +1,6 @@
 ---
 layout: default
+summary: Inconsistent timestamps in Rails
 ---
 
 The de-facto standard for representing dates and times is [ISO8601][0]. The
