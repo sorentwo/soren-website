@@ -276,7 +276,7 @@ Now try adding the index again:
 
 ```psql
 CREATE INDEX index_posts_on_ranking
-  ON posts (ranking(id, comments_count + likes_count) DESC);
+  ON posts (ranking(id, comments_count + likes_count, 3) DESC);
 ```
 
 The index is accepted. Now we can try it out again:
