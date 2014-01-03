@@ -1,8 +1,35 @@
 /* Colors
  * Darkest Gray: #333333
+ * VLight Gray:  #cccccc;
  * Light Gray:   #8d8d8d
  * Highlight:    #27afc9;
 */
+
+/* Fonts -------------------------------------------------------------------- */
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.eot');
+	src:url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.ttf') format('truetype'),
+		url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.woff') format('woff'),
+		url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 
 /* Global ------------------------------------------------------------------- */
 
@@ -16,10 +43,27 @@ html * {
 }
 
 body {
-  /* background: url("/images/measure.png") repeat; */
   font: 18px/30px "proxima-nova-1", "proxima-nova-2", sans-serif;
   color: #333;
   padding-top: 60px;
+}
+
+/* Icons ------------------------------------------------------------------- */
+
+.icon-github:before {
+	content: "\e600";
+}
+.icon-twitter:before {
+	content: "\e601";
+}
+.icon-feed:before {
+	content: "\e602";
+}
+.icon-menu:before {
+	content: "\e603";
+}
+.icon-soren-logo:before {
+	content: "\e604";
 }
 
 /* Type --------------------------------------------------------------------- */
@@ -113,18 +157,23 @@ header {
   font-weight: 600;
 }
 
-.logotype em {
-  font-size: 36px;
-  font-style: normal;
+.logotype:before {
+  font-family: "icomoon";
+  content: "\e604";
+  display: block;
+  float: left;
   margin-right: 5px;
-  vertical-align: -2px;
+
+  transform-origin: 16px 0;
+
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+          transition: all 0.5s ease;
 }
 
-.menu-link {
-  color: #333;
-  float: right;
-  font-size: 22px;
-  line-height: 60px;
+.logotype:hover:before {
+  color: #27afc9;
+  transform: rotateY(360deg);
 }
 
 .wrapper {
@@ -140,27 +189,75 @@ header {
 footer {
   background: #f6f6f6;
   margin-top: 30px;
-  padding: 60px 0 30px;
+  overflow: hidden;
+  padding: 30px 0 30px;
+}
+
+.footer-contact {
+  float: left;
+  width: 50%;
+}
+
+.contact-here {
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+  text-align: right;
+}
+
+.contact-here a {
+  display: block;
 }
 
 .contact-there {
-  float: right;
+  padding: 17px 0 0 20px;
 }
 
 .contact-there a {
   color: #8d8d8d;
-  margin-left: 20px;
-  font-size: 22px;
+  font-size: 30px;
+  margin-right: 20px;
+  position: relative;
+
+  -webkit-transition: color 0.3s ease;
+     -moz-transition: color 0.3s ease;
+          transition: color 0.3s ease;
+}
+
+.contact-there a:last-child {
+  margin-right: 0;
+}
+
+.contact-there a:hover {
+  color: #333333;
 }
 
 .contact-there span {
-  font-size: 0;
+  background: #fff;
+  border-radius: 3px;
+  bottom: 0;
+  font-family: "proxima-nova-1", "proxima-nova-2", sans-serif;
+  font-size: 18px;
+  left: -20px;
+  opacity: 0;
+  padding: 3px;
+  position: absolute;
+  text-align: center;
+  width: 70px;
+
+  -webkit-transition: all 0.3s ease;
+     -moz-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+}
+
+.contact-there a:hover span {
+  bottom: 40px;
+  opacity: 1.0;
 }
 
 /* Content ----------------------------------------------------------------- */
 
 .home-primary {
-  background: #49acbd; /* #6fcee3; */
+  background: #49acbd;
   color: #fff;
   padding: 90px;
 }
@@ -202,12 +299,14 @@ footer {
   width: 47.5%;
 }
 
-.blog-entry :nth-child(odd) {
+.blog-entry:nth-child(odd) {
   margin-right: 5%;
 }
 
 .blog-entry h3 {
-  transition: color 0.5s ease;
+  -webkit-transition: color 0.3s ease;
+     -moz-transition: color 0.3s ease;
+          transition: color 0.3s ease;
 }
 
 .blog-entry:hover h3 {
@@ -216,4 +315,45 @@ footer {
 
 .blog-entry p {
   color: #8d8d8d;
+}
+
+/* Media Queries ------------------------------------------------------------- */
+
+@media (max-width: 320px) {
+  .wrapper {
+    padding: 0 20px;
+  }
+
+  .footer-contact {
+    border: none;
+    float: none;
+    padding: 0;
+    text-align: center;
+    width: auto;
+  }
+
+  .contact-here {
+    margin-bottom: 15px;
+  }
+
+  .home-primary {
+    padding: 30px 0;
+    margin-bottom: 30px;
+  }
+
+  .tagline {
+    font-size: 48px;
+    line-height: 60px;
+  }
+
+  .intro {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .blog-entry {
+    float: none;
+    margin-bottom: 15px;
+    width: auto;
+  }
 }
