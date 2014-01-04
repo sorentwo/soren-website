@@ -29,6 +29,10 @@
     {% if page.summary %}
       <article class="wrapper">
         <h1 class="entry-title">{{page.title}}</h1>
+        <aside class="entry-meta">
+          <p class="date">{{page.date | date_to_string}}</p>
+          <p class="author"><span class="fancy">by</span> {{page.author}}</p>
+        </aside>
         <section class="entry-body">{{content}}</section>
       </article>
     {% else %}

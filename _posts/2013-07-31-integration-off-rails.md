@@ -1,6 +1,7 @@
 ---
 layout: default
 summary: Lightweight testing for libraries that integrate with Rails
+author: Parker Selbert
 ---
 
 Without full stack integration tests I never have complete confidence that a

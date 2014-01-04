@@ -1,6 +1,7 @@
 ---
 layout: default
 summary: Efficient social ranking within Postgres
+author: Parker Selbert
 ---
 
 You are developing an application that serves up social content, perhaps it is a
