@@ -1,6 +1,6 @@
 ---
 layout: default
-summary: Leveraging proxies for model presentation
+summary: Leveraging ES6 Harmony's Proxy object for MVP
 ---
 
 The [mediator pattern][1] is an essential technique for cleanly stratifying any

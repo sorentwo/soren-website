@@ -1,6 +1,6 @@
 ---
 layout: default
-summary: Get more out of serialized caching
+summary: Maximize cache performance when serializing collections
 ---
 
 About a year ago it became clear that nearly all of the content Rails was

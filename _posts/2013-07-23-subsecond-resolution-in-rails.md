@@ -1,6 +1,6 @@
 ---
 layout: default
-summary: Inconsistent timestamps in Rails
+summary: Fixing inconsistent timestamp serialization in Rails 4
 ---
 
 The de-facto standard for representing dates and times is [ISO8601][0]. The
