@@ -2,9 +2,10 @@
 
 $color_dark:   #333333;
 $color_medium: #555555;
-$color_soft:   #cccccc;
 $color_light:  #8d8d8d;
+$color_soft:   #cccccc;
 $color_accent: #27afc9;
+$color_subacc: #49acbd;
 
 // Fonts --------------------------------------------------------------------
 
@@ -185,11 +186,15 @@ header {
 
 .home-sub {
   padding: 30px 0 0;
+
+  h2 {
+    margin-bottom: 15px;
+  }
 }
 
 footer {
   background: #f6f6f6;
-  margin-top: 30px;
+  margin-top: 15px;
   overflow: hidden;
   padding: 30px 0 30px;
 }
@@ -259,9 +264,13 @@ footer {
 // Index ----------------------------------------------------------------------
 
 .home-primary {
-  background: #49acbd;
+  background: $color_subacc;
   color: #fff;
   padding: 90px;
+}
+
+.home-sub.team {
+  border-top: 1px solid lighten($color_soft, 10%);
 }
 
 .tagline {
