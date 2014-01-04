@@ -93,6 +93,8 @@ a {
   text-decoration: none;
 }
 
+:focus { outline: none; }
+
 blockquote {
   border-left: 1px solid $color_light;
   margin: 0;
