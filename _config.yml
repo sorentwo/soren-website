@@ -1,3 +1,7 @@
 markdown: redcarpet
 exclude:
+  - assets
   - vendor
+  - README.md
+  - Gemfile
+  - Gemfile.lock

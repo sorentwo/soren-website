@@ -1,5 +1,7 @@
 ---
 layout: default
+summary: Maximize cache performance when serializing collections
+author: Parker Selbert
 ---
 
 About a year ago it became clear that nearly all of the content Rails was

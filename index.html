@@ -1,19 +1,44 @@
 ---
 layout: default
-title: Parker Selbert &bull; On Development
+title: Soren
 ---
 
-<div class='hfeed'>
-  {% for post in site.posts %}
-    <article class="hentry entry">
-      <h1 class="entry-title">
-        <a href="{{ post.url }}" rel="bookmark">{{ post.title }}</a>
-      </h1>
-      <p>Posted on <span class="published">{{ post.date | date_to_string }}</span></p>
-      <p class="entry-excerpt">
-        {{ post.excerpt }}
-        <a href="{{ post.url }}" rel="bookmark">Keep Reading</a>
-      </p>
-    </article>
-  {% endfor %}
+<div class="home-primary">
+  <div class="wrapper">
+    <h1 class="tagline">
+      We craft web <em>&amp;</em> mobile applications
+    </h1>
+
+    <h2 class="intro">
+      We design and develop elegant solutions to business problems. We are
+      full-stack web developers specializing in <b>Ruby</b>, <b>Rails</b>,
+      <b>JavaScript</b>, <b>Client MVC</b> and <b>System Architecture</b>. What
+      can we build for you?
+    </h2>
+  </div>
+</div>
+
+<div class="home-sub wrapper blog">
+  <h2>Blog</h2>
+  <div class="blog-listing">
+    {% for post in site.posts limit:6 %}
+    <a class="blog-entry" href="{{post.url}}">
+      <h3>{{post.title}}</h3>
+      <p>{{post.summary}}</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="home-sub team">
+  <div class="wrapper">
+    <h2>Team</h2>
+    <p class="team-info">
+      Soren is the strategic pairing of <b>Shannon Peterson</b> <span
+       class="fancy">&amp;</span> <b>Parker Selbert</b>. We collaborate on
+      everything&mdash;even some children. Between us there there isn't much we
+      can't handle; we're always mindful of playing to our individual
+      strengths.
+    </p>
+  </div>
 </div>
