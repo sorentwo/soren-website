@@ -1,7 +1,10 @@
 markdown: redcarpet
 exclude:
+  - bin
   - assets
   - vendor
+  - LICENSE.txt
   - README.md
+  - TODO
   - Gemfile
   - Gemfile.lock
