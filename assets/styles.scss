@@ -1,21 +1,24 @@
 // Variables ------------------------------------------------------------------
 
-$color_dark:   #333333;
-$color_medium: #555555;
-$color_light:  #8d8d8d;
-$color_soft:   #cccccc;
-$color_accent: #27afc9;
-$color_subacc: #49acbd;
+$color-slight: #f9f9f9;
+$color-dark:   #333333;
+$color-medium: #555555;
+$color-light:  #8d8d8d;
+$color-soft:   #cccccc;
+$color-accent: #27afc9;
+$color-subacc: #49acbd;
+
+$font-size-smaller: 16px;
+$font-size-normal: 18px;
+$font-size-large: 32px;
+
+$grid-unit: 8px;
 
 // Fonts --------------------------------------------------------------------
 
 @font-face {
 	font-family: 'icomoon';
-	src:url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.eot');
-	src:url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.eot?#iefix') format('embedded-opentype'),
-		url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.ttf') format('truetype'),
-		url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.woff') format('woff'),
-		url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.svg#icomoon') format('svg');
+	src: url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -45,9 +48,9 @@ html * {
 }
 
 body {
-  font: 18px/30px "proxima-nova-1", "proxima-nova-2", sans-serif;
-  color: $color_medium;
-  padding-top: 60px;
+  font: 18px/32px "proxima-nova-1", "proxima-nova-2", sans-serif;
+  color: $color-medium;
+  padding-top: $grid-unit * 8;
 }
 
 // Icons ----------------------------------------------------------------------
@@ -71,29 +74,35 @@ body {
 // Type -----------------------------------------------------------------------
 
 h1, h2, h3, h4, h5, h6 {
-  color: $color_dark;
-  font-size: 18px;
+  color: $color-dark;
+  font-size: $font-size-normal;
+  font-weight: 400;
+  line-height: $grid-unit * 4;
+  margin-bottom: $grid-unit * 2;
+}
+
+h1 {
+  font-size: $font-size-large;
   font-weight: 600;
-  line-height: 30px;
-  margin: 0;
+  line-height: $font-size-large;
 }
 
 h2 {
-  text-transform: uppercase;
-  margin-bottom: 0;
+  font-size: $font-size-large;
+  line-height: $font-size-large;
 }
 
 p, ul, ol, table, pre, dl {
-  margin: 0 0 20px;
+  margin: 0 0 $grid-unit * 3;
 }
 
 li {
   list-style: disc inside;
-  padding-left: 20px;
+  padding-left: $grid-unit * 2;
 }
 
 a {
-  color: $color_accent;
+  color: $color-accent;
   font-weight: 400;
   text-decoration: none;
 }
@@ -101,39 +110,10 @@ a {
 :focus { outline: none; }
 
 blockquote {
-  border-left: 1px solid $color_light;
+  border-left: 1px solid $color-soft;
   margin: 0;
   padding: 0 0 0 20px;
   font-style: italic;
-}
-
-code, pre {
-  color: $color_dark;
-  font-family: "Menlo", "Monaco", "Consolas", monospace;
-  font-size: 15px;
-}
-
-pre code {
-  font-size: 15px;
-}
-
-pre {
-  padding: 8px 15px;
-  background: #f8f8f8;
-  border-radius: 5px;
-  border: 1px solid #e5e5e5;
-  overflow-x: auto;
-}
-
-p code {
-  padding: 3px;
-  background: #f8f8f8;
-  border-radius: 3px;
-  border: 1px solid #e5e5e5;
-}
-
-img {
-  max-width: 100%;
 }
 
 strong {
@@ -146,11 +126,37 @@ strong {
   font-style: italic;
 }
 
+// Code Formatting ------------------------------------------------------------
+
+code, pre {
+  color: $color-dark;
+  font-family: "Menlo", "Monaco", "Consolas", monospace;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+pre {
+  background: $color-slight;
+  border-radius: 3px;
+  overflow-x: auto;
+  padding: 16px;
+}
+
+p code {
+  background: $color-slight;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+img {
+  max-width: 100%;
+}
+
 // Structure ------------------------------------------------------------------
 
 header {
   background: #fff;
-  border-bottom: 1px solid $color_soft;
+  border-bottom: 1px solid $color-soft;
   height: 60px;
   opacity: 0.9;
   position: fixed;
@@ -161,7 +167,7 @@ header {
 }
 
 .logotype {
-  color: $color_dark;
+  color: $color-dark;
   font-size: 27px;
   font-weight: 600;
 }
@@ -181,13 +187,13 @@ header {
 }
 
 .logotype:hover:before {
-  color: $color_accent;
+  color: $color-accent;
   transform: rotateY(360deg);
 }
 
 .wrapper {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 720px;
   overflow: hidden;
 }
 
@@ -198,6 +204,8 @@ header {
     margin-bottom: 15px;
   }
 }
+
+// Footer ---------------------------------------------------------------------
 
 footer {
   background: #f6f6f6;
@@ -212,13 +220,13 @@ footer {
 }
 
 .contact-here {
-  border-right: 1px solid $color_soft;
+  border-right: 1px solid $color-soft;
   padding-right: 20px;
   text-align: right;
 }
 
 .contact-here a {
-  color: $color_light;
+  color: $color-light;
   display: block;
 }
 
@@ -227,7 +235,7 @@ footer {
 }
 
 .contact-there a {
-  color: $color_light;
+  color: $color-light;
   font-size: 30px;
   margin-right: 20px;
   position: relative;
@@ -242,7 +250,7 @@ footer {
 }
 
 .contact-here a:hover, .contact-there a:hover {
-  color: $color_dark;
+  color: $color-dark;
 }
 
 .contact-there span {
@@ -250,7 +258,7 @@ footer {
   border-radius: 3px;
   bottom: 0;
   font-family: "proxima-nova-1", "proxima-nova-2", sans-serif;
-  font-size: 18px;
+  font-size: $font-size-normal;
   left: -20px;
   opacity: 0;
   padding: 3px;
@@ -271,13 +279,13 @@ footer {
 // Index ----------------------------------------------------------------------
 
 .home-primary {
-  background: $color_subacc;
+  background: $color-subacc;
   color: #fff;
   padding: 90px;
 }
 
 .home-sub.team {
-  border-top: 1px solid lighten($color_soft, 10%);
+  border-top: 1px solid lighten($color-soft, 10%);
 }
 
 .tagline {
@@ -328,32 +336,30 @@ footer {
 }
 
 .blog-entry:hover h3 {
-  color: $color_accent;
+  color: $color-accent;
 }
 
 .blog-entry p {
-  color: $color_light;
+  color: $color-light;
 }
 
 // Entry ----------------------------------------------------------------------
 
 .entry-title {
-  font-size: 32px;
-  margin: 30px 0 15px;
+  border-bottom: black;
+  margin: ($grid-unit * 6) 0 ($grid-unit * 3);
+  padding-bottom: $grid-unit * 3;
+  text-align: center;
+
+  span {
+    display: inline;
+  }
 }
 
 .entry-body {
   p, ul, ol, blockquote {
     font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2";
     font-weight: 400;
-  }
-}
-
-.entry-meta {
-  margin-bottom: 15px;
-
-  p {
-    display: inline;
   }
 }
 
@@ -387,7 +393,7 @@ footer {
   }
 
   .intro {
-    font-size: 18px;
+    font-size: $font-size-normal;
     line-height: 30px;
   }
 
