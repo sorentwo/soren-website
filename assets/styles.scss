@@ -50,7 +50,7 @@ html * {
 body {
   font: 18px/32px "proxima-nova-1", "proxima-nova-2", sans-serif;
   color: $color-medium;
-  padding-top: $grid-unit * 8;
+  padding: ($grid-unit * 8) ($grid-unit * 2) 0;
 }
 
 // Icons ----------------------------------------------------------------------
