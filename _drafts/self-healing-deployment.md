@@ -1,31 +1,31 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Manage applications as services, and monitor those services
+summary: Applications are services, they need monitoring too
 ---
 
 Every process that is available when a server boots was brought up by the init
 system (or systems). That's all the init system does, that's what it is good at.
 It's certainly better at managing processes than an ad-hoc Capistrano or Mina
-script is. Each production server should also only have one job, be it running a
+script is. Each production server should only have one job, be it running a
 load balancer, serving up pages or working as a database. That isn't always the
-case, take staging servers for example, but it is an easily achievable goal.
+case, staging servers are a notable exemption, but it is an easily achievable goal.
 Every component in the stack should rely on the init system to maintain a steady
-state. Chances are the load balancer, reverse proxy cache, nosql server, sql
-server or configuration registry is already being managed by the init system.
+state. Chances are the load balancer, reverse proxy cache, NoSQL server, SQL
+server or configuration registry is already being managed by an init system.
 The application should too.
-
-[Don't daemonize yourself](mperham.com)
 
 ## Service Configurations
 
-The example services I'm about to discuss both ship with example Upstart
-configurations. Those are an excellent place to start.
+The current service management system for Ubuntu is [Upstart][upstart], though
+it is being phased out in favor of the [controversial][boycott]
+[systemd][systemd]. Irregardless Upstart is included in Ubuntu 14.04 LTS, so it
+will be around for at least another four years.
 
 The [Upstart Cookbook][cookbook] is your best friend when crafting upstart
-configuration files. Don't be intimidated by its massive length. As you search
-around to find what you need and you'll absorb useful bits that you didn't even
-know existed.
+configuration files. Don't be intimidated by the cookbook's massive length. As
+you search around to find what you need and you'll absorb useful bits that you
+didn't even know existed.
 
 ```sh
 #!upstart
@@ -57,21 +57,25 @@ reload signal USR1
 normal exit 0 TERM
 ```
 
+```
 start on runlevel [2345]
 stop on runlevel [06]
 
 script
-  mkfifo /tmp/puma-log-fifo
-  (logger -t puma < /tmp/puma-log-fifo &)
-  exec > /tmp/puma-log-fifo
-  rm /tmp/puma-log-fifo
-
   cd /var/www/app/current
-  . /etc/environment
   exec bin/puma -C config/puma.rb -b 'unix:///var/run/puma.sock?umask=0111' 2> /dev/null
 end script
-
-post-stop exec rm -f /var/run/puma.sock
 ```
 
+* Use services for managing your server
+* Understand what the configuration is doing
+* Craft configuration that can be monitored and healed
+  * The last `exec` yields the PID that will be tracked
+* Have a monitor watch your services
+  * It lets you know when something goes down
+  * It can reload or restart when a process gets out of hand
+
+[upstart]: http://upstart.ubuntu.com/
+[systemd]: http://freedesktop.org/wiki/Software/systemd/
+[boycott]: http://boycottsystemd.org/
 [cookbook]: http://upstart.ubuntu.com/cookbook/
