@@ -146,10 +146,21 @@ controlled with `sudo`. This can be problematic when using a deployment tool
 like Capistrano, which doesn't officially support running commands as `sudo`. In
 order for all of the necessary job control to be available during deployment you
 will need to configure the `deploy` user with proper `sudoer` permissions.
+Playing with passwordless `sudo` can be dangerous, so only add an exemption for
+controlling the puma process directly:
 
-```
+```bash
 sudo echo "deploy ALL = (root) NOPASSWD: /sbin/start puma, /sbin/stop puma, /sbin/restart puma, /sbin/reload puma" >> /etc/sudoers
 ```
+
+The various service commands (start, stop, restart, and reload) are all aliased
+into `/sbin`. This makes the passwordless commands slightly more readable, but
+is functionally equivalent to the `service {name} {action}` version.
+
+Now the service is up and the init system will ensure it comes back up if the
+system crashes, or even if the process itself crashes. But what happens if the
+process itself misbehaves or starts syphoning too many resources? There are
+tools for just that situation, of course.
 
 ## Monitoring Services
 
@@ -167,14 +178,17 @@ of the aforementioned issues. It is distributed as a small self-contained binary
 that itself is managed by an init system. However, it doesn't get into the
 business of trying to control services directly. Instead, it leverages the init
 system and very concise configuration files to help the system manage services
-directly.
+directly. [Installation is simple][inspeqtor-install] and works with the
+existing package manager.
 
-Continuing with the goal of .
-Here is an example configuration file for Puma. It is targeting the Puma service
-specifically, and would be placed in `/etc/inspeqtor/services.d/puma.inq`:
+Continuing on with the goal of keeping the system up, self-healing, and allowing
+the init system to do our work for us here is an example configuration file for
+Puma. It is targeting the Puma service specifically, and would be placed in
+`/etc/inspeqtor/services.d/puma.inq`:
 
 ```
 check service puma
+  if cpu:total > 90% then alert
   if memory:total_rss > 2g then alert, reload
 ```
 
@@ -182,41 +196,24 @@ That outlines, in very plain language, how Inspeqtor will monitor the service.
 It will find the init system that is managing the process and periodically
 perform some analysis on it. It performs simple status checks, such as whether
 the service is even up currently, and can alert you if the service goes down.
-Deeper introspection is also possible, as shown in the example above. Experience
-telles us that a Ruby web server will suffer memory bloat over time and want to
-track it. When the memory passes a threshold Inspeqtor will take action. In this
-case it will tell Upstart to reload puma (the same as running `service puma
-reload`) and it will send an alert to any of the configured channels such as
-email or [Slack][slack].
+Deeper introspection into resource usage is also possible, as shown in the
+example above. Experience tells us that a Ruby web server will suffer memory
+bloat over time and want to track it. When the memory passes a threshold
+Inspeqtor will take action. In this case it will tell Upstart to reload puma
+(the same as running `service puma reload`) and it will send an alert to any of
+the configured channels such as email or [Slack][slack].
 
 Some services, such as [Sidekiq][sidekiq] workers for example, may not have such
 strident requirements on uptime or may not have any notion of "phased restart".
-In that case you may use `restart` in place of `reload`.
+In that case the config can use `restart` in place of `reload`.
 
 ## Keep Deployment Simple
 
-A set of capistrano tasks for managing your application shouldn't ever be more
-complicated than this:
-
-```ruby
-namespace :puma do
-  task :start do
-    execute 'sudo start puma'
-  end
-
-  task :stop do
-    execute 'sudo stop puma'
-  end
-
-  task :restart do
-    execute 'sudo restart puma'
-  end
-
-  task :reload do
-    execute 'sudo reload puma'
-  end
-end
-```
+Make the most of the tools that are available to you. Some of them, such as
+Upstart, can be leveraged to great effect with a tiny bit of configuration and
+some outside monitoring. Converting a system from a set of custom deployment
+recipies that manage logs, sockets and pid files to one that manages and
+maintains itself *will* be vastly more stable and predictable.
 
 [upstart]: http://upstart.ubuntu.com/
 [systemd]: http://freedesktop.org/wiki/Software/systemd/
