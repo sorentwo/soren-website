@@ -5,19 +5,20 @@ summary: Applications are services, they need monitoring too
 ---
 
 Every process that is available when a server boots was brought up by the init
-system (or systems). That's all the init system does, that's what it is good at.
-It's certainly better at managing processes than an ad-hoc Capistrano or Mina
-script is. Each production server should only have one job, be it running a
-load balancer, serving up pages or working as a database. That isn't always the
-case, staging servers are a notable exemption, but it is an easily achievable goal.
-Every component in the stack should rely on the init system to maintain a steady
-state. Chances are the load balancer, reverse proxy cache, NoSQL server, SQL
-server or configuration registry is already being managed by an init system.
-The application should too.
+system (or systems). That is all the init system does, just what it is good at.
+It's certainly better at managing processes than an ad-hoc deployment script is.
+
+Each production server should only have one job, be it running a load balancer,
+serving up static pages or working as a database. Realistically that isn't
+always the case, staging servers are a notable exemption, but it is an
+attainable goal. Every component in the stack should rely on the init system to
+maintain a steady state. Chances are the load balancer, reverse proxy cache,
+NoSQL server, SQL server or configuration registry is already being managed by
+an init system.  The application should too.
 
 ## Service Configurations
 
-This post assumes you are deploying on Ubuntu, though the same principles apply
+This post assumes you are deploying to Ubuntu, though the same principles apply
 to *nearly* any other \*nix system. The current service management system for
 Ubuntu is [Upstart][upstart], though it is being phased out in favor of the
 [controversial][boycott] RedHat driven [systemd][systemd]. Regardless, Upstart
@@ -29,9 +30,11 @@ configuration files. Don't be intimidated by the cookbook's massive length. As
 you search around to find what you need and you'll absorb useful bits that you
 didn't even know existed.
 
-Walk through the configuration for running the Puma web server as a service.
-Most of the details are entirely vanilla, and in fact straight out of the Puma
-example configuration.
+The least common denominator for any web application is the server, so that is
+what we will look at setting up as a service. Below is a configuration file for
+running the [Puma][puma] web server as a service. Most of the details are common
+to any upstart script, and in fact much of this configuration is straight out of
+the example from the Puma repository:
 
 ```sh
 #!upstart
@@ -66,10 +69,11 @@ setuid deploy
 setgid deploy
 ```
 
-First, drop down to a less priveleged user for the sake of security. This is a very
-helpful feature built into more recent versions of Upstart. Your service simply
-should not need to run as root. Some `sudo` level commands are necessary for
-service control, but they should be enabled ad-hoc as we'll look at later.
+First, drop down to a less priveleged user for the sake of security. This is a
+very helpful feature built into more recent versions of Upstart. Your service
+simply should not need to run as root. Some `sudo` level commands are necessary
+for service control, but they should be enabled within `sudoers`, as we'll look
+at later.
 
 ```sh
 reload signal USR1
@@ -82,16 +86,17 @@ of the other web servers, can perform a full code reload and hot restart when
 sent a particular signal. Here we are hijacking the upstart `reload` event to
 send Puma the `USR1` signal, triggering a [phased restart][phased-restart]. Part
 of the phased restart process involves sending the `TERM` signal, which we tell
-upstart to ignore.
+upstart to ignore. Without the `normal exit` directive Upstart would consider
+the Puma process down after one reload.
 
 ```sh
 respawn
 respawn limit 3 30
 ```
 
-Add a respawning directive. It will try to restart the job up to 3 times if it
-fails for some reason. More often than not the service simply isn't coming back,
-but it's nice to have a backup.
+Add a respawning directive. It will try to restart the job up to 3 times within
+a 30 second window if it fails for some reason. More often than not the service
+simply isn't coming back, but it's nice to have a backup.
 
 ```sh
 start on runlevel [2345]
@@ -123,20 +128,48 @@ process and leave a zombie Puma process running in the background. Tracking the
 proper PID is also crucial for the next stage of managing applications as
 services, service monitoring.
 
+## Controlling Services
+
+By placing the configuration file in the proper location we can use service
+commands to control the server process. Write the file to `/etc/init/puma`. All
+configuration files go into `etc/init/`, and the service becomes available as
+whatever the file is named.
+
+With the configuration in place the server can start up:
+
+```sh
+sudo service puma start
+```
+
+Even though the process will be ran as the `deploy` user the service must be
+controlled with `sudo`. This can be problematic when using a deployment tool
+like Capistrano, which doesn't officially support running commands as `sudo`. In
+order for all of the necessary job control to be available during deployment you
+will need to configure the `deploy` user with proper `sudoer` permissions.
+
+```
+sudo echo "deploy ALL = (root) NOPASSWD: /sbin/start puma, /sbin/stop puma, /sbin/restart puma, /sbin/reload puma" >> /etc/sudoers
+```
+
 ## Monitoring Services
 
-Utilities for monitoring a server and the services on that machine are nothing
-new. Many systems in the Ruby world have relied on tools like [God][god] or
-[Bluepill][bluepill] to track and control application state. Those particular
-libraries have a number of drawbacks though, most notably they require a Ruby
-runtime and try to do too much.
+Utilities for monitoring a server and the services on that server are essential
+to maintaining the health of a system.  Many systems in the Ruby world have
+relied on tools like [God][god] or [Bluepill][bluepill] to monitor and control
+application state. Those particular tools have a couple of large drawbacks
+though. Notably they require a Ruby runtime, which reduces portability and
+sacrifices stability when version management is involved. More importantly,
+instead of working with an existing init system they duplicate the
+functionality.
 
-A recently released monitoring tool named [Inspeqtor][inspeqtor] addresses both
-of the aforementioned issues. It is distributed as a small binary that itself is
-managed by an init system. However, it doesn't get into the business of trying
-to control services directly. Instead, it leverages the init system and very
-concise configuration files to help the system manage services directly.
+A recently released monitoring tool called [Inspeqtor][inspeqtor] addresses both
+of the aforementioned issues. It is distributed as a small self-contained binary
+that itself is managed by an init system. However, it doesn't get into the
+business of trying to control services directly. Instead, it leverages the init
+system and very concise configuration files to help the system manage services
+directly.
 
+Continuing with the goal of .
 Here is an example configuration file for Puma. It is targeting the Puma service
 specifically, and would be placed in `/etc/inspeqtor/services.d/puma.inq`:
 
@@ -189,9 +222,10 @@ end
 [systemd]: http://freedesktop.org/wiki/Software/systemd/
 [boycott]: http://boycottsystemd.org/
 [cookbook]: http://upstart.ubuntu.com/cookbook/
+[puma]: https://github.com/puma/puma
 [phased-restart]: https://github.com/puma/puma/blob/master/DEPLOYMENT.md#restarting
-[bluepill]: http://BLUEPILL
-[god]: http://GOD
+[bluepill]: https://github.com/bluepill-rb/bluepill
+[god]: http://godrb.com/
 [inspeqtor]: http://contribsys.com/inspeqtor
-[slack]: http://SLACK
+[slack]: https://slack.com/
 [sidekiq]: http://contribsys.com/sidekiq
