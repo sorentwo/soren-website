@@ -198,7 +198,7 @@ perform some analysis on it. It performs simple status checks, such as whether
 the service is even up currently, and can alert you if the service goes down.
 Deeper introspection into resource usage is also possible, as shown in the
 example above. Experience tells us that a Ruby web server will suffer memory
-bloat over time and want to track it. When the memory passes a threshold
+bloat over time and we'll want to track it. When the memory passes a threshold
 Inspeqtor will take action. In this case it will tell Upstart to reload puma
 (the same as running `service puma reload`) and it will send an alert to any of
 the configured channels such as email or [Slack][slack].
@@ -224,5 +224,6 @@ maintains itself *will* be vastly more stable and predictable.
 [bluepill]: https://github.com/bluepill-rb/bluepill
 [god]: http://godrb.com/
 [inspeqtor]: http://contribsys.com/inspeqtor
+[inspeqtor-install]: https://github.com/mperham/inspeqtor/wiki/Installation
 [slack]: https://slack.com/
 [sidekiq]: http://contribsys.com/sidekiq
