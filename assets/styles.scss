@@ -50,7 +50,6 @@ html * {
 body {
   font: 18px/32px "proxima-nova-1", "proxima-nova-2", sans-serif;
   color: $color-medium;
-  padding: ($grid-unit * 8) ($grid-unit * 2) 0;
 }
 
 // Icons ----------------------------------------------------------------------
@@ -281,7 +280,7 @@ footer {
 .home-primary {
   background: $color-subacc;
   color: #fff;
-  padding: 90px;
+  padding: ($grid-unit * 10) ($grid-unit * 2);
 }
 
 .home-sub.team {
@@ -320,8 +319,9 @@ footer {
 .blog-entry {
   display: block;
   float: left;
-  height: 90px;
-  margin-bottom: 30px;
+  max-height: $grid-unit * 14;
+  margin-bottom: 32px;
+  overflow: hidden;
   width: 47.5%;
 
   &:nth-child(odd) {
@@ -330,6 +330,8 @@ footer {
 }
 
 .blog-entry h3 {
+  margin-bottom: 0;
+
   -webkit-transition: color 0.3s ease;
      -moz-transition: color 0.3s ease;
           transition: color 0.3s ease;
@@ -346,9 +348,7 @@ footer {
 // Entry ----------------------------------------------------------------------
 
 .entry-title {
-  border-bottom: black;
-  margin: ($grid-unit * 6) 0 ($grid-unit * 3);
-  padding-bottom: $grid-unit * 3;
+  margin: ($grid-unit * 14) 0 ($grid-unit * 4);
   text-align: center;
 
   span {
