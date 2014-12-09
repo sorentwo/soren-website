@@ -131,9 +131,9 @@ services, service monitoring.
 ## Controlling Services
 
 By placing the configuration file in the proper location we can use service
-commands to control the server process. Write the file to `/etc/init/puma`. All
-configuration files go into `etc/init/`, and the service becomes available as
-whatever the file is named.
+commands to control the server process. Write the file to `/etc/init/puma.conf`.
+All configuration files go into `etc/init/`, and the service becomes available
+as whatever the file is named.
 
 With the configuration in place the server can start up:
 
@@ -188,7 +188,7 @@ Puma. It is targeting the Puma service specifically, and would be placed in
 
 ```
 check service puma
-  if cpu:total > 90% then alert
+  if cpu:total_user > 90% then alert
   if memory:total_rss > 2g then alert, reload
 ```
 
