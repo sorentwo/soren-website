@@ -26,9 +26,9 @@ is included in Ubuntu 14.04 LTS, so it will be around for at least another four
 years.
 
 The [Upstart Cookbook][cookbook] is your best friend when crafting upstart
-configuration files. Don't be intimidated by the cookbook's massive length. As
-you search around to find what you need and you'll absorb useful bits that you
-didn't even know existed.
+configuration files. Don't be intimidated by the cookbook's massive length.
+While searching around for specific details you'll learn of other useful
+features that you didn't even know existed.
 
 The least common denominator for any web application is the server, so that is
 what we will look at setting up as a service. Below is a configuration file for
@@ -62,7 +62,7 @@ post_script exec rm -f /var/run/puma.sock
 ```
 
 There are a couple of important changes and additions to the configuration that
-I'll point out as they are crucial for service maintainability.
+I'll point out, as they are crucial for service maintainability.
 
 ```sh
 setuid deploy
@@ -95,8 +95,8 @@ respawn limit 3 30
 ```
 
 Add a respawning directive. It will try to restart the job up to 3 times within
-a 30 second window if it fails for some reason. More often than not the service
-simply isn't coming back, but it's nice to have a backup.
+a 30 second window if it fails for some reason. More often than not, the service
+simply isn't coming back. It's nice to have a backup.
 
 ```sh
 start on runlevel [2345]
