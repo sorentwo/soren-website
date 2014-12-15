@@ -11,13 +11,13 @@ summary: Protecting distributed systems with stability patterns
 Invariably modern web applications will use some number of external services,
 even when the team doesn't set out to employ service oriented architecture.
 There is no denying the ease and reliability of sending email through a
-dedicated platform, having all of your videos transcoded by a dedicated system,
+dedicated platform, having all of your videos transcoded by an external system,
 or storing masses of data within buckets in the cloud. However, as much as an
 external service can simply your infrastructure and ease the burden on your
-operations they are outside of your control. Even a database hosted on another
-of your own dedicated servers may periodically be beyond the reach of your
-application servers. One of the few certainties in computing is that [something
-will go wrong][wrong]—you need to be prepared when it does.
+operations, they are outside of your control. Even a database hosted on another
+of your own dedicated servers may periodically be beyond the reach of
+application servers. One of the few certainties in computing is that something
+will go wrong—you need to be prepared when it does.
 
 ## Patterns of Stability
 
@@ -25,11 +25,11 @@ Michael Nygard's [Release It][release-it] is an excellent resource entirely
 dedicated to preparing yourself for "when things go wrong". Within the book he
 outlines a collection of stability patterns and anti-patterns. All of the
 examples target enterprise Java systems, but almost every pattern can be adapted
-and applied to other languages, frameworks, or polyglot systems. In this post
-we'll focus on applying a few of the stability patterns together within a
+and applied to other languages, frameworks, or polyglot systems. This post
+focuses on applying a few of the stability patterns together within a
 distributed Ruby application. Specifically we'll look at what are dubbed the
 "circuit breaker", "timeout", and "test harness" patterns—all in an effort to
-create an extremely robust circuit breaker.
+create an extremely robust library for interacting with external services.
 
 ### Circuit Breaker
 
@@ -59,10 +59,10 @@ errors instead? That's where our error mitigating circuit breaker will come in.
 
 ## A Test Harness
 
-In order to properly test error mitigation we need some chaos—a testing setup
-[designed to break unexpectedly][chaos-monkey]. By no coincidence a "devious
-test harness" built to break your system is another of the stability patterns
-recommended in "Release It!":
+In order to properly test error mitigation we need some chaos. In this case
+chaos is a testing setup [designed to break unexpectedly][chaos-monkey]. By no
+coincidence a "devious test harness" built to break your system is another of
+the stability patterns recommended in "Release It!":
 
 > ...create [a] test harnesses to emulate the remote system on the other end of
 > each integration point. Hardware and mechanical engineers have used test
@@ -74,8 +74,8 @@ recommended in "Release It!":
 
 So, with the notion of unpredictable behavior firmly in mind let's write some
 tests that we can implement our circuit breaker against. We'll start off simple
-with some predictable specs to identify expected behavior before getting
-chaotic.
+with some predictable, deterministic specs to identify expected behavior before
+getting chaotic.
 
 ```ruby
 require 'rack/test'
@@ -109,13 +109,20 @@ end
 ```
 
 This may not look like a distributed system, but it does replicate the client
-server relationship we need. The spec uses an extremely simple rack app that
-sleeps indiscriminately and returns a random response code. We're expecting the
-response to be `200 OK`, which will only pass 1/3 of the time. Now let's update
-the spec to wrap the `GET` request in a circuit breaker.
+server relationship we need. The server is an in-line Rack app that sleeps
+indiscriminately and returns a random response code. The client is simply our
+naive spec block. We're expecting the response to be `200 OK`, which will only
+pass 1/3 of the time. Now let's update the spec to wrap the `GET` request in a
+circuit breaker.
 
 ```ruby
-circuit breaker
+it 'returns a 200 OK response' do
+  breaker = CircuitBreaker.new('/')
+
+  get '/'
+
+  expect(last_response).to be_ok
+end
 ```
 
 ## Timeout
@@ -140,20 +147,17 @@ class CacheCircuit
   def fetch(key, &block)
     breaker = Breaker.new(cache, key)
 
-    if breaker.tripped?
+    case
+    when breaker.tripped?
       # try to return a cached value
+    when breaker.fresh?
+      # return the cached value
     else
-      if breaker.fresh?
-        # return the cached value
-      else
-        # fetch and re-cache
-      end
+      # fetch and re-cache
     end
   end
 end
-```
 
-```ruby
 class Breaker
   attr_reader :cache, :key
 
@@ -172,7 +176,6 @@ end
 
 ## Cache States
 
-```
 | circuit | cache | result |
 | ------- | ----- | ------ |
 | closed  | none  | ✓      |
@@ -181,24 +184,33 @@ end
 | open    | none  | ⨯      |
 | open    | fresh | ✓      |
 | open    | stale | ✓      |
-```
 
-* Existing gems out there?
+The decision table tells us that of the six possible state combinations only one
+has a failing result. In every situation where the circuit is closed, meaning
+there is a functioning connection to the server, the correct result will be
+returned. In situations where the circuit is open, meaning there is a broken
+connection to the server, successful results can be returned as long as there is
+a cached value. Somewhat intuitively the only scenario that can't be accounted
+for is an open circuit without anything cached. Realistically there isn't much
+that can be expected.
+
+## Circuit Breaking in the Wild
+
 * Usage of Circuit Breakers at Netflix
 
 ---
 
-* Describe the approach to circuit breaking we'll take, implement a simple example
-  against the specs
+* NOTE: It may be necessary to use a real http client (faraday) for the
+  examples, not sure about that yet.
 * Add more complexity with the notion of caching
 * Add more complexity to the example with sleep & timeout
-* Expose the amount branching possible with a decision table (possibly
+* Expose the amount of branching possible with a decision table (possibly
   implemented as code for testing?)
 * Add chaos to the testing regime (sleep, status, cache miss, expiration)
+* Jepsen / CAP theorem
 * Point to additional resources (netflix)
 * Summary
 
-[wrong]: /wrong
 [release-it]: /release-it
 [chaos-monkey]: http://techblog.netflix.com/2012/07/chaos-monkey-released-into-wild.html
 [netflix-blog]: http://techblog.netflix.com/2011/12/making-netflix-api-more-resilient.html
