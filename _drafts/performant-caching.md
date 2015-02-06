@@ -1,7 +1,7 @@
 ---
 layout: default
 author: Parker Selbert
-summary: The strategies behind building a fast cache
+summary: Strategies behind building a fast cache
 ---
 
 - Gently introduce readthis
