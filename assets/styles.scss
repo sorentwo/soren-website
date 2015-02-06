@@ -10,6 +10,7 @@ $color-subacc: #49acbd;
 
 $font-size-smaller: 16px;
 $font-size-normal: 18px;
+$font-size-midsize: 24px;
 $font-size-large: 32px;
 
 $grid-unit: 8px;
@@ -87,8 +88,13 @@ h1 {
 }
 
 h2 {
-  font-size: $font-size-large;
+  font-size: $font-size-midsize;
+  font-weight: 600;
   line-height: $font-size-large;
+}
+
+h3 {
+  font-weight: 600;
 }
 
 p, ul, ol, table, pre, dl {
@@ -348,7 +354,9 @@ footer {
 // Entry ----------------------------------------------------------------------
 
 .entry-title {
+  border-bottom: 1px solid $color-soft;
   margin: ($grid-unit * 14) 0 ($grid-unit * 4);
+  padding-bottom: $grid-unit * 6;
   text-align: center;
 
   span {
