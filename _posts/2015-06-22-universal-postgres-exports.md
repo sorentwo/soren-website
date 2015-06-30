@@ -49,7 +49,7 @@ problem. Modify the query by wrapping it in a `COPY` statement:
 
 ```sql
 COPY (
-  ;; previous query
+  -- previous query
 ) TO '/tmp/cohorts.csv' WITH CSV HEADER;
 ```
 
@@ -70,7 +70,7 @@ Update the output in `cohorts.sql`:
 
 ```sql
 COPY (
-  ;; previous query
+  -- previous query
 ) TO STDOUT WITH CSV HEADER
 ```
 
