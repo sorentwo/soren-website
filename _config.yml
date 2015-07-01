@@ -1,7 +1,9 @@
 markdown: redcarpet
+sass:
+  sass_dir: _sass
+  style: :compressed
 exclude:
   - bin
-  - assets
   - vendor
   - LICENSE.txt
   - README.md
