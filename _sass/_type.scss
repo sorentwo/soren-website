@@ -1,5 +1,6 @@
 h1, h2, h3, h4, h5, h6 {
   color: $color-dark;
+  font-family: 'calluna-sans', sans-serif;
   font-size: $font-size-normal;
   font-weight: 400;
   line-height: $grid-unit * 4;
@@ -8,18 +9,18 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: $font-size-large;
-  font-weight: 600;
+  font-weight: 700;
   line-height: $font-size-large;
 }
 
 h2 {
   font-size: $font-size-midsize;
-  font-weight: 600;
+  font-weight: 700;
   line-height: $font-size-large;
 }
 
 h3 {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 p, ul, ol, table, pre, dl {
@@ -41,17 +42,16 @@ a {
 
 blockquote {
   border-left: 1px solid $color-soft;
+  font-style: italic;
   margin: 0;
   padding: 0 0 0 20px;
-  font-style: italic;
 }
 
 strong {
-  color: #222;
-  font-weight: 600;
+  color: $color-dark;
+  font-weight: 700;
 }
 
 .fancy {
-  font-family: "Baskerville", "Georgia", serif;
   font-style: italic;
 }

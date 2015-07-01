@@ -1,19 +1,19 @@
 @font-face {
-	font-family: 'icomoon';
-	src: url('https://s3.amazonaws.com/assets.sorentwo.com/icomoon.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  src: url('//s3.amazonaws.com/assets.sorentwo.com/icomoon.woff') format('woff');
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'icomoon';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
+  font-family: 'icomoon';
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
 
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
