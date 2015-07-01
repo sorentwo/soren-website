@@ -3,6 +3,8 @@
 
 @import 'variables';
 @import 'global';
+@import 'header';
+@import 'banner';
 @import 'code';
 @import 'fonts';
 @import 'pygments';
@@ -10,49 +12,6 @@
 @import 'type';
 
 // Structure ------------------------------------------------------------------
-
-header {
-  background: #fff;
-  border-bottom: 1px solid $color-soft;
-  height: 60px;
-  opacity: 0.9;
-  position: fixed;
-  line-height: 60px;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.logotype {
-  color: $color-dark;
-  font-size: 27px;
-  font-weight: 600;
-}
-
-.logotype:before {
-  font-family: "icomoon";
-  content: "\e604";
-  display: block;
-  float: left;
-  margin-right: 5px;
-
-  transform-origin: 16px 0;
-
-  -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-          transition: all 0.5s ease;
-}
-
-.logotype:hover:before {
-  color: $color-accent;
-  transform: rotateY(360deg);
-}
-
-.wrapper {
-  margin: 0 auto;
-  max-width: 720px;
-  overflow: hidden;
-}
 
 .home-sub {
   padding: 30px 0 0;
@@ -134,29 +93,6 @@ footer {
 }
 
 // Index ----------------------------------------------------------------------
-
-.home-primary {
-  background: $color-subacc;
-  color: #fff;
-  padding: ($grid-unit * 10) ($grid-unit * 2);
-}
-
-.home-sub.team {
-  border-top: 1px solid lighten($color-soft, 10%);
-}
-
-.tagline {
-  color: inherit;
-  font-size: 72px;
-  font-weight: 200;
-  line-height: 90px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.tagline em {
-  @extend .fancy;
-}
 
 .intro {
   color: inherit;

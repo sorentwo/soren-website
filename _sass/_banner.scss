@@ -1,0 +1,28 @@
+.banner {
+  display: flex;
+  align-items: center;
+  -moz-box-align: center;
+  -moz-box-pack: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.banner-copy {
+  text-align: center;
+
+  h2 {
+    font-size: 3em;
+    line-height: 1.25em;
+    margin-bottom: 0.5em;
+  }
+
+  b {
+    color: $color-accent;
+    font-style: normal;
+  }
+
+  p {
+    color: $color-light;
+    font-size: 1.25em;
+  }
+}

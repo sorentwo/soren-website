@@ -1,0 +1,17 @@
+---
+layout: default
+title: Blog
+---
+
+<div class="home-sub wrapper blog">
+  <h2>Blog</h2>
+  <div class="blog-listing">
+    {% for post in site.posts %}
+    <a class="blog-entry" href="{{post.url}}">
+      <h3>{{post.title}}</h3>
+      <p>{{post.summary}}</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
