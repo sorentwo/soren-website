@@ -1,0 +1,57 @@
+h1, h2, h3, h4, h5, h6 {
+  color: $color-dark;
+  font-size: $font-size-normal;
+  font-weight: 400;
+  line-height: $grid-unit * 4;
+  margin-bottom: $grid-unit * 2;
+}
+
+h1 {
+  font-size: $font-size-large;
+  font-weight: 600;
+  line-height: $font-size-large;
+}
+
+h2 {
+  font-size: $font-size-midsize;
+  font-weight: 600;
+  line-height: $font-size-large;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+p, ul, ol, table, pre, dl {
+  margin: 0 0 $grid-unit * 3;
+}
+
+li {
+  list-style: disc inside;
+  padding-left: $grid-unit * 2;
+}
+
+a {
+  color: $color-accent;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+:focus { outline: none; }
+
+blockquote {
+  border-left: 1px solid $color-soft;
+  margin: 0;
+  padding: 0 0 0 20px;
+  font-style: italic;
+}
+
+strong {
+  color: #222;
+  font-weight: 600;
+}
+
+.fancy {
+  font-family: "Baskerville", "Georgia", serif;
+  font-style: italic;
+}
