@@ -5,6 +5,7 @@
 @import 'global';
 @import 'header';
 @import 'banner';
+@import 'services';
 @import 'code';
 @import 'fonts';
 @import 'pygments';
@@ -93,18 +94,6 @@ footer {
 }
 
 // Index ----------------------------------------------------------------------
-
-.intro {
-  color: inherit;
-  font-size: 32px;
-  font-weight: 200;
-  line-height: 45px;
-  text-transform: none;
-}
-
-.intro b {
-  font-weight: 600;
-}
 
 .blog-listing {
   overflow: hidden;

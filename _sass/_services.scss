@@ -1,0 +1,20 @@
+.services {
+  border-top: 1px solid $color-soft;
+  border-bottom: 1px solid $color-soft;
+  padding: 2em 0;
+}
+
+.services-title {
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.services-item {
+  width: (800px - (16 * 2)) / 3;
+  float: left;
+  margin-right: 16px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

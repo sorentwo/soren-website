@@ -9,6 +9,7 @@ header {
 }
 
 nav {
+  position: relative;
   text-align: center;
 
   a {
@@ -31,7 +32,8 @@ nav {
   font-size: 2em;
   font-weight: normal;
   line-height: 2em;
-  display: inline-block;
+  position: absolute;
+  left: 0;
 }
 
 .logotype::before {
