@@ -1,16 +1,16 @@
-$color-white:  #ffffff;
-$color-slight: #f9f9f9;
-$color-dark:   #333333;
-$color-medium: #555555;
-$color-light:  #8d8d8d;
-$color-soft:   #cccccc;
-$color-accent: #27afc9;
-$color-subacc: #49acbd;
+$color-white:  rgb(255, 255, 255);
+$color-slight: rgb(249, 249, 249);
+$color-dark:   rgb(51, 51, 51);
+$color-medium: rgb(85, 85, 85);
+$color-light:  rgb(141, 141, 141);
+$color-soft:   rgb(247, 247, 247);
+$color-accent: rgb(39, 175, 201);
+$color-subacc: rgb(73, 172, 189);
 
-$font-family-sans: 'calluna-sans', sans-serif;
+$font-family-sans:  'calluna-sans', sans-serif;
 $font-size-smaller: 16px;
-$font-size-normal: 18px;
+$font-size-normal:  18px;
 $font-size-midsize: 24px;
-$font-size-large: 32px;
+$font-size-large:   32px;
 
 $grid-unit: 8px;
