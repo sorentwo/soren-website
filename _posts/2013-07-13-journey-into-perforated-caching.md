@@ -1,7 +1,7 @@
 ---
 layout: default
-summary: Maximize cache performance when serializing collections
 author: Parker Selbert
+summary: Maximizing cache performance when serializing large collections for API endpoints.
 tags: ruby perforated
 ---
 

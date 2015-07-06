@@ -1,7 +1,7 @@
 ---
 layout: default
-summary: Fixing inconsistent timestamp serialization in Rails 4
 author: Parker Selbert
+summary: Fixing inconsistent timestamp serialization in Rails 4.
 tags: rails
 ---
 

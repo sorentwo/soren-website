@@ -1,7 +1,7 @@
 ---
 layout: default
-summary: Leveraging ES6 Harmony's Proxy object for MVP
 author: Parker Selbert
+summary: Leveraging ES6 Harmony's Proxy object for data presentation.
 tags: javascript es6
 ---
 

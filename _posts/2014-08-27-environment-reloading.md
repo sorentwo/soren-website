@@ -1,7 +1,7 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Reload the environment within long running processes
+summary: A zero-downtime technique for reloading the environment within long running processes.
 tags: devops rails
 ---
 

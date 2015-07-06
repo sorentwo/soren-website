@@ -1,7 +1,7 @@
 ---
 layout: default
-summary: Lightweight testing for libraries that integrate with Rails
 author: Parker Selbert
+summary: Lightweight testing with Rack for libraries that integrate with Rails.
 tags: ruby rack
 ---
 

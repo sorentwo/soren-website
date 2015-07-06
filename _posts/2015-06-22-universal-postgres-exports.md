@@ -1,7 +1,7 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Export CSV data straight from PostgreSQL
+summary: Export queries as CSV straight from PostgreSQL.
 tags: postgresql rails
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
-summary: Efficient social ranking within Postgres
 author: Parker Selbert
+summary: Efficient social ranking within PostgreSQL, or immutable functions are your friend.
 tags: postgresql
 ---
 

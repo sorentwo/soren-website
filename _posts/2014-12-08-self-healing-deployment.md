@@ -1,7 +1,7 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Applications are services, they need monitoring too
+summary: Applications are services, they need monitoring too.
 tags: devops rails inspeqtor
 ---
 
