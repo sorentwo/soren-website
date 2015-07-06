@@ -1,0 +1,51 @@
+fieldset {
+  border: none;
+  margin-bottom: line-units(2);
+}
+
+input,
+textarea {
+  border: none;
+  border-radius: 3px;
+  background: $color-soft;
+  font-size: line-units(1);
+  font-family: $font-family-sans;
+  padding: grid-units(2);
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: line-units(0.5);
+}
+
+.contact-form {
+  padding: line-units(3) 0;
+  max-width: 600px;
+}
+
+.button {
+  background: $color-accent;
+  border-radius: 3px;
+  border: none;
+  color: $color-white;
+  cursor: pointer;
+  display: block;
+  font-size: $font-size-smaller;
+  font-weight: 700;
+  margin: 0 auto;
+  min-width: grid-units(20);
+  padding: grid-units(2);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.input {
+  margin-bottom: line-units(1);
+}
+
+.form-title {
+  font-size: line-units(2);
+  margin-bottom: line-units(2);
+  text-align: center;
+}

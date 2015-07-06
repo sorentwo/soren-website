@@ -7,6 +7,7 @@ $color-soft:   rgb(247, 247, 247);
 $color-accent: rgb(39, 175, 201);
 $color-subacc: rgb(73, 172, 189);
 
+$font-family-serif: 'calluna', serif;
 $font-family-sans:  'calluna-sans', sans-serif;
 $font-size-smaller: 16px;
 $font-size-normal:  18px;
@@ -14,3 +15,16 @@ $font-size-midsize: 24px;
 $font-size-large:   32px;
 
 $grid-unit: 8px;
+$line-unit: 18px;
+
+@function line-units($n) {
+  @return $n * $line-unit;
+}
+
+@function grid-units($n) {
+  @return $n * $grid-unit;
+}
+
+@function grid-width($n) {
+  @return $n * $grid-column + ($n - 1) * $grid-gutter;
+}
