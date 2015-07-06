@@ -2,6 +2,7 @@
 layout: default
 author: Parker Selbert
 summary: Applications are services, they need monitoring too
+tags: devops rails inspeqtor
 ---
 
 Every process that is available when a server boots was brought up by the init

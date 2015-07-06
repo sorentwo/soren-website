@@ -2,6 +2,7 @@
 layout: default
 summary: Leveraging ES6 Harmony's Proxy object for MVP
 author: Parker Selbert
+tags: javascript es6
 ---
 
 The [mediator pattern][1] is an essential technique for cleanly stratifying any

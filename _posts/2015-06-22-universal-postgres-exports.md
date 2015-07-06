@@ -2,6 +2,7 @@
 layout: default
 author: Parker Selbert
 summary: Export CSV data straight from PostgreSQL
+tags: postgresql rails
 ---
 
 The number of new accounts is on the rise, the platform is generating more

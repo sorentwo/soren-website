@@ -7,21 +7,12 @@
 @import 'header';
 @import 'banner';
 @import 'services';
+@import 'entries';
 @import 'code';
 @import 'fonts';
 @import 'pygments';
 @import 'icons';
 @import 'type';
-
-// Structure ------------------------------------------------------------------
-
-.home-sub {
-  padding: 30px 0 0;
-
-  h2 {
-    margin-bottom: 15px;
-  }
-}
 
 // Footer ---------------------------------------------------------------------
 
@@ -92,54 +83,6 @@ footer {
 .contact-there a:hover span {
   bottom: 40px;
   opacity: 1.0;
-}
-
-// Index ----------------------------------------------------------------------
-
-.blog-listing {
-  overflow: hidden;
-}
-
-.blog-entry {
-  display: block;
-  float: left;
-  max-height: $grid-unit * 14;
-  margin-bottom: 32px;
-  overflow: hidden;
-  width: 47.5%;
-
-  &:nth-child(odd) {
-    margin-right: 5%;
-  }
-}
-
-.blog-entry h3 {
-  margin-bottom: 0;
-
-  -webkit-transition: color 0.3s ease;
-     -moz-transition: color 0.3s ease;
-          transition: color 0.3s ease;
-}
-
-.blog-entry:hover h3 {
-  color: $color-accent;
-}
-
-.blog-entry p {
-  color: $color-light;
-}
-
-// Entry ----------------------------------------------------------------------
-
-.entry-title {
-  border-bottom: 1px solid $color-soft;
-  margin: ($grid-unit * 14) 0 ($grid-unit * 4);
-  padding-bottom: $grid-unit * 6;
-  text-align: center;
-
-  span {
-    display: inline;
-  }
 }
 
 // Media Queries --------------------------------------------------------------

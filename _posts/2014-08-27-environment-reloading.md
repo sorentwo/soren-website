@@ -2,6 +2,7 @@
 layout: default
 author: Parker Selbert
 summary: Reload the environment within long running processes
+tags: devops rails
 ---
 
 One of the core principals of [The Twelve-Factor App][12-factor], and a
