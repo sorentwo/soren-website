@@ -1,18 +1,21 @@
 .services {
-  padding: 2em 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: line-units(2) 0;
 }
 
 .services-title {
-  margin-bottom: 2em;
+  margin-bottom: line-units(2);
   text-align: center;
+  flex: 1 100%;
 }
 
 .services-item {
-  width: (800px - (16 * 2)) / 3;
-  float: left;
-  margin-right: 16px;
+  flex: 50% 0;
+  margin-bottom: line-units(2);
 
-  &:last-of-type {
-    margin-right: 0;
+  &:nth-of-type(odd) {
+    padding-right: 16px;
   }
 }

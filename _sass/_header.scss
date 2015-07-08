@@ -1,8 +1,8 @@
 header {
-  background: $color-dark;
-  height: 4em;
+  background: rgba(51, 51, 51, 0.95);
+  height: line-units(4);
   position: fixed;
-  line-height: 4em;
+  line-height: line-units(4);
   top: 0;
   left: 0;
   width: 100%;
@@ -14,7 +14,7 @@ header {
     a {
       color: $color-white;
       font-family: $font-family-sans;
-      font-size: 15px;
+      font-size: $font-size-smaller;
       margin-right: $grid-unit * 8;
       text-transform: uppercase;
       vertical-align: middle;
