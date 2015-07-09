@@ -11,7 +11,6 @@
   h3 {
     font-size: $font-size-midsize;
     margin-bottom: line-units(1);
-
   }
 
   p {
@@ -26,10 +25,10 @@
     -webkit-transition: color 0.3s ease;
        -moz-transition: color 0.3s ease;
             transition: color 0.3s ease;
-  }
 
-  &::hover a {
-    color: $color-accent;
+    &:hover {
+      color: $color-accent;
+    }
   }
 }
 
@@ -37,7 +36,6 @@
   .date { color: $color-light; }
 
   .tags {
-    color: $color-accent;
     font-family: $font-family-sans;
     font-size: 13px;
     text-transform: uppercase;
