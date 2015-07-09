@@ -1,3 +1,9 @@
+.team {
+  margin-bottom: line-units(6);
+  padding: line-units(10) 0;
+  text-align: center;
+}
+
 .services {
   display: flex;
   flex-flow: row wrap;
@@ -5,7 +11,8 @@
   padding: line-units(2) 0;
 }
 
-.services-title {
+.section-title {
+  font-size: $font-size-large;
   margin-bottom: line-units(2);
   text-align: center;
   flex: 1 100%;

@@ -1,0 +1,50 @@
+footer {
+  color: $color-white;
+  background: $color-dark;
+  padding: line-units(3) 0;
+  text-align: center;
+}
+
+.contact-there a {
+  color: $color-white;
+  font-size: 30px;
+  margin-right: 20px;
+  position: relative;
+
+  -webkit-transition: color 0.3s ease;
+     -moz-transition: color 0.3s ease;
+          transition: color 0.3s ease;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.contact-here a:hover, .contact-there a:hover {
+  color: $color-light;
+}
+
+.contact-there span {
+  color: $color-dark;
+  background: $color-white;
+  border-radius: 3px;
+  bottom: 0;
+  font-family: $font-family-sans;
+  font-size: $font-size-normal;
+  left: -20px;
+  opacity: 0;
+  padding: 3px;
+  position: absolute;
+  text-align: center;
+  width: 60px;
+
+  -webkit-transition: all 0.3s ease;
+     -moz-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+}
+
+.contact-there a:hover span {
+  bottom: 36px;
+  opacity: 1.0;
+}
+

@@ -21,5 +21,8 @@ body {
 }
 
 .alternate {
-  background: $color-soft;
+  background: $color-dark;
+  color: $color-white;
+
+  h2, h3 { color: $color-white; }
 }

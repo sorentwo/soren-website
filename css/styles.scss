@@ -5,6 +5,7 @@
 @import 'global';
 @import 'forms';
 @import 'header';
+@import 'footer';
 @import 'banner';
 @import 'services';
 @import 'entries';
@@ -13,77 +14,6 @@
 @import 'pygments';
 @import 'icons';
 @import 'type';
-
-// Footer ---------------------------------------------------------------------
-
-footer {
-  background: #f6f6f6;
-  margin-top: 15px;
-  overflow: hidden;
-  padding: 30px 0 30px;
-}
-
-.footer-contact {
-  float: left;
-  width: 50%;
-}
-
-.contact-here {
-  border-right: 1px solid $color-soft;
-  padding-right: 20px;
-  text-align: right;
-}
-
-.contact-here a {
-  color: $color-light;
-  display: block;
-}
-
-.contact-there {
-  padding: 17px 0 0 20px;
-}
-
-.contact-there a {
-  color: $color-light;
-  font-size: 30px;
-  margin-right: 20px;
-  position: relative;
-
-  -webkit-transition: color 0.3s ease;
-     -moz-transition: color 0.3s ease;
-          transition: color 0.3s ease;
-}
-
-.contact-there a:last-child {
-  margin-right: 0;
-}
-
-.contact-here a:hover, .contact-there a:hover {
-  color: $color-dark;
-}
-
-.contact-there span {
-  background: #fff;
-  border-radius: 3px;
-  bottom: 0;
-  font-family: "proxima-nova-1", "proxima-nova-2", sans-serif;
-  font-size: $font-size-normal;
-  left: -20px;
-  opacity: 0;
-  padding: 3px;
-  position: absolute;
-  text-align: center;
-  width: 70px;
-
-  -webkit-transition: all 0.3s ease;
-     -moz-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-}
-
-.contact-there a:hover span {
-  bottom: 40px;
-  opacity: 1.0;
-}
 
 // Media Queries --------------------------------------------------------------
 
