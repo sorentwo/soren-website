@@ -12,15 +12,21 @@ header {
     text-align: center;
 
     a {
+      border-bottom: 2px solid transparent;
       color: $color-white;
       font-family: $font-family-sans;
       font-size: $font-size-smaller;
       margin-right: $grid-unit * 8;
+      padding: 3px 0;
       text-transform: uppercase;
       vertical-align: middle;
 
       &:last-of-type {
         margin-right: 0;
+      }
+
+      &:hover {
+        border-bottom: 2px solid $color-white;
       }
     }
   }

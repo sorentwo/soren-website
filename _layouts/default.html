@@ -36,6 +36,10 @@
           <span class="author"><em class="fancy">by</em> {{page.author}}</span>
         </section>
         <section class="entry-body">{{content}}</section>
+
+        <div class="form-subscribe-footer-wrapper">
+          {% include subscribe.html %}
+        </div>
       </article>
     {% else %}
       {{content}}

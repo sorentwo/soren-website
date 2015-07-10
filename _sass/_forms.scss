@@ -7,7 +7,8 @@ input,
 textarea {
   border: none;
   border-radius: 3px;
-  background: $color-soft;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  background: $color-slight;
   font-size: line-units(1);
   font-family: $font-family-sans;
   padding: grid-units(2);
@@ -49,4 +50,30 @@ label {
 
 .form-subtitle {
   font-size: 20px;
+}
+
+.form-subscribe-header-wrapper {
+  border-bottom: 1px solid $color-soft;
+  margin-bottom: line-units(4);
+  padding-bottom: line-units(4);
+}
+
+.form-subscribe-footer-wrapper {
+  border-top: 1px solid $color-soft;
+  margin-top: line-units(4);
+  padding: line-units(4) 0;
+}
+
+.form-subscribe {
+  overflow: hidden;
+
+  input {
+    border-radius: 6px;
+    max-width: 70%;
+  }
+}
+
+.subscribe-button {
+  display: inline-block;
+  float: right;
 }
