@@ -1,7 +1,13 @@
 .team {
   margin-bottom: line-units(6);
-  padding: line-units(10) 0;
+  padding-top: line-units(10);
+  padding-bottom: line-units(10);
   text-align: center;
+
+  @media (max-width: 320px) {
+    padding-top: line-units(6);
+    padding-bottom: line-units(6);
+  }
 }
 
 .services {
@@ -12,7 +18,6 @@
 }
 
 .section-title {
-  flex: 1 100%;
   font-size: $font-size-large;
   margin-bottom: line-units(2);
   text-align: center;
@@ -23,7 +28,13 @@
   margin-bottom: line-units(2);
 
   &:nth-of-type(odd) {
-    padding-right: 16px;
+    padding-right: grid-units(2);
+  }
+
+  @media (max-width: 320px) {
+    flex: 100% 0;
+    padding-left: grid-units(2);
+    padding-right: grid-units(2);
   }
 }
 

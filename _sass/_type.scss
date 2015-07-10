@@ -1,22 +1,20 @@
 h1, h2, h3, h4, h5, h6 {
   color: $color-dark;
-  font-family: 'calluna-sans', sans-serif;
+  font-family: $font-family-sans;
   font-size: $font-size-normal;
   font-weight: 400;
-  line-height: $grid-unit * 4;
-  margin-bottom: $grid-unit * 2;
+  line-height: 1.25;
+  margin-bottom: line-units(2);
 }
 
 h1 {
   font-size: $font-size-large;
   font-weight: 700;
-  line-height: $font-size-large;
 }
 
 h2 {
   font-size: $font-size-midsize;
   font-weight: 700;
-  line-height: $font-size-large;
 }
 
 h3 {
