@@ -1,9 +1,21 @@
 .banner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  -moz-box-align: center;
-  -moz-box-pack: center;
-  justify-content: center;
+
+  -webkit-align-items: center;
+       -ms-flex-align: center;
+          align-items: center;
+
+  -webkit-box-align: center;
+     -moz-box-align: center;
+   -webkit-box-pack: center;
+
+  -webkit-justify-content: center;
+            -ms-flex-pack: center;
+          justify-content: center;
+
   margin-top: -1 * line-units(4);
   height: 100vh;
 }
@@ -15,6 +27,10 @@
     font-size: 3em;
     line-height: 1.25em;
     margin-bottom: 0.5em;
+
+    @media (max-width: 320px) {
+      font-size: 2em;
+    }
   }
 
   b {
@@ -26,9 +42,4 @@
     color: $color-light;
     font-size: 1.25em;
   }
-
-  @media (max-width: 320px) {
-    font-size: 2em;
-  }
 }
-
