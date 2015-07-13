@@ -1,49 +1,118 @@
 header {
-  background: rgba(51, 51, 51, 0.95);
+  color: $color-white;
+  background: rgba(45, 45, 45, 0.95);
   height: line-units(4);
-  overflow: hidden;
   position: fixed;
   line-height: line-units(4);
   top: 0;
   left: 0;
   width: 100%;
 
-  nav {
-    position: relative;
-    text-align: center;
+  @media (max-width: 320px) {
+    height: line-units(3);
+    line-height: line-units(3);
+  }
+}
 
-    a {
-      border-bottom: 2px solid transparent;
-      color: $color-white;
-      font-family: $font-family-sans;
-      font-size: $font-size-smaller;
-      margin-right: $grid-unit * 8;
-      padding: 3px 0;
-      text-transform: uppercase;
-      vertical-align: middle;
+.header-nav {
+  position: relative;
+  text-align: center;
 
-      &:last-of-type {
-        margin-right: 0;
-      }
+  a {
+    border-bottom: 2px solid transparent;
+    color: $color-white;
+    font-family: $font-family-sans;
+    font-size: $font-size-smaller;
+    font-weight: 700;
+    margin-right: $grid-unit * 8;
+    padding: 3px 0;
+    text-transform: uppercase;
+    vertical-align: middle;
 
-      &:hover {
-        border-bottom: 2px solid $color-white;
-      }
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &:hover {
+      border-bottom: 2px solid $color-white;
     }
   }
 }
 
-.logotype {
+.header-logo {
   color: $color-white;
-  font-size: 2em;
-  font-weight: normal;
-  line-height: 2em;
+  display: block;
+  left: grid-units(2);
   position: absolute;
-  left: 0;
+  z-index: 2;
+
+  .icon-logo {
+    font-size: 1.5em;
+    margin-right: 4px;
+    position: relative;
+    top: 5px;
+  }
+
+  .logo-type {
+    font-family: $font-family-sans;
+    font-size: $font-size-normal;
+    text-transform: uppercase;
+  }
 }
 
-.logotype::before {
-  font-family: "icomoon";
-  content: "\e604";
-  display: block;
+.header-menu {
+  color: $color-white;
+  cursor: pointer;
+  font-size: 1.5em;
+  line-height: inherit !important;
+  position: absolute;
+  right: grid-units(2);
+  vertical-align: middle;
+  z-index: 2;
+
+  -webkit-touch-callout: none;
+
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.header-menu, .header-toggle-checkbox {
+  display: none;
+}
+
+@media (max-width: 320px) {
+  .header-menu {
+    display: block;
+  }
+
+  .header-nav {
+    background: rgba(45, 45, 45, 0.95);
+    padding: 0;
+    position: absolute;
+    top: -100vh;
+    width: 100%;
+    height: 100vh;
+
+    transition: top 0.3s ease-in-out;
+
+    a {
+      border-top: 1px solid $color-medium;
+      display: block;
+      padding-top: 6px;
+      margin: 0;
+      text-align: center;
+
+      &:last-of-type {
+        border-bottom: 1px solid $color-medium;
+      }
+
+      &:hover {
+        border-bottom: 2px solid transparent;
+      }
+    }
+  }
+
+  #header-toggle:checked + .header-nav {
+    top: line-units(3);
+  }
 }

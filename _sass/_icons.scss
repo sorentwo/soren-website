@@ -1,19 +1,39 @@
-.icon-github:before {
+@font-face {
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  src: url('//s3.amazonaws.com/assets.sorentwo.com/icomoon.woff') format('woff');
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github::before {
   content: '\e600';
 }
 
-.icon-twitter:before {
+.icon-twitter::before {
   content: '\e601';
 }
 
-.icon-feed:before {
+.icon-feed::before {
   content: '\e602';
 }
 
-.icon-menu:before {
-  content: '\e603';
+.icon-logo::before {
+  content: '\e604';
 }
 
-.icon-soren-logo:before {
-  content: '\e604';
+.icon-menu::before {
+  content: '\e15c';
 }
