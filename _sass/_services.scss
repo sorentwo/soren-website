@@ -1,4 +1,9 @@
 .team {
+  background-size: cover;
+  background-position: center center;
+  background-image: url('/assets/portrait-toned.jpg');
+
+  color: $color-white;
   padding-top: line-units(10);
   padding-bottom: line-units(10);
   text-align: center;
@@ -6,6 +11,14 @@
   @media (max-width: 320px) {
     padding-top: line-units(6);
     padding-bottom: line-units(6);
+  }
+
+  .section-title {
+    color: $color-white;
+  }
+
+  p {
+    font-size: 1.25em;
   }
 }
 

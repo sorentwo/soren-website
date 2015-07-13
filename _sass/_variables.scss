@@ -25,7 +25,3 @@ $line-unit: 18px;
 @function grid-units($n) {
   @return $n * $grid-unit;
 }
-
-@function grid-width($n) {
-  @return $n * $grid-column + ($n - 1) * $grid-gutter;
-}
