@@ -1,6 +1,6 @@
 header {
   color: $color-white;
-  background: rgb(28, 40, 45);
+  background: $color-subacc;
   height: line-units(4);
   position: fixed;
   line-height: line-units(4);
@@ -86,7 +86,7 @@ header {
   }
 
   .header-nav {
-    background: rgb(28, 40, 45);
+    background: $color-subacc;
     height: 100vh;
     padding: 0;
     position: absolute;
