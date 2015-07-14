@@ -28,7 +28,7 @@
       <label for="header-toggle" class="icon-menu header-menu"></label>
       <input type="checkbox" class="header-toggle-checkbox" id="header-toggle" />
 
-      <nav class="wrapper header-nav">
+      <nav id="header-nav" class="wrapper header-nav">
         <a href="/#services">Services</a>
         <a href="/blog">Blog</a>
         <a href="/contact">Contact</a>
@@ -65,6 +65,14 @@
         </nav>
       </div>
     </footer>
+
+    <script type="text/javascript">
+      document
+        .getElementById('header-nav')
+        .addEventListener('click', function() {
+          document.getElementById('header-toggle').checked = false;
+        });
+    </script>
 
     <script type="text/javascript">
       var _gauges = _gauges || [];
