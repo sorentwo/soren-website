@@ -1,6 +1,6 @@
 .team {
   background-size: cover;
-  background-position: center center;
+  background-position: center 40%;
   background-image: url('/assets/portrait-toned.jpg');
 
   color: $color-white;
@@ -52,16 +52,12 @@
 }
 
 .services-item {
-  -webkit-box-flex: 50%;
-  -webkit-flex: 50% 0;
-      -ms-flex: 50% 0;
-          flex: 50% 0;
+  -webkit-box-flex: 48%;
+  -webkit-flex: 48% 0;
+      -ms-flex: 48% 0;
+          flex: 48% 0;
 
   margin-bottom: line-units(2);
-
-  &:nth-of-type(odd) {
-    padding-right: grid-units(2);
-  }
 
   @media (max-width: 320px) {
     -webkit-box-flex: 100%;
@@ -71,11 +67,16 @@
     padding-left: grid-units(2);
     padding-right: grid-units(2);
   }
+
+  img {
+    width: 100%;
+  }
 }
 
 .inquire {
   border-top: 1px solid $color-soft;
-  padding: line-units(4) 0;
+  padding-top: line-units(4);
+  padding-bottom: line-units(4);
   text-align: center;
 }
 
