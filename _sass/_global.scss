@@ -1,0 +1,33 @@
+html * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: $color-medium;
+  font: 18px/32px 'calluna', serif;
+  padding-top: line-units(4);
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 800px;
+  overflow: hidden;
+
+  &.room-on-top {
+    margin-top: line-units(4);
+  }
+
+  @media (max-width: 320px) {
+    padding-left: grid-units(2);
+    padding-right: grid-units(2);
+  }
+}
+
+.alternate {
+  background: $color-dark;
+  color: $color-white;
+
+  h2, h3 { color: $color-white; }
+}

@@ -1,7 +1,8 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Sometimes you do need to build a new wheel
+summary: Sometimes you do need to build a new wheel, just don't reinvent it.
+tags: websockets
 ---
 
 Many modern web and mobile apps rely heavily on real-time communication to

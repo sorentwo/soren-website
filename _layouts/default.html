@@ -3,27 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport"    content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="description" content="soren designs and develops web applications">
-    <meta name="keywords"    content="soren, sorentwo, chicago, ruby, rails, ruby on rails, coffeescript, elixir, tdd, test driven development, bdd, behavior driven development, shannon peterson, parker selbert">
+    <meta name="description" content="soren improves and upgrades web applications">
+    <meta name="keywords"    content="soren, sorentwo, chicago, ruby, rails, ruby on rails, legacy, rescue, shannon peterson, parker selbert">
     <meta name="author"      content="Parker Selbert">
 
     <title>{{page.title}}</title>
 
-    <link rel="alternate" type="application/rss+xml" title="Parker Selbert" href="http://blog.sorentwo.com/feed.atom">
+    <link rel="alternate" type="application/rss+xml" title="Soren Two" href="/feed.atom">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-    <script type="text/javascript" src="//use.typekit.net/hhg1uru.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="//use.typekit.net/zuz1blc.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
 
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" href="/css/styles.css">
   </head>
 
   <body>
     <header>
-      <div class="wrapper">
-        <a class="logotype" href="/">soren</a>
-      </div>
+      <a class="header-logo" href="/">
+        <span class="icon-logo"></span>
+        <span class="logo-type">Soren</span>
+      </a>
+
+      <label for="header-toggle" class="icon-menu header-menu"></label>
+      <input type="checkbox" class="header-toggle-checkbox" id="header-toggle" />
+
+      <nav id="header-nav" class="wrapper header-nav">
+        <a href="/#services">Services</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
+      </nav>
     </header>
 
     {% if page.summary %}
@@ -34,6 +43,10 @@
           <span class="author"><em class="fancy">by</em> {{page.author}}</span>
         </section>
         <section class="entry-body">{{content}}</section>
+
+        <div class="form-subscribe-footer-wrapper">
+          {% include subscribe.html %}
+        </div>
       </article>
     {% else %}
       {{content}}
@@ -41,23 +54,26 @@
 
     <footer>
       <div class="wrapper">
-        <p>
-          We're located just outside Chicago and enjoy meeting new people.
-          We've been known to buy lunch.
+        <p class="contact-here">
+          &copy; 2015 Soren LLC
         </p>
 
-        <div class="footer-contact contact-here">
-          <a class="email" href="mailto:soren@sorentwo.com">soren@sorentwo.com</a>
-          <a href="tel:+13128029888">+1 312 802 9888</a>
-        </div>
-
-        <nav class="footer-contact contact-there">
-          <a class="icon-feed rss" href="http://blog.sorentwo.com/feed.atom"><span>Feed</span></a>
+        <nav class="contact-there">
+          <a class="icon-feed rss" href="http://sorentwo.com/feed.atom"><span>Feed</span></a>
           <a class="icon-github github" href="https://github.com/sorentwo"><span>Github</span></a>
           <a class="icon-twitter twitter" href="https://twitter.com/sorentwo"><span>Twitter</span></a>
         </nav>
       </div>
     </footer>
+
+    <script type="text/javascript">
+      document
+        .getElementById('header-nav')
+        .addEventListener('click', function() {
+          document.getElementById('header-toggle').checked = false;
+        });
+    </script>
+
     <script type="text/javascript">
       var _gauges = _gauges || [];
       (function() {

@@ -1,0 +1,20 @@
+.contact-form {
+  padding-top: line-units(3);
+  padding-bottom: line-units(3);
+  max-width: 600px;
+}
+
+.contact-old-fashioned {
+  font-family: $font-family-sans;
+  text-align: center;
+
+  @media (max-width: 320px) {
+    a {
+      display: block;
+    }
+
+    span {
+      display: none;
+    }
+  }
+}

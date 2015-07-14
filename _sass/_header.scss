@@ -1,0 +1,118 @@
+header {
+  color: $color-white;
+  background: $color-subacc;
+  height: line-units(4);
+  position: fixed;
+  line-height: line-units(4);
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  @media (max-width: 320px) {
+    height: line-units(3);
+    line-height: line-units(3);
+  }
+}
+
+.header-nav {
+  position: relative;
+  text-align: center;
+
+  a {
+    border-bottom: 2px solid transparent;
+    color: $color-white;
+    font-family: $font-family-sans;
+    font-size: $font-size-smaller;
+    font-weight: 700;
+    margin-right: $grid-unit * 8;
+    padding: 3px 0;
+    text-transform: uppercase;
+    vertical-align: middle;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &:hover {
+      border-bottom: 2px solid $color-white;
+    }
+  }
+}
+
+.header-logo {
+  color: $color-white;
+  display: block;
+  left: grid-units(2);
+  position: absolute;
+  z-index: 2;
+
+  .icon-logo {
+    font-size: 1.5em;
+    margin-right: 4px;
+    position: relative;
+    top: 5px;
+  }
+
+  .logo-type {
+    font-family: $font-family-sans;
+    font-size: $font-size-normal;
+    text-transform: uppercase;
+  }
+}
+
+.header-menu {
+  color: $color-white;
+  cursor: pointer;
+  font-size: 1.5em;
+  line-height: inherit !important;
+  position: absolute;
+  right: grid-units(2);
+  vertical-align: middle;
+  z-index: 2;
+
+  -webkit-touch-callout: none;
+
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.header-menu, .header-toggle-checkbox {
+  display: none;
+}
+
+@media (max-width: 320px) {
+  .header-menu {
+    display: block;
+  }
+
+  .header-nav {
+    background: $color-subacc;
+    height: 100vh;
+    padding: 0;
+    position: absolute;
+    top: -100vh;
+    width: 100%;
+
+    transition: top 0.3s ease-in-out;
+
+    a {
+      border-top: 1px solid $color-medium;
+      display: block;
+      padding-top: 6px;
+      margin: 0;
+      text-align: center;
+
+      &:last-of-type {
+        border-bottom: 1px solid $color-medium;
+      }
+
+      &:hover {
+        border-bottom: 2px solid transparent;
+      }
+    }
+  }
+
+  #header-toggle:checked + .header-nav {
+    top: line-units(3);
+  }
+}

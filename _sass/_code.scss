@@ -1,0 +1,23 @@
+code, pre {
+  color: $color-dark;
+  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+pre {
+  background: $color-slight;
+  border-radius: 3px;
+  overflow-x: auto;
+  padding: 16px;
+}
+
+p code {
+  background: $color-slight;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+img {
+  max-width: 100%;
+}

@@ -1,0 +1,45 @@
+.banner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-align-items: center;
+       -ms-flex-align: center;
+          align-items: center;
+
+  -webkit-box-align: center;
+     -moz-box-align: center;
+   -webkit-box-pack: center;
+
+  -webkit-justify-content: center;
+            -ms-flex-pack: center;
+          justify-content: center;
+
+  margin-top: -1 * line-units(4);
+  height: 100vh;
+}
+
+.banner-copy {
+  text-align: center;
+
+  h2 {
+    font-size: 3em;
+    line-height: 1.25em;
+    margin-bottom: 0.5em;
+
+    @media (max-width: 320px) {
+      font-size: 2em;
+    }
+  }
+
+  b {
+    color: $color-accent;
+    font-style: normal;
+  }
+
+  p {
+    color: $color-light;
+    font-size: 1.25em;
+  }
+}
