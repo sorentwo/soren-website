@@ -7,17 +7,21 @@ tags: readthis redis ruby
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
 
-[Readthis][readthis] is a caching library for Ruby backed by [Redis][redis].
-Redis is a blazingly fast and amazingly versatile in-memory database that is
-ubiquitous among Rails apps.  More often than not it is being leveraged for
-background job processing, pubsub, request rate limiting, and all manner of
-other ad-hoc tasks that require persistence and speed.  Unfortunately, its
-adoption as a cache has lagged behind [Memcached][memcached], a popular
-in-memory database alternative. That may be due to lingering views on what
-Redis's strengths are, but I believe it comes down to a lack of great libraries.
-That's precisely what led to writing Readthis.
+[Redis][redis] is blazingly fast, amazingly versatile and its use is virtually
+ubiquitous among Rails apps. Typically it's being leveraged for background job
+processing, pub/sub, request rate limiting, and all manner of other ad-hoc tasks
+that require persistence and speed. Unfortunately, its adoption as a cache has
+lagged in the shadow of [Memcached][memcached], the longstanding in-memory
+caching alternative. That may be due to lingering views on what Redis's
+strengths are, but I believe it comes down to a lack of great libraries. That's
+precisely what led to writing [Readthis][readthis], an extremely fast caching
+library for Ruby and backed by Redis.
 
-Performance of `fetch_multi` and `read_multi` across varying cache implementations:
+Before diving into project goals and implementation details let's look at a
+chart comparing the performance of `multi` cache operations across varying cache
+libraries. Multi, or pipelined, read/write operations are particularly valuable
+for caching with API requests, and an excellent example of where Readthis's
+performance excels:
 
 <canvas id="multi-chart" width="800" height="400"></canvas>
 
@@ -47,18 +51,21 @@ Performance of `fetch_multi` and `read_multi` across varying cache implementatio
   var perfChart = new Chart(ctx).Bar(data, { responsive: true });
 </script>
 
-The only store faster than Readthis is ActiveSupport's in memory storage which
+The [multi benchmark][multi-bench] can be found in the Readthis repository.
+
+The only store faster than Readthis is ActiveSupport's in memory storage, which
 isn't persisted to a database at all. Throughout the rest of this post we'll
 look at the high level goals that made this performance possible, and examine
 some of the specific steps taken to achieve it.
 
 ## High Level Goals
 
-When writing a new implementation of existing software you must set out some
-high level goals that will differentiate your library and provide some metrics
-of success. As there was already a Redis backed cache available in
-[redis-store][redis-store], and an extremely popular Memcached library in
-[dalli][dalli], setting the initial goals was quite straight forward.
+Writing a new implementation of existing software begins with setting high level
+goals. These goals establish how the library will be differentiated from the
+alternatives and provide some metrics of success. As there was already a Redis
+backed cache available in [redis-store][redis-store], and an extremely popular
+Memcached library in [dalli][dalli], setting the initial goals was quite
+straight forward.
 
 * **Lightweight** - Aside from Redis there is no need for external dependencies.
   Keep the gem as portable as possible and avoid requiring the `ActiveSupport`
@@ -69,27 +76,25 @@ of success. As there was already a Redis backed cache available in
 * **Pooled** - Many apps use a single global connection to Redis, which is a
   cause for contention in multi-threaded systems. Follow Dalli's lead and
   leverage connection pooling to increase throughput.
-* **Hiredised** - Forgo JRuby compatibility and require the [hiredis][hiredis] C
-  client library from the outset. It speeds up the parsing of bulk replies.
-* **Well Tested** - Caching is a critical component of a production system. Each
+* **Well Tested** - Caching is a critical component in production systems. Each
   code path needs to be exercised so that changes and optimizations can be made
   with confidence. This is a case where 100% test coverage is necessary.
-
-Here is a chart comparing `read_multi` and `fetch_multi` across various cache
-implementations. The [multi benchmark][multi-bench] can be found in the Readthis
-repository.
+* **Maintained** - Project maintenance isn't a concrete feature, but it is
+  paramount to the trust and adoption of a library. I submitted numerous patches
+  to `redis-activesupport` but the pull requests languished for months while
+  compatibility drifted away from releases of Rails.
 
 ## Identifying Performance Bottlenecks
 
-Once the initial project structure was in place a small suite of benchmark
-scripts were created to measure performance and memory usage.  As features were
-added or enhanced the scripts were run to identify performance bottlenecks,
+Once the initial library structure was in place a small suite of benchmark
+scripts were created to measure performance and memory usage. As features were
+added or enhanced the scripts were used to identify performance bottlenecks,
 while also ensuring there weren't any performance regressions.
 
-The initial benchmark results could be broken down into three distinct
+The initial benchmark results can be broken down into three distinct
 bottlenecks: round trips to Redis, marshaling cached data and cache entry
 creation. Though there were also other micro-optimizations that presented
-themselves, those three areas provided the biggest performance gains.
+themselves, these three areas provided the most obvious gains.
 
 ## Mitigating the Redis Round-trip
 
@@ -105,6 +110,52 @@ transactions as possible. Primarily this benefits "bulk" operations such as
 operations where values are written only when they can't be retrieved, reading
 and writing of all values is always performed with two commands, no matter how
 many entries are being retrieved.
+
+The most significant gains to pipelining and round-trip performance came through
+the use of [hiredis][hiredis]. Hiredis is a Redis adapter written in C that
+drastically speeds up the parsing of bulk replies.
+
+```ruby
+require 'bundler'
+
+Bundler.setup
+
+require 'benchmark/ips'
+require 'readthis'
+
+REDIS_URL = 'redis://localhost:6379/11'
+native  = Readthis::Cache.new(REDIS_URL, driver: :ruby,  expires_in: 60)
+hiredis = Readthis::Cache.new(REDIS_URL, driver: :hiredis, expires_in: 60)
+
+('a'..'z').each { |key| native.write(key, key * 1024) }
+
+Benchmark.ips do |x|
+  x.report('native:read-multi')  { native.read_multi(*('a'..'z')) }
+  x.report('hiredis:read-multi') { hiredis.read_multi(*('a'..'z')) }
+
+  x.compare!
+end
+```
+
+<canvas id="driver-chart" width="800" height="400"></canvas>
+
+<script>
+  var data = {
+    labels: ["Native Ruby", "Hiredis"],
+    datasets: [
+      {
+        label: "read-multi",
+        fillColor: "rgba(220,220,220,0.5)",
+        strokeColor: "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(220,220,220,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data: [1139.0, 3930.4]
+      }
+    ]
+  };
+  var ctx = document.getElementById('driver-chart').getContext('2d');
+  var perfChart = new Chart(ctx).Bar(data, { responsive: true });
+</script>
 
 ## Faster Marshalling
 
