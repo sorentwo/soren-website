@@ -5,9 +5,10 @@ summary: Strategies and configuration tips for making the most value out of Redi
 tags: redis devops
 ---
 
-You're convinced that Redis is the right tool for caching. I whole heartedly
-agree, it's amazing! Here are four essential optimizations for leveraging
-Redis as a cache in your infrastructure.
+If you're convinced that Redis is the [right tool for caching][hi-readthis] I
+whole heartedly agree, it's amazing! Here are four essential optimizations for
+leveraging Redis as a cache in your infrastructure. Most of these optimizations
+are still helpful even if you are using a hosted solution.
 
 ## Use a Dedicated Cache Instance
 
@@ -42,14 +43,17 @@ Each Redis instance has its own configuration file and can be tuned according to
 the use-case. Caching servers, for example, can be configured to use [RDB
 persistence][persistence] to periodically save a single backup instead of AOF
 persistence logs. By only taking periodic snapshots of the database RDB
-maximizes performance at the expense of up-to-the-second consistency.  For a
+maximizes performance at the expense of up-to-the-second consistency. For a
 hybrid Redis instance that may be storing business critical background jobs data
 consistency is paramount. With a cache it is alright to lose some data in the
 event of a disaster, after reboot *most* of the cache will be warm and intact.
 
 ### To summarize:
 
-* Do optimize cache persistence for speed by favoring RDB over AOF.
+* Do optimize cache persistence speed by favoring RDB over AOF.
+* Do set `stop-writes-on-bgsave-error` to `no` to prevent all writes from
+  failing when snapshotting fails. This requires proper monitoring and alerts
+  for failures, which you are doing anyhow, right?
 * Do not disable persistence entirely, it is valuable for warming the cache
   after an upgrade or restart.
 
@@ -77,11 +81,15 @@ added.
 
 Redis uses an approximated LRU algorithm instead of an exact algorithm. What
 this means is that you can conserve memory in favor of inaccuracy by tuning the
-number of samples to check with each eviction. Set `maxmemory-samples` to a
-low level, say around 5, for "good enough" eviction with a low memory footprint.
+number of samples to check with each eviction. Set `maxmemory-samples` to a low
+level, say around 5, for "good enough" eviction with a low memory footprint.
+Lastly, and most importantly, set a `maxmemory` limit to a comfortable amount of
+RAM. Without a limit Redis can't function properly as a LRU cache and will start
+replying with errors when memory consuming commands start failing.
 
 ### To summarize:
 
+* Do set a `maxmemory` limit.
 * Do use `allkeys-lru` policies for dedicated cache instances. Let Redis manage
   key eviction by itself.
 * Do not set `expire` for keys, it adds additional memory overhead per key.
@@ -104,13 +112,22 @@ Ordered lists, structured hashes, and sorted sets are particularly useful
 caching tools only available through Redis. Caching is more than stuffing
 everything into strings.
 
-Let's look at the Hash type for a specific example. Instead of storing objects
-as a serialized string you can store the object as fields and values available
-through a single key. Using a Hash saves web servers the work of fetching an
-entire serialized value, de-serializing it, updating it, re-serializing it, and
-finally writing it back to the cache. Eliminating that flow for every minor
-update pushes the work into Redis and out of your applications, where it is
-supposed to be.
+Let's look at the Hash type for a specific example.
+
+> Small hashes are encoded in a very small space, so you should try representing
+> your data using hashes every time it is possible. For instance if you have
+> objects representing users in a web application, instead of using different
+> keys for name, surname, email, password, use a single hash with all the
+> required fields.
+>
+> <cite>—[Redis Documentation][mem-opt]</cite>
+
+Instead of storing objects as a serialized string you can store the object as
+fields and values available through a single key. Using a Hash saves web servers
+the work of fetching an entire serialized value, de-serializing it, updating it,
+re-serializing it, and finally writing it back to the cache. Eliminating that
+flow for every minor update pushes the work into Redis and out of your
+applications, where it is supposed to be.
 
 ### To Summarize:
 
@@ -120,7 +137,9 @@ supposed to be.
 
 Happy optimizing. Go forth and cache!
 
+[hi-readthis]: http://sorentwo.com/2015/07/20/high-performance-caching-with-readthis.html
 [stack]: http://stackoverflow.com/questions/23601622/if-redis-is-already-a-part-of-the-stack-why-is-memcached-still-used-alongside-r
 [dinosaur]: http://stackoverflow.com/questions/2873249/is-memcached-a-dinosaur-in-comparison-to-redis
 [lru-cache]: http://redis.io/topics/lru-cache
 [persistence]: http://redis.io/topics/persistence
+[mem-opt]: http://redis.io/topics/memory-optimization
