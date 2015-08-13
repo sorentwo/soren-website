@@ -36,6 +36,12 @@ header {
     &:hover {
       border-bottom: 2px solid $color-white;
     }
+
+    &.contact {
+      border: 2px solid $color-accent;
+      border-radius: 5px;
+      padding: 6px 6px 5px;
+    }
   }
 }
 
