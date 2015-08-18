@@ -2,7 +2,7 @@
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Parker Selbert</title>
+  <title>Soren</title>
   <link href="http://sorentwo.com/feed.atom" rel="self" />
   <link href="http://sorentwo.com/" />
   <updated>{{ site.time | date_to_xmlschema }}</updated>
@@ -12,18 +12,21 @@
     <email>parker@sorentwo.com</email>
   </author>
 
-  {% for post in site.posts %}
-  <entry>
-    <author>
-      <name>{{ post.author }}</name>
-    </author>
-    <title>{{ post.title }}</title>
-    <link href="http://sorentwo.com{{ post.url }}" />
-    <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>http://sorentwo.com{{ post.id }}</id>
-    <content type="html">{{ post.content | xml_escape }}</content>
-    <summary>{{ post.summary }}</summary>
-    <description>{{ post.summary }}</description>
-  </entry>
+  {% for post in site.posts limit: 10 %}
+    <entry>
+      <title>{{ post.title }}</title>
+      <link href="http://sorentwo.com{{ post.url }}" />
+      <published>{{ post.date | date_to_xmlschema }}</published>
+      <updated>{{ post.date | date_to_xmlschema }}</updated>
+
+      <id>http://sorentwo.com{{ post.id }}</id>
+
+      <content type="html">{{ post.content | xml_escape }}</content>
+      <summary>{{ post.summary | xml_escape }}</summary>
+
+      <author>
+        <name>{{ post.author }}</name>
+      </author>
+    </entry>
   {% endfor %}
 </feed>
