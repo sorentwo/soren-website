@@ -1,7 +1,9 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Reconstructing cached payloads on the server using Lua
+summary: >
+  Reconstructing cached data into API responses quickly directly from Redis
+  using Lua scripting.
 tags: redis, lua
 ---
 
