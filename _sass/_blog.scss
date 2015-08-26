@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.blog-entry {
+.blog-post {
   display: block;
   margin-bottom: line-units(2);
 
@@ -42,7 +42,7 @@
   }
 }
 
-.entry-title {
+.post-title {
   border-bottom: 1px solid $color-soft;
   margin: ($grid-unit * 14) 0 ($grid-unit * 4);
   padding-bottom: $grid-unit * 6;
@@ -53,3 +53,10 @@
   }
 }
 
+.related-posts {
+  border-top: 1px solid $color-soft;
+  margin-top: line-units(3);
+  padding: line-units(3) 0;
+
+  .date { color: $color-light; }
+}

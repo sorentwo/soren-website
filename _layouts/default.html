@@ -37,12 +37,27 @@
 
     {% if page.summary %}
       <article class="wrapper">
-        <section class="entry-title">
+        <section class="post-title">
           <h1>{{page.title}}</h1>
           <span class="date">{{page.date | date_to_string}}</span>
           <span class="author"><em class="fancy">by</em> {{page.author}}</span>
         </section>
-        <section class="entry-body">{{content}}</section>
+
+        <section class="post-body">
+          {{content}}
+        </section>
+
+        <section class="related-posts">
+          <h3>Recent Posts</h3>
+
+          {% for post in site.related_posts limit: 5 %}
+          <div class="related-post">
+            <span class="date">{{post.date | date_to_string}}</span>
+            <em>&mdash;</em>
+            <a href="{{post.url}}" class="title">{{post.title}}</a>
+          </div>
+          {% endfor %}
+        </section>
 
         <div class="form-subscribe-footer-wrapper">
           {% include subscribe.html %}
