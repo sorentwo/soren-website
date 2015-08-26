@@ -8,6 +8,15 @@ footer {
   @media (max-width: 320px) {
     padding: line-units(2) 0;
   }
+
+  > .wrapper {
+    overflow: visible;
+  }
+}
+
+.contact-here {
+  color: $color-light;
+  font-size: $font-size-small;
 }
 
 .contact-there a {
@@ -23,10 +32,10 @@ footer {
   &:last-child {
     margin-right: 0;
   }
-}
 
-.contact-here a:hover, .contact-there a:hover {
-  color: $color-light;
+  &:hover {
+    color: $color-light;
+  }
 }
 
 .contact-there span {
