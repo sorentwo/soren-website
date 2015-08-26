@@ -1,7 +1,9 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Strategies and configuration tips for making the most value out of Redis as a cache
+summary: >
+  Strategies and configuration tips for making the most value out of Redis as a
+  cache.
 tags: redis devops
 ---
 

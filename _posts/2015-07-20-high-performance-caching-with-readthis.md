@@ -1,7 +1,9 @@
 ---
 layout: default
 author: Parker Selbert
-summary: Strategies behind building the fastest ActiveSupport compliant cache with Redis and Ruby.
+summary: >
+  Strategies behind building the fastest ActiveSupport compliant cache with
+  Redis and Ruby.
 tags: readthis redis ruby
 ---
 

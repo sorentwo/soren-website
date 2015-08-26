@@ -2,6 +2,7 @@
 layout: default
 author: Parker Selbert
 summary: Protecting distributed systems with stability patterns
+tags: rails
 ---
 
 > View other enterprise systems with suspicion and distrust—any of them can stab
