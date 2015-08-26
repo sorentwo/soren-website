@@ -35,6 +35,8 @@ header {
 
     &:hover {
       border-bottom: 2px solid $color-white;
+      color: $color-white;
+      text-decoration: none;
     }
 
     &.contact {

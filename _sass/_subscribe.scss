@@ -20,6 +20,10 @@
 .subscribe-button {
   display: inline-block;
   float: right;
+
+  &:hover {
+    background: darken($color-accent, 10%);
+  }
 }
 
 @media (max-width: 320px) {
