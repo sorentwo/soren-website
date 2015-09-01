@@ -4,7 +4,7 @@ author: Parker Selbert
 summary: >
   Learn lessons of stability and reliability through an exploration of
   how the Ruby Redis client manages reconnection.
-tags: ruby, redis
+tags: ruby redis
 ---
 
 Recently a new user of the [Readthis][rdt] caching library inquired about where

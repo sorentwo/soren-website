@@ -4,7 +4,7 @@ author: Parker Selbert
 summary: >
   Reconstructing cached data into API responses quickly directly from Redis
   using Lua scripting.
-tags: redis, lua
+tags: redis lua
 ---
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
