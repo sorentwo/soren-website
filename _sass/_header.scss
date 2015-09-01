@@ -54,6 +54,11 @@ header {
   position: absolute;
   z-index: 2;
 
+  &:hover {
+    color: $color-white;
+    text-decoration: none;
+  }
+
   .icon-logo {
     font-size: 1.5em;
     margin-right: 4px;
