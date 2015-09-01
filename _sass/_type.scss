@@ -27,11 +27,6 @@ p, ul, ol, table, pre, dl {
   margin: 0 0 $grid-unit * 3;
 }
 
-li {
-  list-style: disc inside;
-  padding-left: $grid-unit * 2;
-}
-
 a {
   color: $color-accent;
   font-weight: 400;
