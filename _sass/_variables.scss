@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Merriweather:700,300italic,300|Merriweather+Sans:400,700);
+
 $color-white:  rgb(255, 255, 255);
 $color-slight: rgb(249, 249, 249);
 $color-soft:   rgb(232, 232, 232);
@@ -8,8 +10,8 @@ $color-dark:   rgb(45, 45, 45);
 $color-accent: rgb(59, 127, 150);
 $color-subacc: rgb(28, 40, 45);
 
-$font-family-serif: 'calluna', serif;
-$font-family-sans:  'calluna-sans', sans-serif;
+$font-family-serif: 'Merriweather', serif;
+$font-family-sans:  'Merriweather Sans', sans-serif;
 $font-size-small:   13px;
 $font-size-smaller: 16px;
 $font-size-normal:  18px;

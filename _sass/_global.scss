@@ -6,13 +6,13 @@ html * {
 
 body {
   color: $color-medium;
-  font: 18px/32px 'calluna', serif;
+  font: 18px/32px $font-family-serif;
   padding-top: line-units(4);
 }
 
 .wrapper {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 700px;
   overflow: hidden;
 
   &.room-on-top {
