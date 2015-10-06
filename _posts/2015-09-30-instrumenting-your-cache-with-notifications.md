@@ -162,7 +162,7 @@ module Readthis
     private
 
     def subscribe(pattern, set)
-      ActiveSupport::Notifications.subscribe(patern) do |_, _, _, _, payload|
+      ActiveSupport::Notifications.subscribe(pattern) do |_, _, _, _, payload|
         set.add(payload[:key])
       end
     end
