@@ -4,7 +4,7 @@ author: Parker Selbert
 summary: >
   Instrumentation with ActiveSupport::Notifications is a powerful tool, useful
   for much more than raw performance benchmarking.
-tags: rails readthis
+tags: rails caching instrumentation
 ---
 
 ActiveSupport, the utility belt portion of Rails, ships with
