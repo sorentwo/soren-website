@@ -174,7 +174,7 @@ uses the same instrumentation subscribers as Rails' own logging internals.  The
 logging event is passed through with accumulated timings in the payload, which
 can be accessed directly.
 
-```
+```ruby
 MyApp.Application.configure do |config|
   config.lograge.custom_options = lambda do |event|
     { cache: event.payload[:readthis_runtime] }
