@@ -2,14 +2,17 @@
 layout: default
 author: Parker Selbert
 summary: >
-  Each form of caching is another layer of defense for an API endpoint.
+  Learn how to effectively layer caching around an API endpoint to yield massive
+  performance gains.
 tags: rails caching
 ---
 
 This is the story a woefully slow API endpoint. It starts out unprotected and
 naive; recalculating the world on every request and vulnerable to floods of
-traffic. Follow along defenses are layered on through judicious use of caching.
-In the end, our endpoint will be hardened, well defended and wickedly fast.
+traffic. Like a [castle][castle], defenses must be layered on for degrees of
+protection and resiliency. Some layers make the endpoint faster, while other
+layers harden it against change. In the end, the endpoint will be well defended
+and wickedly fast.
 
 ## Starting From the Outside
 
@@ -139,7 +142,7 @@ class PostsController < ApplicationController
   private
 
   def serialized_posts(posts)
-    cache('posts') do
+    cache(posts) do
       posts.to_json(include: %i[author comments])
     end
   end
@@ -180,13 +183,14 @@ on a chain doesn't exactly sound like defense either. Computing responses can be
 slow, and the effect of sending large data sets over the wire (particularly to a
 mobile device) can have a more pronounced effect on speed.
 
-Summary representations as opposed to detailed representations. Listing a
-collection only includes a *subset* of the attributes for that resource. Some
-attributes or sub-resources are computationally expensive to provide, and not
-needed at a high level. To obtain those attributes the client must fetch a
-separate *detailed* representation. Each of these representations can be cached
-individually, or you may opt to cache the summary representation and layer on
-the less frequently accessed detailed representation.
+Summary representations as can be used to broadly represent resources instead of
+more detailed representations. Listing a collection only includes a *subset* of
+the attributes for that resource. Some attributes or sub-resources are
+computationally expensive to provide, and not needed at a high level. To obtain
+those attributes the client must fetch a separate *detailed* representation.
+Each of these representations can be cached individually, or you may opt to
+cache the summary representation and layer on the less frequently accessed
+detailed representation.
 
 In our example the posts are being sent along with the author and all of the
 comments. Chances are that the client doesn't need all of the comments up front,
@@ -207,7 +211,7 @@ class PostsController < ApplicationController
   private
 
   def serialized_posts(posts)
-    cache('posts') do
+    cache(posts) do
       posts.to_json(include: %i[author])
     end
   end
