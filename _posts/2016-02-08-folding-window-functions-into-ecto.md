@@ -231,6 +231,7 @@ Naturally, I was excited to see how well the Elixir/Ecto variant would perform i
 
 This benchmarking test has a lot of boilerplate just to set up the sandbox and insert an arbitrary number of trips into the database.
 An outer `for` comprehension builds up a sequence of tests with an increasing number of trips for comparison.
+All tests are run in separate processes via `Task.async |> Task.await`, which introduces the slight complication of sharing sandboxed connection ownership.
 Note that the test caps out at 20,000 trips because any more breask `Repo.insert_all`, and that is plenty for a comparison.
 
 ```elixir
@@ -240,36 +241,38 @@ defmodule Triptastic.TripBenchmarkTest do
   alias Triptastic.{Repo, Trip}
 
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Triptastic.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)
   end
 
-  def ms(fun) do
-    begin = :os.timestamp
-    fun.()
-    finish = :os.timestamp
-    :timer.now_diff(finish, begin) / 1000
-  end
-
-  def build(category, favorites) do
-    %{name: "#{category}-#{favorites}",
-      category: category,
-      favorites: favorites}
+  def ms(parent, fun) do
+    Task.async(fn ->
+      Ecto.Adapters.SQL.Sandbox.allow(Repo, parent, self())
+      begin = :os.timestamp
+      fun.()
+      finish = :os.timestamp
+      :timer.now_diff(finish, begin) / 1000
+    end) |> Task.await
   end
 
   for num <- [100, 500, 5_000, 10_000, 20_000] do
     @tag num: num
     test "compare memory and windows for #{num} trips", %{num: num} do
       categories = Stream.cycle(Trip.categories)
-      favorites  = fn -> trunc(:rand.uniform() * 10) end
-      category   = fn -> hd(Enum.take(categories, 1)) end
-      trips      = for _ <- 1..num, do: build(category.(), favorites.())
+
+      trips = for _ <- 1..num do
+        cat = hd(Enum.take(categories, 1))
+        fav = trunc(:rand.uniform() * 10)
+
+        %{name: "#{cat}-#{fav}", category: cat, favorites: fav}
+      end
 
       Repo.insert_all(Trip, trips)
 
-      mem = ms(fn -> Trip |> Repo.all |> Trip.popular_by_category end)
-      win = ms(fn -> Trip.popular_over_category end)
+      mem = ms(self(), fn -> Trip |> Repo.all |> Trip.popular_by_category end)
+      win = ms(self(), fn -> Trip.popular_over_category end))
+      wij = ms(self(), fn -> Trip.popular_over_category_joined |> Repo.all end)
 
-      IO.puts "num: #{num} | mem: #{mem} | win: #{win}"
+      IO.puts "| #{num} | #{mem} | #{win} | #{wij} |"
     end
   end
 end
@@ -282,7 +285,7 @@ end
     labels: ["100", "500", "5,000", "10,000", "20,000"],
     datasets: [
       {
-        label: "rails",
+        label: "memory",
         fillColor: "rgba(220,220,220,0.2)",
         strokeColor: "rgba(220,220,220,1)",
         pointColor: "rgba(220,220,220,1)",
@@ -292,7 +295,7 @@ end
         data: [2.46, 22.09, 34.62, 69.44, 147.99]
       },
       {
-        label: "phoenix",
+        label: "window",
         fillColor: "rgba(151,187,205,0.2)",
         strokeColor: "rgba(151,187,205,1)",
         pointColor: "rgba(151,187,205,1)",
@@ -300,6 +303,16 @@ end
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgba(151,187,205,1)",
         data: [2.13, 3.48, 19.75, 38.33, 76.32]
+      },
+      {
+        label: "joined",
+        fillColor: "rgba(150,206,173,0.2)",
+        strokeColor: "rgba(150,206,173,1)",
+        pointColor: "rgba(150,206,173,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(150,206,173,1)",
+        data: [4.47, 5.74, 20.08, 42.85, 77.83]
       }
     ]
   };
@@ -309,10 +322,13 @@ end
 
 With a small number of trips the performance difference is negligible.
 As the number of trips increases the cost of loading that many records into memory simply to filter them out does start to add up.
-But, even with 20,000 records being slurped in for manipulation, the naive strategy is only *2x* slower.
+Even with 20,000 records being slurped in for manipulation, the naive strategy is only *2x* slower.
 For now, if you are working in Ecto, you can rest assured that the performance of naive queries is good enough not to worry about fiddling with raw SQL.
 
 The simple application used for testing can be found in [triptastic on GitHub][trip].
+
+**Edit**: The benchmark test and chart now includes a hybrid approach where the `OVER` sub-select is performed in a join.
+This was suggested by Jośe Valim as a way to avoid SQL queries, and provides better query interop with comparable performance.
 
 [fold]: http://blog.codeship.com/folding-postgres-window-functions-into-rails/
 [ecto]: https://github.com/elixir-lang/ecto
