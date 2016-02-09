@@ -41,7 +41,7 @@ Instead, I'll share a few benchmarks that emphasize the performance gulf between
 
 Synthetic benchmarks are a poor measure of anything in the real world.
 So, let's not pretend this is a scientific comparison.
-Instead, I'll compare the performance of two systems in production and serving up equivalent content.
+Instead, I'll compare the performance of two systems in production serving up equivalent content.
 To be fair, the content isn't identical, but that's because the Elixir/Phoenix version can be customized without fear of breaking caching.
 The true configuration of each application is non-trivial, and the code is confidential, so I can only share an overview of each.
 
