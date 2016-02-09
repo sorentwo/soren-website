@@ -8,7 +8,7 @@ tags: elixir ecto postgres
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
 
-*This is a reinterpretation of [Folding Window Functions Into Rails][fold], rewritten and adapted from ActiveRecord to [Ecto][ecto].
+*This is a reinterpretation of [Folding Window Functions Into Rails][fold], rewritten and adapted from ActiveRecord to [Ecto][ecto] 2.0.
 The results were unexpected...*
 
 Perhaps you've heard of window functions in PostgreSQL, but you aren't quite sure what they are or how to use them.
@@ -170,7 +170,7 @@ All that remains is limiting the results to the top ranked rows and our query ma
 
 ## Move It Into Ecto
 
-At this time there aren't any constructs for `OVER` built into Ecto and it doesn't support arbitrary `FROM` clauses.
+At this time there aren't any constructs for `OVER` built into Ecto 2.0 and it doesn't support arbitrary `FROM` clauses.
 The only way to utilize window functions is with the raw `Ecto.Adapters.SQL.query` function.
 Using the `from` macro from `Ecto.Query` with a sub-select would be preferable to working with a raw string, but we aren't there yet.
 
@@ -227,11 +227,11 @@ Those are precisely the results we're looking for!
 Here is where the presumptions behind this article fall apart and the BEAM blows my mind.
 The original version of this article was written about window queries in Rails.
 In those benchmarks the window function was *539.3x* faster than the naive version.
-Naturally, I was excited to see how well the Elixir/Ecto variant would perform relatively.
+Naturally, I was excited to see how well the Elixir/Ecto variant would perform in comparison.
 
 This benchmarking test has a lot of boilerplate just to set up the sandbox and insert an arbitrary number of trips into the database.
 An outer `for` comprehension builds up a sequence of tests with an increasing number of trips for comparison.
-Note that the test caps out at 20,000 trips because any more broke `Repo.insert_all`, and that was plenty for a comparison.
+Note that the test caps out at 20,000 trips because any more breask `Repo.insert_all`, and that is plenty for a comparison.
 
 ```elixir
 defmodule Triptastic.TripBenchmarkTest do
@@ -308,23 +308,15 @@ end
 </script>
 
 With a small number of trips the performance difference is negligible.
-As the number of trips increases the cost of loading that many records into memory simply to filter them out starts to add up.
-Even with 20,000 records being slurped in for manipulation, the naive strategy is only *2x* slower.
+As the number of trips increases the cost of loading that many records into memory simply to filter them out does start to add up.
+But, even with 20,000 records being slurped in for manipulation, the naive strategy is only *2x* slower.
 For now, if you are working in Ecto, you can rest assured that the performance of naive queries is good enough not to worry about fiddling with raw SQL.
 
-## Understanding is Most Important
-
-> There was SQL before window functions and SQL after window functions: that's how powerful this tool is.
-> Being that [big of a game changer] unfortunately means that it can be quite hard to grasp the feature.
->
-> <cite>[Dimitri Fontaine][wf]</cite>
-
-Window functions are an advanced feature of PostgreSQL, heck, it's even listed under *advanced features* in the documentation.
-Having a relatively simple use-case for them helps a lot when you are trying to wrap your head around the concept.
-For some tasks window functions can radically simplify queries, for other tasks they are completely irreplaceable.
+The simple application used for testing can be found in [triptastic on GitHub][trip].
 
 [fold]: http://blog.codeship.com/folding-postgres-window-functions-into-rails/
 [ecto]: https://github.com/elixir-lang/ecto
 [tw]: http://www.postgresql.org/docs/9.4/static/tutorial-window.html
 [swf]: http://www.postgresql.org/docs/9.4/interactive/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS
 [wf]: http://tapoueh.org/blog/2013/08/20-Window-Functions
+[trip]: https://github.com/sorentwo/triptastic
