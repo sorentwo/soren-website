@@ -125,7 +125,7 @@ Directly from the documentation:
 >
 > <cite>[Postgres Documentation][tw]</cite>
 
-The key part phrase is the power of calculating across related rows.
+The key part of the phrase is the power of calculating across related rows.
 In our case, the rows are *related* by category, and the *calculation* being performed is ordering them within those categories.
 In the realm of window functions this is handled with an [`OVER` clause][swf].
 There are additional expressions for fine tuning the window, but for now we can achieve all we need with `PARTITION BY` and `ORDER BY` expressions.
