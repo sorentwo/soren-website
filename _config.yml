@@ -19,3 +19,7 @@ exclude:
   - TODO
   - Gemfile
   - Gemfile.lock
+gems:
+  - jekyll-seo-tag
+twitter:
+  username: sorentwo
