@@ -50,7 +50,7 @@
 
           {% for post in site.related_posts limit: 5 %}
           <div class="related-post">
-            <span class="date">{{post.date | date_to_string}}</span>
+            <span class="date">{{post.date | date: '%B %d, %Y'}}</span>
             <em>&mdash;</em>
             <a href="{{post.url}}" class="title">{{post.title}}</a>
           </div>

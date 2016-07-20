@@ -16,7 +16,7 @@ title: Writing
       <h3><a href="{{post.url}}">{{post.title}}</a></h3>
       <p>{{post.summary}}</p>
       <div class="blog-meta">
-        <span class="date">{{post.date | date_to_string}}</span>
+        <span class="date">{{post.date | date: '%B %d, %Y'}}</span>
         <em>&mdash;</em>
         <span class="tags">{{post.tags | array_to_sentence_string}}</span>
       </div>
