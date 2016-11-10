@@ -1,7 +1,6 @@
 # sorentwo.com
 
-The website and blog of sorentwo, a partnership between Parker Selbert and
-Shannon Peterson.
+The website and blog of sorentwo, a partnership between Shannon & Parker Selbert.
 
 ## Usage
 
