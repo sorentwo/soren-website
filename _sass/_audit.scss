@@ -1,0 +1,53 @@
+.audit {
+  margin-bottom: 2rem;
+
+  h1, h2, h3, h4, h5 {
+    text-align: center;
+  }
+
+  h3 {
+    font-size: $font-size-midsize;
+    margin-bottom: line-units(1);
+  }
+
+  p {
+    color: $color-light;
+    margin-bottom: line-units(1);
+  }
+
+  ul {
+    list-style: disc outside;
+    padding-left: 1em;
+  }
+
+  ol {
+    list-style: decimal outside;
+    padding-left: 1em;
+  }
+}
+
+.audit-testimonial {
+  background: $color-slight;
+  padding: 2rem 1rem;
+}
+
+.audit-guarantee {
+  background: $color-golden;
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+
+  > p {
+    color: $color-medium;
+  }
+}
+
+.audit-form {
+  background: $color-slight;
+  padding: 2rem;
+}
+
+.audit-form__fieldset {
+  input {
+    background: $color-white;
+  }
+}
