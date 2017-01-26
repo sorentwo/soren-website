@@ -21,5 +21,6 @@ exclude:
   - Gemfile.lock
 gems:
   - jekyll-seo-tag
+  - jekyll-sitemap
 twitter:
   username: sorentwo
