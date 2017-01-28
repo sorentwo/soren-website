@@ -2,38 +2,80 @@
   margin-bottom: 2rem;
 
   h1, h2, h3, h4, h5 {
+    font-weight: 700;
     text-align: center;
   }
 
   h3 {
     font-size: $font-size-midsize;
-    margin-bottom: line-units(1);
+    margin-bottom: 2rem;
   }
 
   p {
-    color: $color-light;
-    margin-bottom: line-units(1);
+    color: $color-medium;
+    margin-bottom: 2rem;
   }
 
   ul {
+    color: $color-medium;
     list-style: disc outside;
-    padding-left: 1em;
+    padding-left: 1rem;
   }
 
   ol {
+    color: $color-medium;
     list-style: decimal outside;
-    padding-left: 1em;
+    padding-left: 1rem;
   }
 }
 
-.audit-testimonial {
+.audit-case-study {
   background: $color-slight;
-  padding: 2rem 1rem;
+  padding: 2rem 2rem 0;
+
+  > p {
+    color: $color-medium;
+  }
+}
+
+.audit-rule {
+  border: none;
+  border-bottom: 1px solid lighten($color-light, 35%);
+  border-top: 1px solid lighten($color-light, 30%);
+  margin-bottom: 2rem;
+}
+
+.audit-testimonial {
+  display: flex;
+  margin-bottom: 2rem;
+
+  &__photo {
+    align-self: flex-start;
+    border-radius: 50%;
+    height: 8rem;
+    max-width: 8rem;
+  }
+
+  &__body {
+    flex: 1;
+    padding-left: 2rem;
+  }
+
+  &__quote {
+    border: none;
+    margin-bottom: 0.5rem;
+    padding: 0;
+  }
+
+  &__cite {
+    font-style: normal;
+    font-weight: 700;
+  }
 }
 
 .audit-guarantee {
   background: $color-golden;
-  padding: 2rem 2rem 1rem;
+  padding: 2rem 2rem 0;
   text-align: center;
 
   > p {
