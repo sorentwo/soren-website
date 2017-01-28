@@ -8,7 +8,7 @@
   padding-bottom: line-units(10);
   text-align: center;
 
-  @media (max-width: 320px) {
+  @media (max-width: 500px) {
     padding-top: line-units(6);
     padding-bottom: line-units(6);
   }
@@ -59,7 +59,7 @@
 
   margin-bottom: line-units(2);
 
-  @media (max-width: 320px) {
+  @media (max-width: 500px) {
     -webkit-box-flex: 100%;
     -webkit-flex: 100% 0;
         -ms-flex: 100% 0;

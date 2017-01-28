@@ -46,19 +46,37 @@
 }
 
 .audit-testimonial {
-  display: flex;
   margin-bottom: 2rem;
+  overflow: hidden;
 
-  &__photo {
-    align-self: flex-start;
+  img {
     border-radius: 50%;
-    height: 8rem;
     max-width: 8rem;
   }
 
+  &__photo {
+    float: left;
+    width: 20%;
+
+    @media (max-width: 500px) {
+      float: none;
+      width: 100%;
+
+      img {
+        display: block;
+        margin: 0 auto 1rem;
+      }
+    }
+  }
+
   &__body {
-    flex: 1;
-    padding-left: 2rem;
+    float: right;
+    width: 80%;
+
+    @media (max-width: 500px) {
+      float: none;
+      width: 100%;
+    }
   }
 
   &__quote {
