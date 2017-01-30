@@ -65,9 +65,9 @@ defenses.
 ## The Outer Curtain Wall (HTTP Caching)
 
 The outer layer of defense is [HTTP Caching][httpc]. HTTP caching is the outer
-wall, catching hints about what clients have seen and responding intelligently.
+wall, catching hints about what clients have seen and responds intelligently.
 If a client has already seen a resource and has retained a reference to the
-`Etag` or `Last-Modified` header then our application can quickly respond with a
+`Etag` or `Last-Modified` header, then our application can quickly respond with a
 `304 Not Modified`. The response won't contain the resource, allowing the
 application to do less work overall.
 
@@ -218,7 +218,6 @@ class PostsController < ApplicationController
 end
 ```
 
-
 Only the `include` block has been changed to omit comments.
 
 ### Impact
@@ -298,8 +297,8 @@ Shortest transaction:           0.08
 ```
 
 As expected the results are slower, down to `1.84 secs` for the full run. That
-is still nearly 10x faster than the original time of `10.89secs` though, and it
-comes with added resiliency against complete cache invalidation.
+is still nearly `10x` faster than the original time of `10.89secs` though, and
+it comes with added resiliency against complete cache invalidation.
 
 ## The Barbican (Fragment Caching)
 

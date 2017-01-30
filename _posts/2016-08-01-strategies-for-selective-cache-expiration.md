@@ -90,7 +90,7 @@ support globbing.
 Rails.cache.delete_matched("posts/9[0-1]*")
 ```
 
-_Note: Until [very recently][rdm] the [readthis][rdt] cache for Redis didn't
+_Note: Until [very recently][rdm] my [readthis][rdt] cache for Redis didn't
 support `delete_matched` due to concerns about performance and the [evil keys
 command][ekc]. The eventual implementation uses `SCAN` and is entirely safe to
 use with gigantic databases. The aforementioned client was using Readthis for
@@ -101,7 +101,7 @@ caching, driving the need for `delete_matched` to be implemented._
 Caching is key to a highly performant application, but stale data can be
 insidious. Without targeted expiration we start to reach for blunt tools and
 expire too broadly. All of the expiration strategies presented here are simple,
-but they come up often in a production system. Recognize the situation and
+and they come up often in a production system. Recognize the situation and
 choose the right strategy for the job.
 
 [ece]: https://sorentwo.com/2016-07-11-essentials-of-cache-expiration-in-rails
