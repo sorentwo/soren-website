@@ -17,10 +17,10 @@ There's an answer, and throwing more hardware or developers at the problem isn't
 **Rails can be blazing fast with caching!**
 
 Caching is vital to any fast production application.
-It **makes your app faster** by letting it doing less work.
+It **makes your app faster** by letting it do less work.
 Whether that means pages are built once and shared, or that content is served from geographically closer locations, customers will **feel the difference**.
 
-Caching is a broad topic with a lot of nuance.
+Caching is a broad, nuanced topic.
 It is one of the classic [hard things in computer science](https://martinfowler.com/bliki/TwoHardThings.html)!
 Even experienced developers may not be familiar with every technique or strategy available in Rails.
 We'll help you identify what is holding your app back and where to apply caching to speed it up using techniques like:
@@ -36,9 +36,9 @@ We'll help you identify what is holding your app back and where to apply caching
 
 Caching isn't always the solution, but when it is the results are dramatic.
 After applying these strategies a **3&times;—4&times;** improvement in page load times is common.
-In extreme cases we've seen load times drop from **30s** to **under 1s**, that's a **30&times;** improvement!.
+In extreme cases we've seen load times drop from **30s** to **under 1s**, that's over a **30&times;** improvement!.
 
-A lack of caching may be **hurting your revenue**, and you may not even know it!
+A lack of caching may be **hurting your revenue**, and you may not even know it.
 Don't take our word for it, extensive research has been done on the subject:
 
 * [How Loading Time Affects Your Bottom Line](https://blog.kissmetrics.com/loading-time/)
@@ -52,17 +52,21 @@ Regain customer trust and increase profits by getting your application fast agai
 <section class="wrapper audit audit-case-study" markdown="1">
   <h2>10&times; Performance Improvements for First</h2>
 
-  When we were approached by the predictive real estate company [First](https://first.io/), some of their critical API endpoints took **10s** or more to load.
+  When we were approached by the predictive real estate company [First](https://first.io/), some of their critical API endpoints took **10s** or more to respond.
   During diagnosis we measured and identified the worst offending endpoints and devised a robust caching strategy.
 
   After working with First to build out their infrastructure and apply nested caching we saw **full page response times fall below 1s**, and select endpoints responding in **under 100ms**.
+
+  Here's a taste of one endpoint's response times afterwards, as measured by [Skylight](https://skylight.io):
 
   ![Skylight Performance](/assets/skylight-sample.jpg)
 
   <hr class="audit-rule" />
 
   <div class="audit-testimonial">
-    <img class="audit-testimonial__photo" src="/assets/jess-martin.jpg" />
+    <div class="audit-testimonial__photo">
+      <img src="/assets/jess-martin.jpg" />
+    </div>
     <div class="audit-testimonial__body">
       <blockquote class="audit-testimonial__quote">
         Before Soren, our app was <b>painfully</b> slow.
@@ -75,13 +79,15 @@ Regain customer trust and increase profits by getting your application fast agai
   </div>
 
   <div class="audit-testimonial">
-    <img class="audit-testimonial__photo" src="/assets/glenn-vanderburg.jpg" />
+    <div class="audit-testimonial__photo">
+      <img src="/assets/glenn-vanderburg.jpg" />
+    </div>
     <div class="audit-testimonial__body">
       <blockquote class="audit-testimonial__quote">
         Soren not only made our app a lot faster, but left us with a clear, sensible caching policy that was easy for us to work with.
         They actually improved our understanding of our own domain.
       </blockquote>
-      <cite class="audit-testimonial__cite">Glenn Vanderburg</cite>
+      <cite class="audit-testimonial__cite">Glenn Vanderburg, VP of Engineering</cite>
     </div>
   </div>
 </section>
@@ -114,8 +120,6 @@ If you apply the prescription and don't get results, we will keep working with y
 <form class="wrapper audit audit-form" accept-charset="UTF-8" action="https://formkeep.com/f/f33270e65797" method="POST">
   <h2>Ready to get started?</h2>
   <p class="form-subtitle">Speed up your app and start earning more.</p>
-
-  <input type="hidden" name="utf8" value="✓">
 
   <fieldset class="audit-form__fieldset">
     <div class="input">
