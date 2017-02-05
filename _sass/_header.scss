@@ -52,25 +52,24 @@ header {
     color: $color-white;
     text-decoration: none;
   }
+}
 
-  .icon-logo {
-    font-size: 1.5em;
-    margin-right: 4px;
-    position: relative;
-    top: 5px;
-  }
+.icon.icon--logo {
+  margin-right: 4px;
+  height: 2rem;
+  width: 2rem;
+  top: 0.5rem;
+}
 
-  .logo-type {
-    font-family: $font-family-sans;
-    font-size: $font-size-normal;
-    text-transform: uppercase;
-  }
+.header-logo-type {
+  font-family: $font-family-sans;
+  font-size: $font-size-normal;
+  text-transform: uppercase;
 }
 
 .header-menu {
   color: $color-white;
   cursor: pointer;
-  font-size: 1.5em;
   line-height: inherit !important;
   position: absolute;
   right: grid-units(2);
@@ -81,6 +80,12 @@ header {
 
   -webkit-user-select: none;
           user-select: none;
+}
+
+.icon.icon--menu {
+  height: 1.5rem;
+  width: 1.5rem;
+  top: 0.35rem;
 }
 
 .header-menu, .header-toggle-checkbox {
@@ -99,7 +104,6 @@ header {
     position: absolute;
     top: -100vh;
     width: 100%;
-
     transition: top 0.3s ease-in-out;
 
     a {

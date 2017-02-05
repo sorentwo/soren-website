@@ -1,39 +1,12 @@
-@font-face {
-  font-family: 'icomoon';
-  font-style: normal;
-  font-weight: normal;
-  src: url('//s3.amazonaws.com/assets.sorentwo.com/icomoon.woff') format('woff');
+.icon {
+  display: inline-flex;
+  align-self: center;
+  fill: $color-white;
+  position: relative;
+  height: 1rem;
+  width: 1rem;
 }
 
-[class^="icon-"], [class*=" icon-"] {
-  font-family: 'icomoon';
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  line-height: 1;
-  speak: none;
-  text-transform: none;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-github::before {
-  content: '\e600';
-}
-
-.icon-twitter::before {
-  content: '\e601';
-}
-
-.icon-feed::before {
-  content: '\e602';
-}
-
-.icon-logo::before {
-  content: '\e604';
-}
-
-.icon-menu::before {
-  content: '\e15c';
+.icon-defs {
+  display: none;
 }

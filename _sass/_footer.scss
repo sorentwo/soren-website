@@ -17,48 +17,24 @@ footer {
 .contact-here {
   color: $color-light;
   font-size: $font-size-small;
+  margin-bottom: 0;
 }
 
-.contact-there a {
-  color: $color-white;
-  font-size: 30px;
-  margin-right: 20px;
-  position: relative;
-
-  -webkit-transition: color 0.3s ease;
-     -moz-transition: color 0.3s ease;
-          transition: color 0.3s ease;
+a.footer__link, .footer__link {
+  fill: $color-slight;
+  margin-right: 1rem;
+  text-decoration: none;
 
   &:last-child {
     margin-right: 0;
   }
 
-  &:hover {
-    color: $color-light;
+  &:hover .icon {
+    fill: lighten($color-accent, 25%);
   }
 }
 
-.contact-there span {
-  color: $color-dark;
-  background: $color-white;
-  border-radius: 3px;
-  bottom: 0;
-  font-family: $font-family-sans;
-  font-size: $font-size-normal;
-  left: -15px;
-  opacity: 0;
-  padding: 3px;
-  position: absolute;
-  text-align: center;
-  width: 60px;
-
-  -webkit-transition: all 0.3s ease;
-     -moz-transition: all 0.3s ease;
-          transition: all 0.3s ease;
+.icon.icon--footer {
+  height: 1.5rem;
+  width: 1.5rem;
 }
-
-.contact-there a:hover span {
-  bottom: 36px;
-  opacity: 1.0;
-}
-

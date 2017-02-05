@@ -19,11 +19,17 @@
   <body>
     <header>
       <a class="header-logo" href="/">
-        <span class="icon-logo"></span>
-        <span class="logo-type">Soren</span>
+        <svg class="icon icon--logo">
+          <use xlink:href="#soren-icon" />
+        </svg>
+        <span class="header-logo-type">Soren</span>
       </a>
 
-      <label for="header-toggle" class="icon-menu header-menu"></label>
+      <label for="header-toggle" class="header-menu">
+        <svg class="icon icon--menu">
+          <use xlink:href="#menu-icon" />
+        </svg>
+      </label>
       <input type="checkbox" class="header-toggle-checkbox" id="header-toggle" />
 
       <nav id="header-nav" class="wrapper header-nav">
@@ -65,13 +71,19 @@
     <footer>
       <div class="wrapper">
         <nav class="contact-there">
-          <a class="icon-feed rss" href="http://sorentwo.com/feed.atom"><span>Feed</span></a>
-          <a class="icon-github github" href="https://github.com/sorentwo"><span>Github</span></a>
-          <a class="icon-twitter twitter" href="https://twitter.com/sorentwo"><span>Twitter</span></a>
+          <a class="footer__link" title="Soren's Feed" href="http://sorentwo.com/feed.atom">
+            <svg class="icon icon--footer"><use xlink:href="#feed-icon" /></svg>
+          </a>
+          <a class="footer__link" title="Soren's Github" href="https://github.com/sorentwo">
+            <svg class="icon icon--footer"><use xlink:href="#github-icon" /></svg>
+          </a>
+          <a class="footer__link" title="Soren's Twitter" href="https://twitter.com/sorentwo">
+            <svg class="icon icon--footer"><use xlink:href="#twitter-icon" /></svg>
+          </a>
         </nav>
 
         <p class="contact-here">
-          &copy; 2017 Soren LLC
+          &copy; 2008&mdash;2017 Soren LLC
         </p>
       </div>
     </footer>
@@ -109,5 +121,9 @@
         })();
       </script>
     {% endif %}
+
+    <div class="icon-defs">
+      {% include icons.svg %}
+    </div>
   </body>
 </html>
