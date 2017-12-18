@@ -1,3 +1,6 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'github-pages'
+ruby "2.3.5"
+
+gem "github-pages"
+gem "rake"
