@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.5"
+ruby "2.6.1"
 
 gem "github-pages"
 gem "rake"
