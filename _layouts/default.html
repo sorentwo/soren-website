@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="description" content="Improve and upgrade rails applications">
     <meta name="author" content="Parker Selbert">
 
-    <title>{{page.title}} | Søren</title>
+    <title>{{page.title}} • Soren</title>
 
     {% seo %}
 
@@ -16,8 +16,16 @@
     <link rel="stylesheet" href="/css/styles.css">
   </head>
 
-  <body>
+  <body class="{{page.theme}}">
     <header>
+      {% if page.theme == "light" %}
+        <svg class="header-logo" width="48px" height="48px" viewBox="0 0 254 254" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="soren-logo" fill="#00ff00" fill-rule="nonzero">
+            <path d="M253.52,21.272 C253.52,20.234 253.098,19.22 252.364,18.484 L235.516,1.636 C233.976,0.096 231.48,0.096 229.942,1.636 L201.908,29.67 C181.176,13.69 155.2,4.184 127,4.184 C59.172,4.184 4.184,59.172 4.184,127 C4.184,155.2 13.69,181.176 29.668,201.908 L1.636,229.94 C0.902,230.674 0.48,231.69 0.48,232.73 C0.48,233.768 0.902,234.78 1.636,235.516 L18.486,252.368 C19.22,253.102 20.234,253.522 21.274,253.522 C22.314,253.522 23.326,253.102 24.062,252.368 L52.094,224.336 C72.824,240.312 98.802,249.816 127.002,249.816 C194.83,249.816 249.816,194.832 249.816,127.002 C249.816,98.802 240.312,72.824 224.334,52.092 L252.366,24.06 C253.098,23.326 253.52,22.31 253.52,21.272 Z M55.426,127 C55.426,107.88 62.872,89.908 76.39,76.39 C89.908,62.872 107.882,55.426 127,55.426 C140.716,55.426 153.844,59.258 165.158,66.418 L66.416,165.158 C59.258,153.844 55.426,140.716 55.426,127 Z M198.574,127 C198.574,146.118 191.128,164.09 177.61,177.61 C164.092,191.13 146.118,198.576 127,198.576 C113.284,198.576 100.156,194.74 88.84,187.584 L187.582,88.84 C194.74,100.156 198.574,113.284 198.574,127 Z" id="Shape"></path>
+          </g>
+        </svg>
+      {% endif %}
+
       <nav id="header-nav" class="header-nav">
         <a class="header-link" href="/blog">Blog</a>
         <a class="header-link" href="/contact" class="contact">Contact</a>
@@ -60,6 +68,15 @@
       </p>
 
       <nav class="footer__links">
+        <a title="SorenTwo's Github" href="https://github.com/sorentwo">
+          <svg width="24px" height="24px" viewBox="0 0 33 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="GitHub-Mark" transform="translate(-128.000000, -317.000000)" fill="#FFFFFE">
+                <path d="M144.288,317 C135.294,317 128,324.293 128,333.29 C128,340.487 132.667,346.592 139.14,348.746 C139.955,348.896 140.252,348.393 140.252,347.961 C140.252,347.574 140.238,346.55 140.23,345.191 C135.699,346.175 134.743,343.007 134.743,343.007 C134.002,341.125 132.934,340.624 132.934,340.624 C131.455,339.614 133.046,339.634 133.046,339.634 C134.681,339.749 135.541,341.313 135.541,341.313 C136.994,343.802 139.354,343.083 140.282,342.666 C140.43,341.614 140.851,340.896 141.316,340.489 C137.699,340.078 133.896,338.68 133.896,332.438 C133.896,330.66 134.531,329.205 135.573,328.067 C135.405,327.655 134.846,325.998 135.733,323.756 C135.733,323.756 137.1,323.318 140.212,325.426 C141.511,325.064 142.905,324.884 144.29,324.877 C145.674,324.884 147.067,325.064 148.368,325.426 C151.478,323.318 152.843,323.756 152.843,323.756 C153.732,325.998 153.173,327.655 153.006,328.067 C154.05,329.205 154.68,330.66 154.68,332.438 C154.68,338.696 150.871,340.073 147.243,340.476 C147.827,340.979 148.348,341.973 148.348,343.492 C148.348,345.67 148.328,347.427 148.328,347.961 C148.328,348.397 148.622,348.904 149.448,348.745 C155.916,346.586 160.579,340.485 160.579,333.29 C160.579,324.293 153.285,317 144.288,317" id="Fill-51"></path>
+              </g>
+            </g>
+          </svg>
+        </a>
         <a title="Soren's Blog Feed" href="http://sorentwo.com/feed.atom">
           <svg width="24px" height="24px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -69,7 +86,7 @@
             </g>
           </svg>
         </a>
-        <a title="SorenTwo's Github" href="https://github.com/sorentwo">
+        <a title="SorenOne's Github" href="https://github.com/sorenone">
           <svg width="24px" height="24px" viewBox="0 0 33 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
               <g id="GitHub-Mark" transform="translate(-128.000000, -317.000000)" fill="#FFFFFE">

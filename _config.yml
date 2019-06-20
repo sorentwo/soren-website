@@ -23,3 +23,8 @@ plugins:
   - jekyll-sitemap
 twitter:
   username: sorentwo
+defaults:
+  -
+    values:
+      layout: default
+      theme: light

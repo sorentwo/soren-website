@@ -1,14 +1,18 @@
 ---
 ---
 
-@import url('https://fonts.googleapis.com/css?family=Cardo|Raleway:200&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cardo:400,400i,700|Raleway:300&display=swap');
 
-$color-dark: #031106;
+$color-bright: rgb(255, 255, 255);
+$color-darkest: rgb(25, 25, 25);
+$color-dark: rgb(65, 65, 65);
 $color-light: #d1d1d1;
 $color-soft: #c8c8c8;
 
 $font-family-sans: 'Raleway', sans-serif;
 $font-family-serif: 'Cardo', serif;
+
+$font-weight-light: 300;
 
 html * {
   box-sizing: border-box;
@@ -17,12 +21,20 @@ html * {
 }
 
 body {
-  background: radial-gradient(circle at center 40vh, #093131, #031106);
-  color: $color-light;
   display: flex;
   flex-direction: column;
   font: 1.125em/2 $font-family-sans;
   min-height: 100vh;
+}
+
+body.dark {
+  background: radial-gradient(circle at center 40vh, #093131, #031106);
+  color: $color-light;
+}
+
+body.light {
+  background: $color-bright;
+  color: $color-darkest;
 }
 
 // Header
@@ -32,6 +44,10 @@ header {
   padding: 0.5rem 1rem;
 }
 
+.header-logo g {
+  fill: $color-darkest;
+}
+
 .header-nav {
   margin-left: auto;
   font-size: 1em;
@@ -39,9 +55,14 @@ header {
 
 .header-link {
   margin-left: 0.5em;
-  font-weight: 200;
   font-size: 0.75em;
+  opacity: 0.7;
   text-transform: uppercase;
+
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
 }
 
 // Main
@@ -70,11 +91,9 @@ main {
   margin: 1rem 0 2rem;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 0 5px $color-soft;
 }
 
 .hero-tagline {
-  font-weight: 200;
   font-size: 1.25em;
   line-height: 1.75;
   text-align: center;
@@ -98,7 +117,6 @@ main {
 }
 
 .bio-title {
-  font-weight: 200;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -120,7 +138,7 @@ footer {
 
   a {
     margin-left: 0.5em;
-    opacity: 0.6;
+    opacity: 0.7;
 
     &:hover {
       opacity: 1;
@@ -139,35 +157,22 @@ footer {
 // General Type
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-family-sans;
   font-size: 1em;
-  font-weight: 200;
+  font-weight: $font-weight-light;
   line-height: 1.25;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
   font-size: 2em;
-  font-weight: 200;
 }
 
 h2 {
   font-size: 1.5em;
-  font-weight: 200;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-weight: 200;
-  margin-bottom: 1rem;
-}
-
-h4 {
-  margin-bottom: 1rem;
 }
 
 p, ul, ol, table, pre, dl {
-  margin: 0 0 3rem;
+  margin: 0 0 2rem;
 }
 
 a {
@@ -198,21 +203,21 @@ strong {
 }
 
 code, pre {
-  color: $color-dark;
+  color: $color-darkest;
   font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
   font-size: 14px;
   line-height: 20px;
 }
 
 pre {
-  background: $color-soft;
+  background: $color-light;
   border-radius: 3px;
   overflow-x: auto;
   padding: 16px;
 }
 
 p pre, li pre {
-  background: $color-soft;
+  background: $color-light;
   border-radius: 3px;
   padding: 3px;
 }
@@ -220,6 +225,8 @@ p pre, li pre {
 img {
   max-width: 100%;
 }
+
+// Form
 
 fieldset {
   border: none;
@@ -233,60 +240,64 @@ textarea {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
   background: $color-soft;
   font-size: 1rem;
-  font-family: $font-family-sans;
   padding: 2em;
   width: 100%;
 }
 
 label {
   display: block;
-  font-family: $font-family-sans;
-  font-weight: 200;
   margin-bottom: 0.5rem;
+}
+
+button {
+  background: $color-soft;
+  border: none;
+  border-radius: 3px;
+  padding: 1rem;
+}
+
+.input {
+  margin-bottom: 1.5rem;
 }
 
 // Blog
 
-.blog-title {
-  font-size: 2em;
-  margin-bottom: 4rem;
+.wrapper {
+  margin: 0 auto;
+  max-width: 40em;
+}
+
+.listing-title {
+  border-bottom: 1px solid $color-darkest;
+  font-size: 3em;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
   text-align: center;
 }
 
-.blog-post {
-  display: block;
-  margin-bottom: 2rem;
-
-  h3 {
-    font-size: 1.5em;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: $color-light;
-    margin-bottom: 1rem;
-  }
-
-  a {
-    color: $color-dark;
-    transition: color 0.3s ease;
-  }
+.listing-preview {
+  margin-bottom: 1rem;
 }
 
-.blog-meta {
-  .date { color: $color-light; }
+.listing-summary {
+  color: $color-dark;
+  font-family: $font-family-serif;
+  margin-bottom: 1rem;
+}
 
-  .tags {
-    font-family: $font-family-sans;
-    font-size: 13px;
-    text-transform: uppercase;
-  }
+.listing-meta__date {
+  color: $color-dark;
+}
+
+.listing-meta__tags {
+  font-size: 0.75em;
+  text-transform: uppercase;
 }
 
 .post-title {
-  border-bottom: 1px solid $color-soft;
-  margin: 5rem 0 3rem;
-  padding-bottom: 5rem;
+  border-bottom: 1px solid $color-darkest;
+  margin: 3rem 0 3rem;
+  padding-bottom: 3rem;
   text-align: center;
 
   span {
@@ -295,6 +306,10 @@ label {
 }
 
 .post-body {
+  p {
+    font-family: $font-family-serif;
+  }
+
   ul {
     list-style: disc outside;
     padding-left: 1em;
@@ -304,6 +319,16 @@ label {
     list-style: decimal outside;
     padding-left: 1em;
   }
+
+  a {
+    color: $color-darkest;
+    transition: color 0.3s ease;
+  }
+}
+
+.blog-post {
+  display: block;
+  margin-bottom: 2rem;
 }
 
 .related-posts {
@@ -316,7 +341,7 @@ label {
 
 // Pygments
 
-.highlight  { background: $color-soft; }
+.highlight  { background: $color-light; }
 .highlight .c { color: #999988; font-style: italic } // Comment
 .highlight .err { color: #a61717; background-color: #e3d2d2 } // Error
 .highlight .k { font-weight: bold } // Keyword
