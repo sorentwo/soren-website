@@ -3,16 +3,16 @@ title: Writing
 ---
 
 <article class="wrapper">
-  <h2 class="listing-title">Thoughts, Advice &amp; Other Writing</h2>
+  <h2 class="list-heading">Thoughts, Advice &amp; Other Writing</h2>
 
   {% for post in site.posts %}
-  <div class="listing-preview">
-    <h3><a href="{{post.url}}">{{post.title}}</a></h3>
-    <p class="listing-summary">{{post.summary}}</p>
-    <div class="listing-meta">
-      <span class="listing-meta__date">{{post.date | date: '%B %d, %Y'}}</span>
+  <div class="post-preview">
+    <a class="post-title" href="{{post.url}}">{{post.title}}</a>
+    <p class="post-summary">{{post.summary}}</p>
+    <div class="post-meta">
+      <span class="post-meta__date">{{post.date | date: '%B %d, %Y'}}</span>
       <em>&mdash;</em>
-      <span class="listing-meta__tags">{{post.tags | array_to_sentence_string}}</span>
+      <span class="post-meta__tags">{{post.tags | array_to_sentence_string}}</span>
     </div>
   </div>
   {% endfor %}
