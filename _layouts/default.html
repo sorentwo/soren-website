@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="description" content="Improve and upgrade rails applications">
     <meta name="author" content="Parker Selbert">
 
-    <title>{{page.title}} | Søren</title>
+    <title>{{page.title}} • Soren</title>
 
     {% seo %}
 
@@ -16,87 +16,27 @@
     <link rel="stylesheet" href="/css/styles.css">
   </head>
 
-  <body>
-    <header>
-      <a class="header-logo" href="/">
-        <svg class="icon icon--logo">
-          <use xlink:href="#soren-icon" />
-        </svg>
-        <span class="header-logo-type">Soren</span>
-      </a>
+  <body class="{{page.theme}}">
+    {% include header.html %}
 
-      <label for="header-toggle" class="header-menu">
-        <svg class="icon icon--menu">
-          <use xlink:href="#menu-icon" />
-        </svg>
-      </label>
-      <input type="checkbox" class="header-toggle-checkbox" id="header-toggle" />
+    <main>
+      {% if page.summary %}
+        <article class="wrapper">
+          <section class="post-header">
+            <h1 class="post-heading">{{page.title}}</h1>
+            <span class="date">{{page.date | date_to_string}}</span>
+            <span class="author"><em class="fancy">by</em> {{page.author}}</span>
+          </section>
 
-      <nav id="header-nav" class="wrapper header-nav">
-        <a href="/#services">Services</a>
-        <a href="/blog">Blog</a>
-        <a href="/contact" class="contact">Contact</a>
-      </nav>
-    </header>
+          <section class="post-body">
+            {{content}}
+          </section>
+        </article>
+      {% else %}
+        {{content}}
+      {% endif %}
+    </main>
 
-    {% if page.summary %}
-      <article class="wrapper">
-        <section class="post-title">
-          <h1>{{page.title}}</h1>
-          <span class="date">{{page.date | date_to_string}}</span>
-          <span class="author"><em class="fancy">by</em> {{page.author}}</span>
-        </section>
-
-        <section class="post-body">
-          {{content}}
-        </section>
-
-        <section class="related-posts">
-          <h3>Recent Posts</h3>
-
-          {% for post in site.related_posts limit: 5 %}
-          <div class="related-post">
-            <span class="date">{{post.date | date: '%B %d, %Y'}}</span>
-            <em>&mdash;</em>
-            <a href="{{post.url}}" class="title">{{post.title}}</a>
-          </div>
-          {% endfor %}
-        </section>
-      </article>
-    {% else %}
-      {{content}}
-    {% endif %}
-
-    <footer>
-      <div class="wrapper">
-        <nav class="contact-there">
-          <a class="footer__link" title="Soren's Feed" href="http://sorentwo.com/feed.atom">
-            <svg class="icon icon--footer"><use xlink:href="#feed-icon" /></svg>
-          </a>
-          <a class="footer__link" title="Soren's Github" href="https://github.com/sorentwo">
-            <svg class="icon icon--footer"><use xlink:href="#github-icon" /></svg>
-          </a>
-          <a class="footer__link" title="Soren's Twitter" href="https://twitter.com/sorentwo">
-            <svg class="icon icon--footer"><use xlink:href="#twitter-icon" /></svg>
-          </a>
-        </nav>
-
-        <p class="contact-here">
-          &copy; 2008&mdash;2017 Soren LLC
-        </p>
-      </div>
-    </footer>
-
-    <script type="text/javascript">
-      document
-        .getElementById('header-nav')
-        .addEventListener('click', function() {
-          document.getElementById('header-toggle').checked = false;
-        });
-    </script>
-
-    <div class="icon-defs">
-      {% include icons.svg %}
-    </div>
+    {% include footer.html %}
   </body>
 </html>
