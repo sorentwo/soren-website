@@ -3,7 +3,7 @@ layout: default
 author: Parker Selbert
 title: "Oban Recipes Part 1: Unique Jobs"
 summary: >
-  Techniques for enforcing unique background jobs with Oban
+  Examine techniques for enforcing unique background jobs with Oban
 tags: elixir oban
 ---
 
@@ -97,7 +97,9 @@ The forum [post this recipe is based on][post] is over a month old now, and subs
 The use case for unique jobs is broad enough that it makes a great candidate for inclusion directly within Oban.
 When unique job support makes its way into Oban I'll update this post with a third *official* technique.
 
-More recipes to come!
+#### More Oban Recipes
+
+[Oban Recipes Part 2: Recursive Jobs](/2019/07/22/oban-recipes-part-2-recursive-jobs.html)
 
 [oban]: https://github.com/sorentwo/oban
 [oit]: https://github.com/sorentwo/oban/issues
