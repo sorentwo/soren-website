@@ -3,7 +3,7 @@ layout: default
 author: Parker Selbert
 title: "Oban Recipes Part 1: Unique Jobs"
 summary: >
-  Examine techniques for enforcing unique background jobs with Oban
+  Examine techniques for enforcing unique background jobs with Oban.
 tags: elixir oban
 ---
 
@@ -97,6 +97,30 @@ The forum [post this recipe is based on][post] is over a month old now, and subs
 The use case for unique jobs is broad enough that it makes a great candidate for inclusion directly within Oban.
 When unique job support makes its way into Oban I'll update this post with a third *official* technique.
 
+## Update
+
+Official unique job support has landed in master and will be included in the upcoming `0.7.0` release.
+The implementation _somewhat_ matches the "Insert Helper" solution above, but more dynamic and configurable.
+The example given above could be achieved like this, at the job level:
+
+```elixir
+%{email: "somebody@example.com"}
+|> MyApp.Worker.new()
+|> Oban.insert(unique: [states: [:available, :scheduled]])
+```
+
+Or, it could be declared at the worker level directly:
+
+```elixir
+defmodule MyApp.Worker do
+  use Oban.Worker, unique: [states: [:available, :scheduled]]
+end
+```
+
+There are more features and a lot more documentation available in the `Oban` documentation!
+
+If you're curious how support was added you can take a look at the [pull request on GitHub][upr].
+
 #### More Oban Recipes
 
 [Oban Recipes Part 2: Recursive Jobs](/2019/07/22/oban-recipes-part-2-recursive-jobs.html)
@@ -106,3 +130,4 @@ When unique job support makes its way into Oban I'll update this post with a thi
 [ef]: https://elixirforum.com/t/oban-reliable-and-observable-job-processing/22449
 [post]: https://elixirforum.com/t/oban-reliable-and-observable-job-processing/22449/44
 [dit]: https://github.com/sorentwo/oban/issues/27#issuecomment-510827928
+[upr]: https://github.com/sorentwo/oban/pull/43

@@ -3,7 +3,7 @@ layout: default
 author: Parker Selbert
 title: "Oban Recipes Part 2: Recursive Jobs"
 summary: >
-  Learn about finite recursive background jobs through the lense of Oban
+  Learn about finite recursive background jobs through the lense of Oban.
 tags: elixir oban
 ---
 
