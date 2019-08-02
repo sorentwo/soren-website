@@ -95,6 +95,7 @@ _This example, and the feature that made it possible, is based on an [extensive 
 * [Oban Recipes Part 1: Unique Jobs][part1]
 * [Oban Recipes Part 2: Recursive Jobs][part2]
 
+[oban]: https://github.com/sorentwo/oban
 [oi27]: https://github.com/sorentwo/oban/issues/27
 [wm]: https://github.com/sorentwo/oban/blob/master/lib/oban/worker.ex
 [pr]: https://github.com/sorentwo/oban/pull/32
