@@ -96,7 +96,9 @@ In the next recipe we'll look at a specialized use case for recursive jobs: infi
 
 #### More Oban Recipes
 
-[Oban Recipes Part 1: Unique Jobs][fp]
+* [Oban Recipes Part 1: Unique Jobs][part1]
+* [Oban Recipes Part 3: Reliable Scheduling][part3]
 
 [oban]: https://github.com/sorentwo/oban
-[fp]: /2019/07/18/oban-recipes-part-1-unique-jobs.html
+[part1]: /2019/07/18/oban-recipes-part-1-unique-jobs.html
+[part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
