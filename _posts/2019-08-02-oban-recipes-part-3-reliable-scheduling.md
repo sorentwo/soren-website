@@ -13,7 +13,7 @@ This recipe also picks up where we left off with [recursive jobs in the second p
 
 ## Reliable Scheduled Jobs
 
-A common variant of recursive jobs are scheduled jobs, where the goal is for a job to repeat indefinitely with a fixed amount of time between executions.
+A common variant of recursive jobs are "scheduled jobs", where the goal is for a job to repeat indefinitely with a fixed amount of time between executions.
 The part that makes it "reliable" is the guarantee that we'll keep retrying the job's business logic when the job retries, but we'll **only schedule the next occurrence once**.
 In order to achieve this guarantee we'll make use of a [recent change in Oban][pr] that allows the `perform` function to receive a complete `Oban.Job` struct.
 
@@ -22,7 +22,7 @@ Time for illustrative example!
 ### Use Case: Delivering Daily Digest Emails
 
 When a new user signs up to use our site we need to start sending them daily digest emails.
-We want the emails to be delivered round the same time they signed up every 24 hours.
+We want to deliver the emails around the same time a user signed up every, repeating every 24 hours.
 It is important that we don't spam them with duplicate emails, so we ensure that the next email is only scheduled on our first attempt.
 
 ```elixir
@@ -54,7 +54,7 @@ Combined, the clauses get us close to **at-most-once semantics for scheduling**,
 ### Made Possible With Module Hooks
 
 The interesting thing that is happening here is that `perform/1` can handle either an `Oban.Job` struct, or the args map directly.
-This is made possible through the use of a "before compile" module hook in the `Oban.Worker` module.
+This is possible because of a "before compile" module hook in the `Oban.Worker` module.
 Below is a simplified version of the [worker module][wm] with extraneous code removed to emphasize the `@before_compile` hook:
 
 ```elixir
@@ -71,7 +71,7 @@ defmacro __using__(opts) do
 end
 ```
 
-When your module uses `Oban.Worker` the args extraction clause is included in the compiled module _before_ your definition of `perform/1`.
+When your module uses `Oban.Worker` it includes the args extraction clause in the compiled module _before_ your definition of `perform/1`.
 For example, if your worker defines a `perform` clause to work with an email address there would be two compiled clauses:
 
 ```elixir
@@ -83,12 +83,44 @@ The additional clause ensures that your perform can accept either a struct or th
 
 ### More Flexible Than CRON Scheduling
 
-Delivering around the same time using cron-style scheduling would require additional book-keeping to check when a user signed up, and then only deliver to those users that signed up within that window of time.
+Delivering around the same time using cron-style scheduling would need extra book-keeping to check when a user signed up, and then only deliver to those users that signed up within that window of time.
 The recursive scheduling approach is more accurate and entirely self contained—when and if the digest interval changes the scheduling will pick it up automatically once our code deploys.
 
 Next time, for [something completely different][scd], we'll see how to report progress back to our users as a slow job executes.
 
-_This example, and the feature that made it possible, is based on an [extensive discussion][oi27] on the Oban issue tracker._
+_An [extensive discussion][oi27] on the Oban issue tracker prompted this example along with the underlying feature that made it possible._
+
+## Update
+
+This recipe is now a pack of white lies!
+The gist of the recipe is still intact, but the examples and the `before_compile` details aren't accurate.
+This post [prompted an issue][oi45] on the tracker that suggested replacing the args dance in `perform/1` with a consistent `perform/2` function instead.
+The new `perform/2` _always_ accepts an args map as the first argument and the complete job struct as the second.
+
+Here is the worker example from above, slightly modified to use `perform/2`:
+
+```elixir
+defmodule MyApp.ScheduledWorker do
+  use Oban.Worker, queue: :scheduled, max_attempts: 10
+
+  @one_day 60 * 60 * 24
+
+  @impl true
+  def perform(args, %{attempt: 1} = job) do
+    args
+    |> new(schedule_in: @one_day)
+    |> Oban.insert!()
+
+    perform(args, job)
+  end
+
+  def perform(%{"email" => email}, _job) do
+    MyApp.Mailer.deliver_email(email)
+  end
+end
+```
+
+The upcoming `0.7.0` release will include the `perform/2` changes.
 
 #### More Oban Recipes
 
@@ -97,6 +129,7 @@ _This example, and the feature that made it possible, is based on an [extensive 
 
 [oban]: https://github.com/sorentwo/oban
 [oi27]: https://github.com/sorentwo/oban/issues/27
+[oi45]: https://github.com/sorentwo/oban/issues/45
 [wm]: https://github.com/sorentwo/oban/blob/master/lib/oban/worker.ex
 [pr]: https://github.com/sorentwo/oban/pull/32
 [scd]: https://en.wikipedia.org/wiki/And_Now_for_Something_Completely_Different
