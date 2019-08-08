@@ -106,12 +106,12 @@ defmodule MyApp.ScheduledWorker do
   @one_day 60 * 60 * 24
 
   @impl true
-  def perform(args, %{attempt: 1} = job) do
+  def perform(%{"email" => email}, %{attempt: 1} = job) do
     args
     |> new(schedule_in: @one_day)
     |> Oban.insert!()
 
-    perform(args, job)
+    MyApp.Mailer.deliver_email(email)
   end
 
   def perform(%{"email" => email}, _job) do
