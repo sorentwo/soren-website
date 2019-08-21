@@ -125,6 +125,7 @@ If you're curious how support was added you can take a look at the [pull request
 
 * [Oban Recipes Part 2: Recursive Jobs][part2]
 * [Oban Recipes Part 3: Reliable Scheduling][part3]
+* [Oban Recipes Part 4: Reporting Progress][part4]
 
 [oban]: https://github.com/sorentwo/oban
 [oit]: https://github.com/sorentwo/oban/issues
@@ -134,3 +135,4 @@ If you're curious how support was added you can take a look at the [pull request
 [upr]: https://github.com/sorentwo/oban/pull/43
 [part2]: /2019/07/22/oban-recipes-part-2-recursive-jobs.html
 [part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
+[part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html

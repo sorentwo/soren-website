@@ -86,7 +86,7 @@ The additional clause ensures that your perform can accept either a struct or th
 Delivering around the same time using cron-style scheduling would need extra book-keeping to check when a user signed up, and then only deliver to those users that signed up within that window of time.
 The recursive scheduling approach is more accurate and entirely self contained—when and if the digest interval changes the scheduling will pick it up automatically once our code deploys.
 
-Next time, for [something completely different][scd], we'll see how to report progress back to our users as a slow job executes.
+Next time, for [something completely different][scd], we'll see how to [report progress back to our users as a slow job executes][part4].
 
 _An [extensive discussion][oi27] on the Oban issue tracker prompted this example along with the underlying feature that made it possible._
 
@@ -126,6 +126,7 @@ The upcoming `0.7.0` release will include the `perform/2` changes.
 
 * [Oban Recipes Part 1: Unique Jobs][part1]
 * [Oban Recipes Part 2: Recursive Jobs][part2]
+* [Oban Recipes Part 4: Reporting Progress][part4]
 
 [oban]: https://github.com/sorentwo/oban
 [oi27]: https://github.com/sorentwo/oban/issues/27
@@ -135,3 +136,4 @@ The upcoming `0.7.0` release will include the `perform/2` changes.
 [scd]: https://en.wikipedia.org/wiki/And_Now_for_Something_Completely_Different
 [part1]: /2019/07/18/oban-recipes-part-1-unique-jobs.html
 [part2]: /2019/07/22/oban-recipes-part-2-recursive-jobs.html
+[part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html

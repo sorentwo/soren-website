@@ -92,13 +92,15 @@ This was a relatively simple example, and hopefully it illustrates the power and
 Recursive jobs are a general pattern and aren't specific to Oban.
 In fact, aside from the `use Oban.Worker` directive there isn't anything specific to Oban in the recipe!
 
-In the next recipe we'll look at a specialized use case for recursive jobs: infinite recursion for scheduled jobs.
+In the next recipe we'll look at a specialized use case for recursive jobs: [infinite recursion for scheduled jobs][part3].
 
 #### More Oban Recipes
 
 * [Oban Recipes Part 1: Unique Jobs][part1]
 * [Oban Recipes Part 3: Reliable Scheduling][part3]
+* [Oban Recipes Part 4: Reporting Progress][part4]
 
 [oban]: https://github.com/sorentwo/oban
 [part1]: /2019/07/18/oban-recipes-part-1-unique-jobs.html
 [part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
+[part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html
