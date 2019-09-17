@@ -119,12 +119,14 @@ Next time we'll look at combining _multiple_ jobs into a single output by creati
 * [Oban Recipes Part 1: Unique Jobs][part1]
 * [Oban Recipes Part 2: Recursive Jobs][part2]
 * [Oban Recipes Part 3: Reliable Scheduling][part3]
+* [Oban Recipes Part 5: Batch Jobs][part5]
 
 [oban]: https://github.com/sorentwo/oban
 [post]: https://elixirforum.com/t/oban-reliable-and-observable-job-processing/22449/52?u=sorentwo
 [part1]: /2019/07/18/oban-recipes-part-1-unique-jobs.html
 [part2]: /2019/07/22/oban-recipes-part-2-recursive-jobs.html
 [part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
+[part5]: /2019/09/17/oban-recipes-part-5-batch-jobs.html
 [chan]: https://hexdocs.pm/phoenix/channels.html#content
 [wavy]: https://www.quora.com/When-someone-says-this-explanation-was-hand-wavy-what-does-that-mean
 [endp]: https://hexdocs.pm/phoenix/endpoint.html#content
