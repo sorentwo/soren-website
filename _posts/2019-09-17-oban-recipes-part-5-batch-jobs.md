@@ -98,7 +98,7 @@ batch_size = length(emails)
 for email <- emails do
   %{email: email, batch_id: batch_id, batch_size: batch_size}
   |> Oban.BatchEmailWorker.new()
-  |> MyApp.insert!()
+  |> Oban.insert!()
 end
 ```
 
