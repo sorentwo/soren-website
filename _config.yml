@@ -24,6 +24,8 @@ plugins:
   - jekyll-sitemap
 twitter:
   username: sorentwo
+title: Soren Developer Blog
+description: "Writings on web stability, performance and growth"
 defaults:
   -
     values:
