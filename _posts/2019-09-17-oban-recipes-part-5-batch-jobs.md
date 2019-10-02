@@ -73,7 +73,7 @@ The `final_batch_job?/2` function is wrapper around a fairly involved Ecto query
 defp final_batch_job?(batch_id, batch_size) do
   Oban.Job
   |> where([j], j.state not in ["available", "executing", "scheduled"])
-  |> wehre([j], j.queue == "batch")
+  |> where([j], j.queue == "batch")
   |> where([j], fragment("?->>'batch_id' = ?", j.args, ^batch_id))
   |> where([j], not fragment("? \\? 'status'", j.args))
   |> select([j], count(j.id) >= ^batch_size)
