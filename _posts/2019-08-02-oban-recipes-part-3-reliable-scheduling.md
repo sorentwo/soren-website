@@ -128,6 +128,7 @@ The upcoming `0.7.0` release will include the `perform/2` changes.
 * [Oban Recipes Part 2: Recursive Jobs][part2]
 * [Oban Recipes Part 4: Reporting Progress][part4]
 * [Oban Recipes Part 5: Batch Jobs][part5]
+* [Oban Recipes Part 6: Expected Failures][part6]
 
 [oban]: https://github.com/sorentwo/oban
 [oi27]: https://github.com/sorentwo/oban/issues/27
@@ -139,3 +140,4 @@ The upcoming `0.7.0` release will include the `perform/2` changes.
 [part2]: /2019/07/22/oban-recipes-part-2-recursive-jobs.html
 [part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html
 [part5]: /2019/09/17/oban-recipes-part-5-batch-jobs.html
+[part6]: /2019/10/17/oban-recipes-part-6-expected-failures.html

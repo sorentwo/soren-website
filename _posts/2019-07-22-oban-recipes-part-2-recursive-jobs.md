@@ -100,9 +100,11 @@ In the next recipe we'll look at a specialized use case for recursive jobs: [inf
 * [Oban Recipes Part 3: Reliable Scheduling][part3]
 * [Oban Recipes Part 4: Reporting Progress][part4]
 * [Oban Recipes Part 5: Batch Jobs][part5]
+* [Oban Recipes Part 6: Expected Failures][part6]
 
 [oban]: https://github.com/sorentwo/oban
 [part1]: /2019/07/18/oban-recipes-part-1-unique-jobs.html
 [part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
 [part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html
 [part5]: /2019/09/17/oban-recipes-part-5-batch-jobs.html
+[part6]: /2019/10/17/oban-recipes-part-6-expected-failures.html
