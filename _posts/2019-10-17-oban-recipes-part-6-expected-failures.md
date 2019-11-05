@@ -36,7 +36,7 @@ defimpl MyApp.Reportable, for: Any do
 end
 ```
 
-The `Reportable` protocol has a default implementation always returns `true`, meaning it reports all errors.
+The `Reportable` protocol has a default implementation which always returns `true`, meaning it reports all errors.
 Our application has a `FlakyWorker` that's known to fail a few times before succeeding.
 We don't want to see a report until after a job has failed three times, so we'll add an implementation of `Reportable` within the worker module:
 
@@ -111,6 +111,7 @@ Explore the [event metadata][meta] that Oban provides for job failures to see ho
 * [Oban Recipes Part 3: Reliable Scheduling][part3]
 * [Oban Recipes Part 4: Reporting Progress][part4]
 * [Oban Recipes Part 5: Batch Jobs][part5]
+* [Oban Recipes Part 7: Splitting Queues][part7]
 
 [oban]: https://github.com/sorentwo/oban
 [tele]: https://github.com/beam-telemetry/telemetry
@@ -123,3 +124,4 @@ Explore the [event metadata][meta] that Oban provides for job failures to see ho
 [part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
 [part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html
 [part5]: /2019/09/17/oban-recipes-part-5-batch-jobs.html
+[part7]: /2019/11/05/oban-recipes-part-7-splitting-queues.html

@@ -121,6 +121,7 @@ Next time we'll look at combining _multiple_ jobs into a single output by creati
 * [Oban Recipes Part 3: Reliable Scheduling][part3]
 * [Oban Recipes Part 5: Batch Jobs][part5]
 * [Oban Recipes Part 6: Expected Failures][part6]
+* [Oban Recipes Part 7: Splitting Queues][part7]
 
 [oban]: https://github.com/sorentwo/oban
 [post]: https://elixirforum.com/t/oban-reliable-and-observable-job-processing/22449/52?u=sorentwo
@@ -132,3 +133,4 @@ Next time we'll look at combining _multiple_ jobs into a single output by creati
 [part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
 [part5]: /2019/09/17/oban-recipes-part-5-batch-jobs.html
 [part6]: /2019/10/17/oban-recipes-part-6-expected-failures.html
+[part7]: /2019/11/05/oban-recipes-part-7-splitting-queues.html

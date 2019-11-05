@@ -128,6 +128,7 @@ If you're curious how support was added you can take a look at the [pull request
 * [Oban Recipes Part 4: Reporting Progress][part4]
 * [Oban Recipes Part 5: Batch Jobs][part5]
 * [Oban Recipes Part 6: Expected Failures][part6]
+* [Oban Recipes Part 7: Splitting Queues][part7]
 
 [oban]: https://github.com/sorentwo/oban
 [oit]: https://github.com/sorentwo/oban/issues
@@ -140,3 +141,4 @@ If you're curious how support was added you can take a look at the [pull request
 [part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html
 [part5]: /2019/09/17/oban-recipes-part-5-batch-jobs.html
 [part6]: /2019/10/17/oban-recipes-part-6-expected-failures.html
+[part7]: /2019/11/05/oban-recipes-part-7-splitting-queues.html

@@ -119,6 +119,7 @@ Be sure that you **tune your pruning** so that there is enough headroom for batc
 * [Oban Recipes Part 3: Reliable Scheduling][part3]
 * [Oban Recipes Part 4: Reporting Progress][part4]
 * [Oban Recipes Part 6: Expected Failures][part6]
+* [Oban Recipes Part 7: Splitting Queues][part7]
 
 [oban]: https://github.com/sorentwo/oban
 [sqp]: https://github.com/mperham/sidekiq/wiki/Batches
@@ -129,3 +130,4 @@ Be sure that you **tune your pruning** so that there is enough headroom for batc
 [part3]: /2019/08/02/oban-recipes-part-3-reliable-scheduling.html
 [part4]: /2019/08/21/oban-recipes-part-4-reporting-progress.html
 [part6]: /2019/10/17/oban-recipes-part-6-expected-failures.html
+[part7]: /2019/11/05/oban-recipes-part-7-splitting-queues.html
