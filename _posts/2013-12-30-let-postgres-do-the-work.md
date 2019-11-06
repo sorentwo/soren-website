@@ -121,7 +121,7 @@ on here, has particularly great support for defining custom functions. It allows
 custom functions to be written in `SQL`, `C`, an internal representation, or any
 number of user-defined procedural languages such as `JavaScript`.
 
-[Postgres functions](pg-functions) can be defined in isolation and labeled with
+[Postgres functions][pg-functions] can be defined in isolation and labeled with
 a hint for the query optimizer about the behavior of the function. The behaviors
 range from `VOLATILE`, in which there may be side-effects and no optimizations
 can be made, to `IMMUTABLE` where the function will always return the same
