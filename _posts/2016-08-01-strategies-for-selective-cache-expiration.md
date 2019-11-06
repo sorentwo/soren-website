@@ -104,7 +104,7 @@ expire too broadly. All of the expiration strategies presented here are simple,
 and they come up often in a production system. Recognize the situation and
 choose the right strategy for the job.
 
-[ece]: https://sorentwo.com/2016-07-11-essentials-of-cache-expiration-in-rails
+[ece]: /2016/07/11/essentials-of-cache-expiration-in-rails.html
 [dm]: http://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html#method-i-delete_matched
 [rdm]: https://github.com/sorentwo/readthis/blob/master/CHANGELOG.md#v150-2016-07-18
 [rdt]: https://github.com/sorentwo/readthis
