@@ -33,7 +33,7 @@ presenter.slug  # 'presenters-rule'
 ```
 
 Implementing the presenter pattern in Ruby is almost free because of the
-[Delegate](2) module from the standard library. It is a fairly thin wrapper
+[Delegate][2] module from the standard library. It is a fairly thin wrapper
 around Ruby's dynamic method dispatch, `method_missing`. Whenever an unknown
 method is sent to a delegate it dynamically checks whether the object it is
 delegating to has that method and calls that instead. In the instance above the
@@ -41,8 +41,8 @@ delegating to has that method and calls that instead. In the instance above the
 slightly.
 
 What about languages that don't have `method_missing`? One such language is
-JavaScript. There isn't any [standard tracked method](3) for [handling method
-calls](4) dynamically. Fortunately, JavaScript is highly malleable, allowing for
+JavaScript. There isn't any [standard tracked method][3] for [handling method
+calls][4] dynamically. Fortunately, JavaScript is highly malleable, allowing for
 dynamic assignment instead. Let's take a shot at a JavaScript presenter:
 
 ```javascript
@@ -69,7 +69,7 @@ presenter.slug() // 'presenters-are-fun'
 
 That was a bit more work wasn't it? Not only that, it has some major pitfalls.
 
-First, there is the issue of [uniform access principal](5). In Ruby every
+First, there is the issue of [uniform access principal][5]. In Ruby every
 message sent to an object with `.` is a method call, whether that particular
 method returns a static value or is a proper method definition. That isn't the
 case in JavaScript. Calling a method on an object with `.` will always yield the
@@ -91,8 +91,8 @@ model.id = 101;
 console.log(model.id, presenter.id); // 101, 100
 ```
 
-It turns out that [ES6 Harmony](6) proposes a clean solution to our presenter
-problem. As of Firefox 18.0, Chrome 24.0 there is a new [Proxy API](7), allowing
+It turns out that [ES6 Harmony][6] proposes a clean solution to our presenter
+problem. As of Firefox 18.0, Chrome 24.0 there is a new [Proxy API][7], allowing
 objects to be created and have properties computed at runtime. This is an ideal
 tool for a presenter. Here is a simple example of how the `Proxy` object
 behaves:
@@ -156,7 +156,7 @@ enumerated before.
 
 Unfortunately, as with any new web technology, there is the adoption hurdle.
 Proxy isn't available in many browser's, even in Chrome without explicitly
-enabling [javascript harmony](8). Until the shiny future where the vast majority
+enabling [javascript harmony][8]. Until the shiny future where the vast majority
 of browsers support `Proxy` you will need to provide a hybridized version using
 feature flags. That is precisely what I'll be doing for my MVP needs.
 
