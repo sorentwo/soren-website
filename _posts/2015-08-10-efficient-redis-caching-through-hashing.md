@@ -273,7 +273,7 @@ recommended that you use a particularly aggressive value, at least 2048-4096b.
 Fields within a hash can't have individual expiration, only the hash key itself.
 Bundling related fields together allows the entire hash to be treated as a
 single unit, eventually falling out of memory entirely when it is no longer
-needed. This means that it is preferable to use Redis as an [LRU](lru) cache.
+needed. This means that it is preferable to use Redis as an [LRU][lru] cache.
 We're [already doing that though][optimizing], right?
 
 Bundling serialized data for associated models is just one way to utilize the
