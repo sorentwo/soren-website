@@ -3,7 +3,7 @@ layout: default
 author: Parker Selbert
 title: "Oban 2.0 and the Introduction of Oban Web+Pro"
 summary: >
-  Announcing Oban 2.0 and the future of sustaining Oban through licensing.
+  Announcing Oban 2.0 and the future of sustaining Oban with Web+Pro.
 tags: elixir oban
 ---
 
