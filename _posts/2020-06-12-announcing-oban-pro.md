@@ -1,6 +1,6 @@
 ---
 layout: default
-author: Parker Selbert
+author: Parker Selbert & Shannon Selbert
 title: "Oban 2.0 and the Introduction of Oban Web+Pro"
 summary: >
   Announcing Oban 2.0 and the future of sustaining Oban with Web+Pro.
@@ -60,16 +60,16 @@ We've extracted, rewritten and dramatically improved all of the removed function
 
 ## Introducing Oban Pro
 
-When I started Oban, I believed it would fill a valuable gap in the Elixir community.
-I also knew that it would be important for me to find a sustainable model that would allow me to continue working and improving Oban throughout the years.
+When we started Oban, we believed it would fill a valuable gap in the Elixir community.
+We also knew that it would be important to find a sustainable model that would allow us to continue working and improving Oban throughout the years.
 
 Oban adoption has gone well and it is widely used by Elixir powered businesses across an array of industries.
-Initially I launched Oban UI, which was my first experiment into finding a viable business model for Oban.
+Initially we launched Oban UI, which was our first experiment into finding a viable business model for Oban.
 
-Ideally Oban UI would have been enough to sustain Oban's growth, but the feedback I got made it clear that we needed more.
+Ideally Oban UI would have been enough to sustain Oban's growth, but the feedback we got made it clear that we needed more.
 While Oban UI helped companies identify trends and act on their queues, their teams also wanted to be able to convert those trends back into complex business rules which are deeply integrated into their queuing system.
 
-Given the effort required to implement and revamp those features, I have decided to give them a new home as Oban Pro.
+Given the effort required to implement and revamp those features, we've decided to give them a new home as Oban Pro.
 Oban Pro brings all of the missing pieces to Oban UI, now renamed to Oban Web, **for the same price as before**.
 Existing customers are upgraded to Oban Web+Pro for free.
 Oban Pro complements Oban Web with the following plugin powered features:
@@ -116,7 +116,7 @@ A few of the highlights:
 - **Queue Scaling** — Scale queues up or down globally from the queue side panel
 
 It's still early days, but we've released an alpha of Oban Web 2.0.0 which is compatible with Oban 2.0+ and bundles with Oban Pro.
-The upgrade process is minimal and mostly involves **deleting code**, so give it a try!
+The upgrade process is minimal and mostly involves deleting code, so give it a try!
 This leads us to the next topic: where to find documentation on all of these changes.
 
 ## Centralized Documentation
