@@ -146,6 +146,8 @@ The feedback has been amazingly positive, which is a testament to how respectful
 Thank you for providing the drive to keep maintaining and improving Oban.
 There is so much more to do; our future is wide open!
 
+_Special thanks to Jesse Cooke, Milton Mazzarri and José Valim for reviewing this post._
+
 [og]: https://github.com/sorentwo/oban/pull/247
 [cl]: https://github.com/sorentwo/oban/blob/master/CHANGELOG.md
 [oh]: https://hexdocs.pm/oban/2.0.0-rc.1/Oban.html
