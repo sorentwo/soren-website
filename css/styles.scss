@@ -368,6 +368,10 @@ button {
     font-family: $font-family-body;
   }
 
+  ol, ul {
+    margin-left: 2rem;
+  }
+
   a {
     border-bottom: 1px dotted $color-dark;
     color: $color-dark;
