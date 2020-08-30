@@ -45,15 +45,15 @@ In particular, we've made the following changes:
 
 - The pruning system housed a lot of complexity to support all of the different use cases.
   Therefore, it we've simplified it so that it *keeps jobs for 60 seconds*, making sure Oban by default leaves a small footprint after execution.
-  For those who want flexibility and/or historical data, Oban UI+Pro offers a functional UI to explore all past and on-going jobs alongside a fully featured pruning system
+  For those who want flexibility and/or historical data, Oban Web+Pro offers a functional UI to explore all past and on-going jobs alongside a fully featured pruning system
 
-- Producer activity is no longer recorded via heartbeats—this functionality largely powers Oban UI and now, with the plugin system, we were able to move it out
+- Producer activity is no longer recorded via heartbeats—this functionality powers Oban Web and now, with the plugin system, we were able to move it out
 
 - Stop rescuing of orphaned jobs.
   The rules around restarting jobs can be complex and domain dependent.
   For instance, automatically retrying a job could accidentally invoice a client twice.
   Therefore, manual intervention is the safest default.
-  You can do so via the command line or via Oban UI's web interface.
+  You can do so via the command line or via Oban Web's web interface.
   Once you see a pattern in your orphaned jobs, you can use Oban Pro's new Lifeline system or automate some of those restarts on your own
 
 We've extracted, rewritten and dramatically improved all of the removed functionality to make it available through the new Oban Pro package.
@@ -64,13 +64,13 @@ When we started Oban, we believed it would fill a valuable gap in the Elixir com
 We also knew that it would be important to find a sustainable model that would allow us to continue working and improving Oban throughout the years.
 
 Oban adoption has gone well and it is widely used by Elixir powered businesses across an array of industries.
-Initially we launched Oban UI, which was our first experiment into finding a viable business model for Oban.
+Initially we launched Oban Web, which was our first experiment into finding a viable business model for Oban.
 
-Ideally Oban UI would have been enough to sustain Oban's growth, but the feedback we got made it clear that we needed more.
-While Oban UI helped companies identify trends and act on their queues, their teams also wanted to be able to convert those trends back into complex business rules which are deeply integrated into their queuing system.
+Ideally Oban Web would have been enough to sustain Oban's growth, but the feedback we got made it clear that we needed more.
+While Oban Web helped companies identify trends and act on their queues, their teams also wanted to be able to convert those trends back into complex business rules which are deeply integrated into their queuing system.
 
 Given the effort required to implement and revamp those features, we've decided to give them a new home as Oban Pro.
-Oban Pro brings all of the missing pieces to Oban UI, now renamed to Oban Web, **for the same price as before**.
+Oban Pro brings all of the missing pieces to Oban Web, now renamed to Oban Web, **for the same price as before**.
 Existing customers are upgraded to Oban Web+Pro for free.
 Oban Pro complements Oban Web with the following plugin powered features:
 
