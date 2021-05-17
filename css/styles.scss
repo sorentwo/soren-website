@@ -38,7 +38,7 @@ body.light {
   background: $color-bright;
   color: $color-darkest;
 
-  --header-color: rgb(85, 85, 85);
+  --header-color: rgb(25, 25, 25);
 }
 
 // Header
@@ -48,21 +48,20 @@ header {
   padding: 0.5rem 1rem;
 
   a {
-    font-size: 0.8em;
-    opacity: 0.7;
-    text-transform: uppercase;
+    color: var(--header-color);
+    font-size: 1rem;
+    opacity: 0.9;
   }
 
   a:hover {
     opacity: 1;
-    text-decoration: none;
   }
 }
 
 .header-logo {
   display: inline-block;
-  vertical-align: top;
-  margin-right: 0.25em;
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
 .header-type {
@@ -79,11 +78,13 @@ header {
 }
 
 .header-link {
-  margin-left: 0.5em;
+  margin-left: 1rem;
 }
 
 .header-link--logo {
   opacity: 0.9;
+  line-height: 2;
+  text-decoration: none;
 }
 
 // Main
