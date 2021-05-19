@@ -4,6 +4,12 @@ author: Parker Selbert & Shannon Selbert
 summary: >
   Peek behind the scenes to see how we use Oban to demo, license, and actively
   verify Oban Web+Pro.
+excerpt: >
+  Where's the fun in building a background job runner if you aren't running it
+  yourself? Oban is a reliable way to implement business-critical functionality
+  like payment processing, license management, and communicating with customers.
+  Naturally, that's what we want to use for the licensing app that runs
+  [getoban.pro][pro].
 tags: elixir oban
 ---
 
@@ -109,10 +115,11 @@ end
 
 #### Access Controls and Auditing
 
-Access controls for authorization, authentication, and auditing landed in Web a
-little while ago. Obviously, we don't restrict access to the public demo, and all
-of the actions (deleting, pausing, scaling, etc.) are allowed. Regardless, we use
-a simple resolver module that is easily modified to restrict access while
+Access controls for [authorization][user], [authentication][auth], and
+[auditing][aud] landed in Web a little while ago. Obviously, we don't restrict
+access to the public demo, and all of the actions (deleting, pausing, scaling,
+etc.) are allowed. Regardless, we use a simple resolver module that is easily
+modified to restrict access while
 testing:
 
 ```elixir
@@ -139,7 +146,7 @@ crontabs, we're prepared to disable some features.
 
 #### Smart Engine
 
-Pro's `SmartEngine` introduced oft-requested global concurrency and rate
+Pro's [SmartEngine][se] introduced oft-requested global concurrency and rate
 limiting, which are built on lightweight locks and required multiple nodes to
 exercise queue producer interaction. The public demo uses rate-limiting and
 global limiting for a couple of queues:
@@ -164,15 +171,20 @@ concurrency deadlock and quickly [shipped an improved algorithm][p71] that used
 some jitter.
 
 [demo]: https://getoban.pro/oban
-[csp]: https://content-security-policy.com/nonce/
+[csp]: https://hexdocs.pm/oban/web_installation.html#content-security-policy
+[user]: https://hexdocs.pm/oban/web_customizing.html#current-user
+[auth]: https://hexdocs.pm/oban/web_customizing.html#action-controls
+[aud]: https://hexdocs.pm/oban/web_customizing.html#current-user
+[se]: https://hexdocs.pm/oban/smart_engine.html#content
 [p71]: https://hexdocs.pm/oban/pro-changelog.html#v0-7-0-2021-04-02
 
 ## Handling License Payments
 
 In addition to the public Oban instance that powers the demo, we also run a
-separate private instance using a `private` prefix in PostgreSQL. That instance
-is entirely isolated and only runs a few queues where we integrate with Stripe
-to manage customers, attach payment methods, and create or update subscriptions.
+[separate private instance][iso] using a `private` prefix in PostgreSQL. That
+instance is entirely isolated and only runs a few queues where we integrate with
+Stripe to manage customers, attach payment methods, and create or update
+subscriptions.
 
 Here is the full config for that instance, living right alongside the public
 config:
@@ -243,6 +255,8 @@ workflow," keep reading!
 Managing customers and taking payments is where Stripe integration starts. After
 that we rely on webhooks to manage licenses.
 
+[iso]: https://hexdocs.pm/oban/Oban.html#module-isolation
+
 ## Handling Webhooks
 
 After a subscription is created or canceled, Stripe sends a webhook to notify
@@ -253,7 +267,8 @@ database or make external calls.
 
 Like payment processing, the steps must be idempotent—we don't want to create
 multiple licenses or deliver the same email repeatedly if something fails.
-However, unlike payment processing, we model webhook handling as a workflow.
+However, unlike payment processing, we model webhook handling [as a
+workflow][wf].
 
 Here you can see how the webhook controller's `create/2` function matches on the
 webhook type and inserts a corresponding workflow:
@@ -284,6 +299,8 @@ self-hosting license, delivering a welcome email with the new information, and
 notifying us that we have a new subscriber. There are similar workflows for
 cancellation and deletion, each of which is decomposed and simple to test in
 isolation.
+
+[wf]: https://hexdocs.pm/oban/workflow.html#content
 
 ## Where the Magic Happens
 
