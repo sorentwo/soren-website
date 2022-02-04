@@ -1,5 +1,7 @@
 ---
-layout: default
+layout: redirect
+sitemap: false
+redirect_to:  https://getoban.pro/articles/self-hosting-oban-pro
 author: Parker Selbert & Shannon Selbert
 summary: >
   Our journey to self-hosting the Oban Web and Oban Pro hex packages.
