@@ -10,6 +10,7 @@ defmodule Soren.Router do
   scope "/", Soren do
     pipe_through :browser
 
-    get "/", Pages, :index
+    get "/", PageController, :index
+    get "/blog", PageController, :blog
   end
 end

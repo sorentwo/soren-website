@@ -4,7 +4,8 @@ defmodule Soren.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :soren,
-    gzip: false,
+    brotli: true,
+    gzip: true,
     only: Soren.Web.static_paths()
 
   if code_reloading? do

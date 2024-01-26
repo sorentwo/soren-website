@@ -4,6 +4,9 @@ module.exports = {
   content: ["../lib/**/*.*ex"],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       typography: {
         DEFAULT: {
           css: {
