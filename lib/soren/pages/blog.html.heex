@@ -1,16 +1,16 @@
 <section class="max-w-screen-md mx-auto mt-6 px-6 md:px-0">
   <h2 class="text-5xl font-semibold text-center">Articles</h2>
 
-  <div class="mt-6 text-center">
+  <div class="mt-12 text-center">
     <a
       href="https://getoban.pro/articles"
-      class="text-sm leading-5 font-medium text-sky-700 bg-sky-200 rounded-full py-2 px-4 hover:bg-sky-300 hover:text-sky-800"
+      class="block text-sm leading-5 font-medium text-sky-700 bg-sky-200 rounded-full py-2 px-4 hover:bg-sky-300 hover:text-sky-800"
     >
       Looking for more articles about Oban? Head to the official Oban blog →
     </a>
   </div>
 
-  <div class="mt-12 pt-6 space-y-6 border-t border-gray-200">
+  <div class="mt-6 pt-6 space-y-6 border-t border-gray-200">
     <div :for={post <- @posts}>
       <a class="text-2xl" href={~p"/blog/#{post}"}><%= post.title %></a>
       <p class="mt-3 text-md text-gray-600"><%= post.summary %></p>
