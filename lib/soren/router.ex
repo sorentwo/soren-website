@@ -13,6 +13,8 @@ defmodule Soren.Router do
     get "/", PageController, :index
     get "/blog", PageController, :blog
     get "/blog/:id", PageController, :post
+    get "/feed.atom", PageController, :feed
+    get "/feed.xml", PageController, :feed
     get ":year/:month/:day/:id", PageController, :post
   end
 end

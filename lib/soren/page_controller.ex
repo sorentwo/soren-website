@@ -1,6 +1,8 @@
 defmodule Soren.PageController do
   use Soren.Web, :controller
 
+  alias Soren.Blog
+
   def index(conn, _params) do
     conn
     |> assign(:page_title, "Home")
@@ -11,12 +13,27 @@ defmodule Soren.PageController do
   def blog(conn, _params) do
     conn
     |> assign(:page_title, "Articles")
-    |> assign(:posts, Soren.Blog.all_posts())
+    |> assign(:posts, Blog.all_posts())
     |> render(:blog)
   end
 
+  def feed(conn, _params) do
+    posts = Blog.all_posts()
+
+    updated =
+      posts
+      |> Enum.map(& &1.date)
+      |> Enum.sort({:desc, Date})
+      |> List.first()
+
+    conn
+    |> assign(:posts, posts)
+    |> assign(:updated, updated)
+    |> render("feed.xml", layout: false)
+  end
+
   def post(conn, %{"id" => id}) do
-    case Soren.Blog.get_post(id) do
+    case Blog.get_post(id) do
       {:ok, post} ->
         conn
         |> assign(:page_description, post.summary)

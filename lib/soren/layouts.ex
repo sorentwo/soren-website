@@ -1,8 +1,6 @@
 defmodule Soren.Layouts do
   use Soren.Web, :html
 
-  # TODO: Add feed
-
   attr :page_title, :string, default: ""
   attr :page_dark?, :boolean, default: false
   attr :page_description, :string, default: "Soren is Shannon and Parker. We're the people behind Oban, Oban Web, and Oban Pro."
@@ -29,6 +27,13 @@ defmodule Soren.Layouts do
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@sorentwo" />
         <meta name="twitter:site" content="@sorentwo" />
+
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          href={~p"/feed.xml"}
+          title="Soren Blog » Feed"
+        />
 
         <link phx-track-static rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />

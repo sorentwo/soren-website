@@ -1,6 +1,18 @@
 defmodule Soren.Web do
   @moduledoc false
 
+  defmacro embed_templates(pattern, opts) do
+    quote do
+      require Phoenix.Template
+
+      Phoenix.Template.compile_all(
+        &(&1 |> Path.basename() |> Path.rootname() |> Path.rootname()),
+        Path.expand(unquote(opts)[:root] || __DIR__, __DIR__),
+        unquote(pattern) <> unquote(opts)[:ext]
+      )
+    end
+  end
+
   def static_paths, do: ~w(assets fonts images favicon.svg robots.txt)
 
   def router do
@@ -15,7 +27,7 @@ defmodule Soren.Web do
   def controller do
     quote do
       use Phoenix.Controller,
-        formats: [:html],
+        formats: [:html, :xml],
         layouts: [html: Soren.Layouts]
 
       import Plug.Conn
@@ -30,13 +42,15 @@ defmodule Soren.Web do
 
       import Phoenix.Controller,
         only: [current_url: 1, view_module: 1, view_template: 1]
+      import Phoenix.HTML
 
-      unquote(html_helpers())
+      unquote(verified_routes())
     end
   end
 
-  defp html_helpers do
+  def xml do
     quote do
+      import Soren.Web, only: [embed_templates: 2]
       import Phoenix.HTML
 
       unquote(verified_routes())
