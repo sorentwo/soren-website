@@ -7,6 +7,7 @@ defmodule Soren.MixProject do
       version: "0.1.0",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -33,6 +34,15 @@ defmodule Soren.MixProject do
       # Development
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev}
+    ]
+  end
+
+  defp aliases do
+    [
+      setup: ["deps.get", "assets.setup", "assets.build"],
+      "assets.setup": ["tailwind.install --if-missing"],
+      "assets.build": ["tailwind default"],
+      "assets.deploy": ["tailwind default --minify", "phx.digest"]
     ]
   end
 end
