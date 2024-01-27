@@ -15,5 +15,6 @@ defmodule Soren.Endpoint do
     plug Phoenix.CodeReloader
   end
 
+  plug Logster.Plug
   plug Soren.Router
 end
