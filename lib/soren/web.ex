@@ -29,7 +29,7 @@ defmodule Soren.Web do
       use Phoenix.Component
 
       import Phoenix.Controller,
-        only: [view_module: 1, view_template: 1]
+        only: [current_url: 1, view_module: 1, view_template: 1]
 
       unquote(html_helpers())
     end

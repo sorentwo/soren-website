@@ -2,17 +2,10 @@ defmodule Soren.Layouts do
   use Soren.Web, :html
 
   # TODO: Add feed
-  # TODO: Use these
-  # <meta property="og:title" content={title(@conn)} />
-  # <meta property="og:description" content={description(@conn)} />
-  # <meta property="og:locale" content="en_US" />
-  # <meta property="og:type" content="article" />
-  # <meta property="og:site_name" content="Oban Pro" />
-  # <meta property="og:url" content={current_url(@conn)} />
-  # <meta property="og:image" content={seo_image(@conn)} />
 
   attr :page_title, :string, default: ""
-  attr :page_theme, :atom, default: :light
+  attr :page_dark?, :boolean, default: false
+  attr :page_description, :string, default: "Soren is Shannon and Parker. We're the people behind Oban, Oban Web, and Oban Pro."
 
   def root(assigns) do
     ~H"""
@@ -22,13 +15,17 @@ defmodule Soren.Layouts do
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Parker and Shannon Selbert" />
-        <meta
-          name="description"
-          content="Soren is the partnership of Shannon and Parker Selbert. We're the people behind Oban, Oban Web, and Oban Pro."
-        />
+        <meta name="description" content={@page_description} />
 
         <.live_title suffix=" • Soren"><%= @page_title %></.live_title>
 
+        <meta property="og:title" content={@page_title} />
+        <meta property="og:description" content={@page_description} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Soren Blog" />
+        <meta property="og:url" content={current_url(@conn)} />
+        <meta property="og:image" content={~p"/images/soren-og-card.jpg"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@sorentwo" />
         <meta name="twitter:site" content="@sorentwo" />
@@ -36,13 +33,17 @@ defmodule Soren.Layouts do
         <link phx-track-static rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
       </head>
-      <body class={["min-h-screen flex flex-col font-sans antialiased", (if @page_theme == :dark,
-      do: "bg-cyan-950 text-gray-100", else: "bg-gray-100 text-gray-900")]}>
+      <body class={[
+        "min-h-screen flex flex-col font-sans antialiased",
+        if(@page_dark?, do: "bg-cyan-950 text-gray-100", else: "bg-gray-100 text-gray-900")
+      ]}>
         <%= @inner_content %>
       </body>
     </html>
     """
   end
+
+  attr :page_dark?, :boolean, default: false
 
   def app(assigns) do
     ~H"""
@@ -58,10 +59,14 @@ defmodule Soren.Layouts do
     ~H"""
     <header class="max-w-screen-md mx-auto py-6 px-6 md:px-0 flex justify-between">
       <a class="flex items-center space-x-2" href="/" title="Soren Home">
-        <svg class="w-8 h-8 fill-gray-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254 254">
+        <svg
+          class={["w-8 h-8", if(@page_dark?, do: "fill-gray-200", else: "fill-gray-800")]}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 254 254"
+        >
           <path d="M253.52 21.272a3.974 3.974 0 0 0-1.156-2.788L235.516 1.636a3.94 3.94 0 0 0-5.574 0L201.908 29.67C181.176 13.69 155.2 4.184 127 4.184 59.172 4.184 4.184 59.172 4.184 127c0 28.2 9.506 54.176 25.484 74.908L1.636 229.94a3.972 3.972 0 0 0-1.156 2.79 3.97 3.97 0 0 0 1.156 2.786l16.85 16.852a3.965 3.965 0 0 0 2.788 1.154c1.04 0 2.052-.42 2.788-1.154l28.032-28.032c20.73 15.976 46.708 25.48 74.908 25.48 67.828 0 122.814-54.984 122.814-122.814 0-28.2-9.504-54.178-25.482-74.91l28.032-28.032a3.978 3.978 0 0 0 1.154-2.788ZM55.426 127c0-19.12 7.446-37.092 20.964-50.61C89.908 62.872 107.882 55.426 127 55.426c13.716 0 26.844 3.832 38.158 10.992l-98.742 98.74c-7.158-11.314-10.99-24.442-10.99-38.158Zm143.148 0c0 19.118-7.446 37.09-20.964 50.61-13.518 13.52-31.492 20.966-50.61 20.966-13.716 0-26.844-3.836-38.16-10.992l98.742-98.744c7.158 11.316 10.992 24.444 10.992 38.16Z" />
         </svg>
-        <span class="text-gray-100 font-semibold">Soren</span>
+        <span class="font-semibold">Soren</span>
       </a>
 
       <a href={~p"/blog"}>Blog</a>
@@ -72,10 +77,13 @@ defmodule Soren.Layouts do
   def footer(assigns) do
     ~H"""
     <footer class="text-gray-300 py-6 px-6 md:px-0">
-      <div class="max-w-screen-md mx-auto py-6 px-6 md:px-0">
+      <div class={[
+        "max-w-screen-md mx-auto py-6 px-6 md:px-0",
+        if(@page_dark?, do: "fill-gray-300 text-gray-400", else: "fill-gray-600 text-gray-500")
+      ]}>
         <nav class="flex justify-center space-x-3">
           <a title="SorenTwo's Github" href="https://github.com/sorentwo">
-            <svg class="fill-gray-300 w-5 h-5" viewBox="0 0 98 96">
+            <svg class="w-5 h-5" viewBox="0 0 98 96">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -84,7 +92,7 @@ defmodule Soren.Layouts do
             </svg>
           </a>
           <a title="Blog Feed" href="http://sorentwo.com/feed.atom">
-            <svg class="fill-gray-300 w-5 h-5" viewBox="0 0 16 16">
+            <svg class="w-5 h-5" viewBox="0 0 16 16">
               <path
                 d="M12.502 15.316h2.814C15.316 7.247 8.752.678.684.678v2.807c6.515 0 11.818 5.309 11.818 11.831Zm-9.87.005a1.944 1.944 0 0 0 1.951-1.942 1.95 1.95 0 0 0-3.899 0c0 1.075.873 1.942 1.948 1.942Zm4.895-.004h2.818c0-5.329-4.335-9.664-9.662-9.664v2.806c1.827 0 3.545.714 4.838 2.009a6.81 6.81 0 0 1 2.006 4.849Z"
                 fill-rule="nonzero"
@@ -92,7 +100,7 @@ defmodule Soren.Layouts do
             </svg>
           </a>
           <a title="SorenOne's Github" href="https://github.com/sorenone">
-            <svg class="fill-gray-300 w-5 h-5" viewBox="0 0 98 96">
+            <svg class="w-5 h-5" viewBox="0 0 98 96">
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"

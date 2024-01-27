@@ -4,7 +4,7 @@ defmodule Soren.PageController do
   def index(conn, _params) do
     conn
     |> assign(:page_title, "Home")
-    |> assign(:page_theme, :dark)
+    |> assign(:page_dark?, true)
     |> render(:index)
   end
 
@@ -19,6 +19,7 @@ defmodule Soren.PageController do
     case Soren.Blog.get_post(id) do
       {:ok, post} ->
         conn
+        |> assign(:page_description, post.summary)
         |> assign(:page_title, post.title)
         |> assign(:post, post)
         |> render(:post)
