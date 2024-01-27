@@ -22,6 +22,8 @@ defmodule Soren.MixProject do
     [
       {:bandit, "~> 1.0"},
       {:jason, "~> 1.0"},
+      {:logster, "~> 2.0.0-rc.1"},
+      {:mdex, "~> 0.1"},
       {:nimble_publisher, "~> 1.0"},
       {:phoenix, "~> 1.7.0"},
       {:phoenix_html, "~> 4.0"},

@@ -10,6 +10,8 @@ defmodule Soren.Application do
       Soren.Endpoint
     ]
 
+    :ok = Logster.attach_phoenix_logger()
+
     Supervisor.start_link(children, strategy: :one_for_one, name: Soren.Supervisor)
   end
 

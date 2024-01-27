@@ -10,7 +10,7 @@ config :soren, Soren.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/articles/.*md$",
+      ~r"priv/posts/.*md$",
       ~r"lib/soren/.*(ex|heex)$"
     ]
   ],

@@ -1,6 +1,6 @@
 import Config
 
-config :phoenix, :json_library, Jason
+config :phoenix, json_library: Jason, logger: false
 
 config :soren, Soren.Endpoint,
   url: [host: "localhost"],

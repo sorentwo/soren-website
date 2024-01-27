@@ -11,6 +11,9 @@ defmodule Soren.Layouts do
   # <meta property="og:url" content={current_url(@conn)} />
   # <meta property="og:image" content={seo_image(@conn)} />
 
+  attr :page_title, :string, default: ""
+  attr :page_theme, :atom, default: :light
+
   def root(assigns) do
     ~H"""
     <!DOCTYPE html>
@@ -24,7 +27,7 @@ defmodule Soren.Layouts do
           content="Soren is the partnership of Shannon and Parker Selbert. We're the people behind Oban, Oban Web, and Oban Pro."
         />
 
-        <.live_title suffix=" • Soren"><%= assigns[:page_title] %></.live_title>
+        <.live_title suffix=" • Soren"><%= @page_title %></.live_title>
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@sorentwo" />
@@ -33,7 +36,8 @@ defmodule Soren.Layouts do
         <link phx-track-static rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
       </head>
-      <body class="min-h-screen bg-cyan-950 flex flex-col font-sans antialiased text-gray-100">
+      <body class={["min-h-screen flex flex-col font-sans antialiased", (if @page_theme == :dark,
+      do: "bg-cyan-950 text-gray-100", else: "bg-gray-100 text-gray-900")]}>
         <%= @inner_content %>
       </body>
     </html>
@@ -43,10 +47,10 @@ defmodule Soren.Layouts do
   def app(assigns) do
     ~H"""
     <div class="flex-1">
-      <.header />
+      <.header {assigns} />
       <%= @inner_content %>
     </div>
-    <.footer />
+    <.footer {assigns} />
     """
   end
 

@@ -12,5 +12,7 @@ defmodule Soren.Router do
 
     get "/", PageController, :index
     get "/blog", PageController, :blog
+    get "/blog/:id", PageController, :post
+    get ":year/:month/:day/:id", PageController, :post
   end
 end
