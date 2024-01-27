@@ -1,11 +1,16 @@
-<article class="wrapper">
-  <section class="post-header">
-    <h1 class="post-heading">{{page.title}}</h1>
-    <span class="date">{{page.date | date_to_string}}</span>
-    <span class="author"><em class="fancy">by</em> {{page.author}}</span>
+<div class="max-w-screen-md mx-auto mt-6 px-6 md:px-0">
+  <section>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 tracking-snug leading-tight md:leading-tight">
+      <%= @post.title %>
+    </h1>
+    <div class="mt-1">
+      <time class="uppercase text-xs text-gray-500 font-medium">
+        <%= Calendar.strftime(@post.date, "%B %-d, %Y") %>
+      </time>
+    </div>
   </section>
 
-  <section class="post-body">
-    {{content}}
-  </section>
-</article>
+  <article class="pt-12 prose max-w-none prose-neutral prose-lg md:prose-xl md:leading-normal text-gray-700">
+    <%= raw(@post.body) %>
+  </article>
+</div>
