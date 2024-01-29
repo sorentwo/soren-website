@@ -11,9 +11,8 @@ defmodule Soren.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/blog/:id", PageController, :post
     get "/feed.atom", PageController, :feed
     get "/feed.xml", PageController, :feed
-    get ":year/:month/:day/:id", PageController, :post
+    get "/:year/:month/:day/:id", PageController, :post
   end
 end

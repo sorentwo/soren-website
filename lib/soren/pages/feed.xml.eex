@@ -12,8 +12,8 @@
   <%= for post <- @posts do %>
     <entry>
       <title><%= post.title %></title>
-      <link rel="alternate" href="<%= url(~p"/blog/#{post}") %>" />
-      <id><%= url(~p"/blog/#{post}") %></id>
+      <link rel="alternate" href="<%= unverified_url(@conn, post_path(post)) %>" />
+      <id><%= unverified_url(@conn, post_path(post)) %></id>
       <published><%= post.date %>T00:00:00Z</published>
       <updated><%= post.date %>T00:00:00Z</updated>
       <summary><%= post.summary %>></summary>

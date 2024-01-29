@@ -40,8 +40,7 @@ defmodule Soren.Web do
     quote do
       use Phoenix.Component
 
-      import Phoenix.Controller,
-        only: [current_url: 1, view_module: 1, view_template: 1]
+      import Phoenix.Controller, only: [current_url: 1, view_module: 1, view_template: 1]
       import Phoenix.HTML
 
       unquote(verified_routes())
