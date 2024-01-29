@@ -7,14 +7,8 @@ defmodule Soren.PageController do
     conn
     |> assign(:page_title, "Home")
     |> assign(:page_dark?, true)
-    |> render(:index)
-  end
-
-  def blog(conn, _params) do
-    conn
-    |> assign(:page_title, "Articles")
     |> assign(:posts, Blog.all_posts())
-    |> render(:blog)
+    |> render(:index)
   end
 
   def feed(conn, _params) do

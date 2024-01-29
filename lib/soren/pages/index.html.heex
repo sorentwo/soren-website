@@ -1,4 +1,4 @@
-<section class="max-w-screen-md mx-auto mt-24 px-6 md:px-0">
+<section class="max-w-screen-sm mx-auto mt-24 px-6 md:px-0">
   <div class="w-56 h-56 mx-auto relative">
     <img
       class="border-2 border-gray-100 rounded-full w-56 h-56 shadow-[0_0_80px_-15px_rgba(255,255,255,0.3)]"
@@ -17,4 +17,26 @@
     >Oban Web</a>,
     and <a href="https://getoban.pro" class="font-medium underline">Oban Pro</a>)
   </h2>
+</section>
+
+<section class="relative max-w-screen-sm mx-auto mt-20 px-6 md:px-0 border-t border-cyan-900">
+  <span class="px-3 w-10 absolute -top-3 left-0 right-0 mx-auto text-md bg-cyan-950 text-cyan-800 text-center">§</span>
+  <h2 class="mt-16 text-3xl font-semibold text-center">Articles</h2>
+
+  <div class="mt-8 text-center">
+    <a
+      href="https://getoban.pro/articles"
+      class="block text-sm leading-5 font-medium text-cyan-50 bg-cyan-100/10 rounded-full py-2 px-4 hover:bg-cyan-300 hover:text-cyan-800"
+    >
+      Looking for more articles about <b>Oban</b>? Head to the official Oban blog →
+    </a>
+  </div>
+
+  <div class="mt-8 space-y-6">
+    <div :for={post <- @posts}>
+      <a class="text-2xl" href={~p"/blog/#{post}"}><%= post.title %></a>
+      <p class="mt-3 text-md text-gray-400"><%= post.summary %></p>
+      <span class="mt-2 text-xs text-gray-400"><%= Calendar.strftime(post.date, "%B %d, %Y") %></span>
+    </div>
+  </div>
 </section>
