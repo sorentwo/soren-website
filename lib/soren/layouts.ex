@@ -3,7 +3,9 @@ defmodule Soren.Layouts do
 
   attr :page_title, :string, default: ""
   attr :page_dark?, :boolean, default: false
-  attr :page_description, :string, default: "Soren is Shannon and Parker. We're the people behind Oban, Oban Web, and Oban Pro."
+
+  attr :page_description, :string,
+    default: "Soren is Shannon and Parker. We're the people behind Oban, Oban Web, and Oban Pro."
 
   def root(assigns) do
     ~H"""
@@ -74,14 +76,35 @@ defmodule Soren.Layouts do
         <span class="font-semibold">Soren</span>
       </a>
 
-      <div class={["flex justify-center space-x-3", if(@page_dark?, do: "fill-gray-300 text-gray-400", else: "fill-gray-600 text-gray-500")]}>
-        <a title="Email" href="mailto:soren@sorentwo.com" class="w-5 h-5 bg-gray-300 rounded-full transition-transform hover:scale-125">
-          <svg class="w-5 h-5 fill-cyan-950" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M5.404 14.596A6.5 6.5 0 1 1 16.5 10a1.25 1.25 0 0 1-2.5 0 4 4 0 1 0-.571 2.06A2.75 2.75 0 0 0 18 10a8 8 0 1 0-2.343 5.657.75.75 0 0 0-1.06-1.06 6.5 6.5 0 0 1-9.193 0ZM10 7.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z" clip-rule="evenodd" />
+      <div class={[
+        "flex justify-center space-x-3",
+        if(@page_dark?, do: "fill-gray-300 text-gray-400", else: "fill-gray-600 text-gray-500")
+      ]}>
+        <a
+          title="Email"
+          href="mailto:soren@sorentwo.com"
+          class={[
+            "w-5 h-5 rounded-full transition-transform hover:scale-125",
+            if(@page_dark?, do: "bg-gray-300", else: "bg-gray-600")
+          ]}
+        >
+          <svg
+            class={["w-5 h-5", if(@page_dark?, do: "fill-cyan-950", else: "fill-gray-50")]}
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.404 14.596A6.5 6.5 0 1 1 16.5 10a1.25 1.25 0 0 1-2.5 0 4 4 0 1 0-.571 2.06A2.75 2.75 0 0 0 18 10a8 8 0 1 0-2.343 5.657.75.75 0 0 0-1.06-1.06 6.5 6.5 0 0 1-9.193 0ZM10 7.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"
+              clip-rule="evenodd"
+            />
           </svg>
         </a>
 
-        <a title="Github" href="https://github.com/sorentwo" class="transition-transform hover:scale-125">
+        <a
+          title="Github"
+          href="https://github.com/sorentwo"
+          class="transition-transform hover:scale-125"
+        >
           <svg class="w-5 h-5" viewBox="0 0 98 96">
             <path
               fill-rule="evenodd"
